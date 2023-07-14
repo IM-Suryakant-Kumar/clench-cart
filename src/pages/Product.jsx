@@ -6,7 +6,7 @@ import { Add, Remove } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
-import { addProduct } from "../features/cartRedux";
+import { addProduct } from "../features/cartSlice";
 import { useDispatch } from "react-redux";
 import {
 	AddContainer,
@@ -73,7 +73,7 @@ const Product = () => {
 				<InfoContainer>
 					<Title>{product?.title}</Title>
 					<Desc>{product?.desc}</Desc>
-					<Price>$ {product?.price}</Price>
+					<Price>₹ {product?.price}</Price>
 					<FilterContainer>
 						<Filter>
 							<FilterTitle>Color</FilterTitle>

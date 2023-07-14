@@ -1,12 +1,11 @@
 import { userRequest } from "../requestMethods";
-import { Button } from "../styles/payButton"
+import { Button } from "../styles/payButton";
 
-const PayButton = ({ cartItems }) => {
-
+const PayButton = ({ products }) => {
 	const handleCheckout = async () => {
 		try {
 			const res = await userRequest.post("/checkout/payment", {
-				cartItems
+				products
 			});
 
 			if (res.data.url) {
