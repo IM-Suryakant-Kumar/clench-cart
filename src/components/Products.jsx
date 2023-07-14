@@ -1,15 +1,8 @@
-import styled from "styled-components";
 // import { popularProducts } from "../data";
 import Product from "./Product";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-const Container = styled.div`
-	padding: 20px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-`;
+import { Container } from "../styles/products.jsx";
 
 const Products = ({ cat, filters, sort }) => {
 	// console.log(cat, filters, sort);
@@ -60,22 +53,15 @@ const Products = ({ cat, filters, sort }) => {
 		}
 	}, [sort]);
 
-
 	return (
 		<Container>
 			{cat
 				? filteredProducts.map((item) => (
-						<Product
-							item={item}
-							key={item.id}
-						/>
+						<Product item={item} key={item.id} />
 				  ))
-				: products.slice(0, 8).map((item) => (
-						<Product
-							item={item}
-							key={item.id}
-						/>
-				  ))}
+				: products
+						.slice(0, 8)
+						.map((item) => <Product item={item} key={item.id} />)}
 		</Container>
 	);
 };

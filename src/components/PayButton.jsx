@@ -1,14 +1,5 @@
-import styled from "styled-components";
 import { userRequest } from "../requestMethods";
-
-const Button = styled.button`
-	width: 100%;
-	padding: 10px;
-	background-color: black;
-	color: white;
-	font-weight: 600;
-	cursor: pointer;
-`;
+import { Button } from "../styles/payButton"
 
 const PayButton = ({ cartItems }) => {
 
