@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Success from "./pages/Success";
 
 const App = () => {
 	const user = false;
@@ -24,6 +25,7 @@ const App = () => {
 					path="/register"
 					element={user ? <Navigate to="/" /> : <Register />}
 				/>
+                <Route path="/success" element={<Success />} />
 				<Route path="*" element={<h1>Route does not exist</h1>} />
 			</Routes>
 		</BrowserRouter>

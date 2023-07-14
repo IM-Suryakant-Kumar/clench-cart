@@ -8,7 +8,7 @@ import { mobile } from "../responsive";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
-import { addProduct } from "../redux/cartRedux";
+import { addProduct } from "../features/cartRedux";
 import { useDispatch } from "react-redux";
 
 const Container = styled.div``;
