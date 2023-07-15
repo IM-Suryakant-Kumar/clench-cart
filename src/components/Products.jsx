@@ -1,7 +1,7 @@
 // import { popularProducts } from "../data";
 import Product from "./Product";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../axios";
 import { Container } from "../styles/products.jsx";
 
 const Products = ({ cat, filters, sort }) => {
@@ -14,8 +14,8 @@ const Products = ({ cat, filters, sort }) => {
 			try {
 				const res = await axios.get(
 					cat
-						? `http://localhost:3000/api/v1/products?category=${cat}`
-						: "http://localhost:3000/api/v1/products"
+						? `/products?category=${cat}`
+						: "/products"
 				);
 				setProducts(res.data);
 			} catch (err) {

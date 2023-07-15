@@ -1,10 +1,10 @@
-import { userRequest } from "../requestMethods";
+import axios from "../axios";
 import { Button } from "../styles/payButton";
 
 const PayButton = ({ products }) => {
 	const handleCheckout = async () => {
 		try {
-			const res = await userRequest.post("/checkout/payment", {
+			const res = await axios.post("/checkout/payment", {
 				products
 			});
 

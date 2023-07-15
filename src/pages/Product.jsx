@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { publicRequest } from "../requestMethods";
+import axios from "../axios";
 import { addProduct } from "../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 import {
@@ -52,7 +52,7 @@ const Product = () => {
 	useEffect(() => {
 		const getProduct = async () => {
 			try {
-				const res = await publicRequest.get(`products/find/${id}`);
+				const res = await axios.get(`/products/${id}`);
 				setProduct(res.data);
 			} catch (err) {
 				console.log(err);
