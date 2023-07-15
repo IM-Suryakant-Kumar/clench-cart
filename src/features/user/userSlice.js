@@ -1,15 +1,26 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginUserThunk } from "./userThunk";
+import { toast } from "react-toastify";
+import {
+	registerUserThunk,
+	loginUserThunk,
+	logoutUserThunk,
+	getUserThunk,
+	updateUserThunk
+} from "./userThunk";
 
 const initialState = {
 	user: null,
-	isLoading: false,
-	error: false
+	isLoading: false
 };
 
-export const loginUser = createAsyncThunk("user/loginUser", async (user, thunkAPI) => {
-    return loginUserThunk("/auth/login", user, thunkAPI)
-}) 
+export const registerUser = createAsyncThunk(
+	"user/registerUser",
+	registerUserThunk
+);
+export const loginUser = createAsyncThunk("user/loginUser", loginUserThunk);
+export const logoutUser = createAsyncThunk("user/logoutUser", logoutUserThunk);
+export const getUser = createAsyncThunk("user/getUser", getUserThunk);
+export const updateUser = createAsyncThunk("user/updateUser", updateUserThunk);
 
 const userSlice = createSlice({
 	name: "user",
@@ -17,18 +28,68 @@ const userSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
+			.addCase(registerUser.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(registerUser.fulfilled, (state, action) => {
+				const { user } = action.payload;
+				state.isLoading = false;
+				state.user = user;
+				toast.success(`Hello There ${user.name}`);
+			})
+			.addCase(registerUser.rejected, (state, action) => {
+				state.isLoading = false;
+				toast.error(action.payload);
+			})
 			.addCase(loginUser.pending, (state) => {
 				state.isLoading = true;
 			})
-			.addCase(loginUser.fulfilled, (state, { payload }) => {
-				const { user } = payload;
+			.addCase(loginUser.fulfilled, (state, action) => {
+				const { user } = action.payload;
+				state.isLoading = false;
+				state.user = user;
+				toast.success(`Welcome Back ${user.name}`);
+			})
+			.addCase(loginUser.rejected, (state, action) => {
+				state.isLoading = false;
+				toast.error(action.payload);
+			})
+			.addCase(logoutUser.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(logoutUser.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.user = null;
+				toast.success(action.payload);
+			})
+			.addCase(logoutUser.rejected, (state, action) => {
+				state.isLoading = false;
+				toast.error(action.payload);
+			})
+			.addCase(getUser.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(getUser.fulfilled, (state, action) => {
+				const { user } = action.payload;
 				state.isLoading = false;
 				state.user = user;
 			})
-			.addCase(loginUser.rejected, (state, { payload }) => {
-                state.isLoading = false;
-                // toast.error(payload)
-            })
+			.addCase(getUser.rejected, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(updateUser.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(updateUser.fulfilled, (state, action) => {
+				const { user } = action.payload;
+				state.isLoading = false;
+				state.user = user;
+				toast.success("Profile updated!");
+			})
+			.addCase(updateUser.rejected, (state, action) => {
+				state.isLoading = false;
+				toast.error(action.payload);
+			});
 	}
 });
 

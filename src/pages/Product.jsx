@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
 import Newsletter from "../components/Newsletter";
@@ -46,7 +47,8 @@ const Product = () => {
 	};
 
 	const handleClickAddToCart = () => {
-		dispatch(addProduct({ ...product, quantity, color, size }));
+        dispatch(addProduct({ ...product, quantity, color, size }));
+		toast.success("Item added to cart");
 	};
 
 	useEffect(() => {

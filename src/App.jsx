@@ -1,4 +1,6 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
 import Product from "./pages/Product";
@@ -25,9 +27,10 @@ const App = () => {
 					path="/register"
 					element={user ? <Navigate to="/" /> : <Register />}
 				/>
-                <Route path="/success" element={<Success />} />
+				<Route path="/success" element={<Success />} />
 				<Route path="*" element={<h1>Route does not exist</h1>} />
 			</Routes>
+			<ToastContainer autoClose={1000} theme="dark" />
 		</BrowserRouter>
 	);
 };
