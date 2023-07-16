@@ -9,9 +9,14 @@ import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Success from "./pages/Success";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "./features/user/userSlice";
 
 const App = () => {
-	const user = false;
+	const user = useSelector((state) => state.user.user);
+    const dispatch = useDispatch()
+    !user && dispatch(getUser());
+	
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -30,7 +35,7 @@ const App = () => {
 				<Route path="/success" element={<Success />} />
 				<Route path="*" element={<h1>Route does not exist</h1>} />
 			</Routes>
-			<ToastContainer autoClose={1000} theme="dark" />
+			<ToastContainer autoClose={1000} />
 		</BrowserRouter>
 	);
 };

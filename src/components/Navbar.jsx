@@ -45,11 +45,18 @@ const Navbar = () => {
 					</Logo>
 				</Center>
 				<Right>
-					<MenuItem>REGISTER</MenuItem>
-					<MenuItem>SIGN IN</MenuItem>
+					<MenuItem>
+						<Link to="/register">REGISTER</Link>
+					</MenuItem>
+					<MenuItem>
+						<Link to="/login">SIGN IN</Link>
+					</MenuItem>
 					<Link to="/cart">
 						<MenuItem>
-							<Badge badgeContent={quantity} color="primary">
+							<Badge
+								badgeContent={quantity}
+								color="primary"
+							>
 								<LocalMallOutlined />
 							</Badge>
 						</MenuItem>

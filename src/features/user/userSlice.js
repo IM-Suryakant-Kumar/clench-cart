@@ -35,7 +35,7 @@ const userSlice = createSlice({
 				const { user } = action.payload;
 				state.isLoading = false;
 				state.user = user;
-				toast.success(`Hello There ${user.name}`);
+				toast.success(`Hello There ${user.username}`);
 			})
 			.addCase(registerUser.rejected, (state, action) => {
 				state.isLoading = false;
@@ -48,7 +48,7 @@ const userSlice = createSlice({
 				const { user } = action.payload;
 				state.isLoading = false;
 				state.user = user;
-				toast.success(`Welcome Back ${user.name}`);
+				toast.success(`Welcome Back ${user.username}`);
 			})
 			.addCase(loginUser.rejected, (state, action) => {
 				state.isLoading = false;
@@ -70,12 +70,13 @@ const userSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getUser.fulfilled, (state, action) => {
-				const { user } = action.payload;
+				const user = action.payload;
 				state.isLoading = false;
 				state.user = user;
+				toast.success(`Welcome Back ${user.username}`);
 			})
-			.addCase(getUser.rejected, (state) => {
-				state.isLoading = true;
+			.addCase(getUser.rejected, (state, action) => {
+				state.isLoading = false;
 			})
 			.addCase(updateUser.pending, (state) => {
 				state.isLoading = true;

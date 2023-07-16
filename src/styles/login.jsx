@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import { mobile } from "./responsive";
 
@@ -21,7 +20,7 @@ export const Wrapper = styled.div`
 	width: 25%;
 	padding: 20px;
 	background-color: white;
-    ${mobile({ width: "75%" })}
+	${mobile({ width: "75%" })}
 `;
 
 export const Title = styled.h1`
@@ -48,12 +47,16 @@ export const Button = styled.button`
 	background-color: teal;
 	color: white;
 	cursor: pointer;
-    margin-bottom: 10px;
+	margin-bottom: 10px;
+	&:disabled {
+		color: green;
+		cursor: not-allowed;
+	}
 `;
 
 export const Link = styled.a`
 	margin: 5px 0;
 	font-size: 12px;
-    text-decoration: underline;
-    cursor: pointer;
+	text-decoration: underline;
+	cursor: pointer;
 `;
