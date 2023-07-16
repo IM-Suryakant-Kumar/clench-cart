@@ -37,7 +37,7 @@ import {
 const Cart = () => {
 	const { products, total } = useSelector((state) => state.cart);
 
-	console.log(products);
+	// console.log(products);
 	return (
 		<Container>
 			<Navbar />

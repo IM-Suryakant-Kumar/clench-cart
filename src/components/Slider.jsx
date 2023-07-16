@@ -26,12 +26,12 @@ const Slider = () => {
 
 	return (
 		<Container>
-			<Arrow direction="left" onClick={() => handleClick("left")}>
+			<Arrow $direction="left" onClick={() => handleClick("left")}>
 				<ArrowLeftOutlined />
 			</Arrow>
-			<Wrapper slideIdx={slideIdx}>
+			<Wrapper $slideIdx={slideIdx}>
 				{sliderItems.map((item) => (
-					<Slide bg={item.bg} key={item.id}>
+					<Slide $bg={item.bg} key={item.id}>
 						<ImageContainer>
 							<Image src={item.img} />
 						</ImageContainer>
@@ -43,7 +43,7 @@ const Slider = () => {
 					</Slide>
 				))}
 			</Wrapper>
-			<Arrow direction="right" onClick={() => handleClick("right")}>
+			<Arrow $direction="right" onClick={() => handleClick("right")}>
 				<ArrowRightOutlined />
 			</Arrow>
 		</Container>

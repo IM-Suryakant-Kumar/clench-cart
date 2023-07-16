@@ -13,9 +13,7 @@ const Products = ({ cat, filters, sort }) => {
 		const getProducts = async () => {
 			try {
 				const res = await axios.get(
-					cat
-						? `/products?category=${cat}`
-						: "/products"
+					cat ? `/products?category=${cat}` : "/products"
 				);
 				setProducts(res.data);
 			} catch (err) {
@@ -57,11 +55,17 @@ const Products = ({ cat, filters, sort }) => {
 		<Container>
 			{cat
 				? filteredProducts.map((item) => (
-						<Product item={item} key={item.id} />
+						<Product
+							item={item}
+							key={item._id}
+						/>
 				  ))
-				: products
-						.slice(0, 8)
-						.map((item) => <Product item={item} key={item.id} />)}
+				: products.slice(0, 8).map((item) => (
+						<Product
+							item={item}
+							key={item._id}
+						/>
+				  ))}
 		</Container>
 	);
 };
