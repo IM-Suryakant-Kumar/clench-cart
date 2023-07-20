@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
-import { Box, Stack, Typography } from "@mui/material"
+import { Logout } from "@mui/icons-material"
+import { Box, Button, Stack, Typography } from "@mui/material"
 
 export const Container = styled(Box)`
     margin-top: 1.25em;
@@ -15,6 +16,7 @@ export const Wrapper = styled(Box)`
     margin: 1em auto;
     text-align: center;
     padding: 1.25em;
+    position: relative;
 `
 
 export const TitleCont = styled(Stack)`
@@ -27,5 +29,24 @@ export const Title = styled(Typography)`
     &.title-header {
         border-bottom: 2px solid darkgoldenrod;
         padding-bottom: 0.3125em;
+    }
+`
+
+// Icon
+export const LogoutIcon = styled(Logout)`
+    margin-right: 0.625em;
+`
+
+export const SButton = styled(Button)`
+    text-transform: capitalize;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #0322d3;
+    color: white;
+    font-weight: 600;
+    padding: 0.3125em 0.625em;
+    &:hover {
+        background-color: #0322d3;
     }
 `

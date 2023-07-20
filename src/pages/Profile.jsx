@@ -3,13 +3,17 @@ import {
     AvatarCont, 
     Wrapper,
     TitleCont,
-    Title 
+    Title, 
+    LogoutIcon,
+    SButton as Button
 } from "../styles/profile.css"
 import Avatar from "../components/Avatar.jsx"
 import { requireAuth } from "../util"
-import { Await, defer, useLoaderData } from "react-router-dom"
+import { Await, defer, useLoaderData, useNavigate } from "react-router-dom"
 import { getProfile } from "../api"
 import { Suspense } from "react"
+import { useDispatch } from "react-redux"
+import { logoutUser } from "../features/user/userSlice"
 
 export const loader = async ({request}) => {
     await requireAuth(request)
@@ -18,6 +22,13 @@ export const loader = async ({request}) => {
 
 const Profile = () => {
     const loaderData = useLoaderData()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        dispatch(logoutUser())
+        navigate("/login", {replace: true})
+    }
 
     const renderProfile = (user) => (<>
         <AvatarCont>
@@ -30,6 +41,7 @@ const Profile = () => {
             />
         </AvatarCont>
         <Wrapper>
+            <Button onClick={handleLogout}><LogoutIcon /> Log out</Button>
             <Title variant="h6" component="h2" className="title-header">
                 Accont Detail
             </Title>
@@ -93,7 +105,6 @@ const Profile = () => {
             <Suspense fallback={<h3>Loading...</h3>}>
                 <Await resolve={loaderData.user}>{renderProfile}</Await>
             </Suspense>
-            
         </Container>
     )
 }

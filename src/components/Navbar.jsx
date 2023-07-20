@@ -48,7 +48,7 @@ const Navbar = () => {
 				</Center>
 				<Right>
                     {user 
-                        ? <Link to="/profile">
+                        ? <Link to="/profile" className="link">
                                 <Avatar 
                                     avatar={user.avatar}
                                     username={user.username}
@@ -59,10 +59,17 @@ const Navbar = () => {
                             </Link>
                         
                         : (<><MenuItem>
-                                <Link to="/register">REGISTER</Link>
+                                <Link 
+                                    to="/register" 
+                                    className="link"
+                                >REGISTER
+                                </Link>
                             </MenuItem>
                             <MenuItem>
-                                <Link to="/login">SIGN IN</Link>
+                                <Link 
+                                    to="/login" 
+                                    className="link"
+                                >SIGN IN</Link>
                             </MenuItem></>)
                         }
 					
