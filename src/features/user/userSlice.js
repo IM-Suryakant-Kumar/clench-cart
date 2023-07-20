@@ -10,7 +10,8 @@ import {
 
 const initialState = {
 	user: null,
-	isLoading: false
+	isLoading: false,
+    error: null
 };
 
 export const registerUser = createAsyncThunk(
@@ -73,10 +74,10 @@ const userSlice = createSlice({
 				const user = action.payload;
 				state.isLoading = false;
 				state.user = user;
-				toast.success(`Welcome Back ${user.username}`);
 			})
 			.addCase(getUser.rejected, (state, action) => {
 				state.isLoading = false;
+                state.error = action.payload
 			})
 			.addCase(updateUser.pending, (state) => {
 				state.isLoading = true;

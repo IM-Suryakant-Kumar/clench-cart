@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { Box, Paper, Stack, Typography } from "@mui/material"
+import { Box, Stack, Typography } from "@mui/material"
 
 export const Container = styled(Box)`
     margin-top: 1.25em;
@@ -8,7 +8,6 @@ export const Container = styled(Box)`
 export const AvatarCont = styled(Stack)`
     margin-top: 3em;
     align-items: center;
-    cursor: pointer;
 `
 
 export const Wrapper = styled(Box)`

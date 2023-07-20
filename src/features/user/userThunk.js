@@ -32,7 +32,11 @@ export const getUserThunk = async (user, thunkAPI) => {
 		const res = await axios.get("/users/me");
 		return res.data;
 	} catch (error) {
-		return thunkAPI.rejectWithValue(error.response.data.msg);
+		return thunkAPI.rejectWithValue({
+            msg: error.response.data.msg,
+            status: error.response.request.status,
+            statusText: error.response.request.statusText
+        });
 	}
 };
 

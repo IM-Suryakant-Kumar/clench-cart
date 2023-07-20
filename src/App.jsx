@@ -3,7 +3,6 @@ import {
     createBrowserRouter, 
     createRoutesFromElements, 
     Route, 
-    Navigate 
 } from "react-router-dom";
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
@@ -13,7 +12,7 @@ import Login from "./pages/Login";
 import Cart, { loader as cartLoader } from "./pages/Cart";
 import Success from "./pages/Success";
 import Layout from "./components/Layout"
-import Profile from "./pages/Profile";
+import Profile, { loader as profileLoader } from "./pages/Profile";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout />}>
@@ -29,6 +28,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route 
             path="profile"
             element={<Profile />}
+            loader={profileLoader}
         />
         <Route 
             path="cart" 
@@ -37,11 +37,11 @@ const router = createBrowserRouter(createRoutesFromElements(
         />
         <Route 
             path="login" 
-            element={"user" ? <Navigate to="/" /> : <Login />} 
+            element={<Login />} 
         />
         <Route 
             path="register" 
-            element={"user" ? <Navigate to="/" /> : <Register />}
+            element={<Register />}
         />
         <Route 
             path="success" 

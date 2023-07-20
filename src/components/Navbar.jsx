@@ -15,9 +15,11 @@ import {
 	Right,
 	MenuItem
 } from "../styles/navbar";
+import Avatar from "./Avatar";
 
 const Navbar = () => {
 	const { quantity } = useSelector((state) => state.cart);
+	const { user } = useSelector((state) => state.user);
 
 	return (
 		<Container>
@@ -45,12 +47,25 @@ const Navbar = () => {
 					</Logo>
 				</Center>
 				<Right>
-					<MenuItem>
-						<Link to="/register">REGISTER</Link>
-					</MenuItem>
-					<MenuItem>
-						<Link to="/login">SIGN IN</Link>
-					</MenuItem>
+                    {user 
+                        ? <Link to="/profile">
+                                <Avatar 
+                                    avatar={user.avatar}
+                                    username={user.username}
+                                    width={40}
+                                    height={40}
+                                    font={1.25}
+                                /> 
+                            </Link>
+                        
+                        : (<><MenuItem>
+                                <Link to="/register">REGISTER</Link>
+                            </MenuItem>
+                            <MenuItem>
+                                <Link to="/login">SIGN IN</Link>
+                            </MenuItem></>)
+                        }
+					
 					<Link to="/cart">
 						<MenuItem>
 							<Badge
