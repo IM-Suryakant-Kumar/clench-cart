@@ -2,6 +2,7 @@ import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import PayButton from "../components/PayButton";
+import { requireAuth } from "../util"
 import {
 	Bottom,
 	Container,
@@ -31,6 +32,14 @@ import {
 	TopTexts,
 	Wrapper
 } from "../styles/cart";
+// import { defer } from "react-router-dom";
+
+export const loader = async ({ request }) => {
+    await requireAuth(request)
+
+    // return defer({ carts: getCart() })
+    return null 
+}
 
 const Cart = () => {
 	const { products, total } = useSelector((state) => state.cart);
