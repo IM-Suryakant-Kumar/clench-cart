@@ -1,5 +1,3 @@
-import Navbar from "../components/Navbar";
-import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useSelector } from "react-redux";
@@ -40,8 +38,6 @@ const Cart = () => {
 	// console.log(products);
 	return (
 		<Container>
-			<Navbar />
-			<Announcement />
 			<Wrapper>
 				<Title>YOUR BAG</Title>
 				<Top>
