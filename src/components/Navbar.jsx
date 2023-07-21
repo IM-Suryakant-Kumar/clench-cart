@@ -1,7 +1,6 @@
-import { LocalMallOutlined, Search } from "@mui/icons-material";
-import { Badge } from "@mui/material";
+/* eslint-disable no-unused-expressions */
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
 	Container,
@@ -10,59 +9,95 @@ import {
 	Langauge,
 	SearchContainer,
 	Input,
-	Center,
 	Logo,
 	Right,
-	MenuItem
+    MenuIcon,
+    SearchIcon,
+    SearchIconCont,
+    PersonIcon,
+    IconCont,
+    CartIcon,
+    SBadge as Badge,
+    Title,
+    SidebarContainer,
+    SList as List,
+    SListItem as ListItem,
+    CloseIcon
 } from "../styles/navbar.css";
 import Avatar from "./Avatar";
+import { toggleSidebar } from "../features/user/userSlice";
+
+const Sidebar = () => {
+    const { isSidebarOpen } = useSelector(state => state.user)
+    const dispatch = useDispatch()
+
+    return (
+        <SidebarContainer open={isSidebarOpen}>
+            <List onClick={() => {dispatch(toggleSidebar())}}>
+                <ListItem>
+                    <Link to="/" className="link">Home</Link>
+                </ListItem>
+                <ListItem>
+                    <Link to="/products/new" className="link">Shop Now</Link>
+                </ListItem>
+                <ListItem>
+                    <Link to="/profile" className="link">Profile</Link>
+                </ListItem>
+                <ListItem>Orders</ListItem>
+                <ListItem>Wishlist</ListItem>
+            </List>
+        </SidebarContainer>
+    )
+}
 
 const Navbar = () => {
 	const { quantity } = useSelector((state) => state.cart);
-	const { user } = useSelector((state) => state.user);
+	const { user, isSidebarOpen } = useSelector((state) => state.user);
+    const dispatch = useDispatch()
 
 	return (
 		<Container>
 			<Wrapper>
 				<Left>
-					<Langauge>EN</Langauge>
-					<SearchContainer>
-						<Input />
-						<Search style={{ color: "gray", fontSize: 16 }} />
-					</SearchContainer>
+                    {isSidebarOpen ? <CloseIcon onClick={() => dispatch(toggleSidebar())} /> : <MenuIcon onClick={() => dispatch(toggleSidebar())}  />}
+                    <Logo variant="h6" component="h1">
+                        <Link to="/" className="link logo">ClenchCart</Link>
+                    </Logo>
 				</Left>
-				<Center>
-					<Logo variant="h6" component="h1"><Link to="/" className="link logo">ClenchCart</Link></Logo>
-				</Center>
+
 				<Right>
-                    {user 
-                        ? <Link to="/profile" className="link">
+                    <Langauge>EN</Langauge>
+					<SearchContainer>
+						<Input 
+                            placeholder="Search" 
+                        />
+                        <SearchIconCont><SearchIcon /></SearchIconCont>
+					</SearchContainer>
+                    <IconCont>
+                        {user 
+                            ? <Link to="/profile" className="link">
                                 <Avatar 
                                     avatar={user.avatar} 
                                     username={user.username} 
-                                    width={40} 
-                                    height={40} 
-                                    font={1.25} 
+                                    width={24} 
+                                    height={24} 
+                                    font={0.875} 
                                 /> 
                             </Link>
-                        
-                        : (
-                            <MenuItem>
-                                <Link to="/login" className="link">SIGN IN</Link>
-                            </MenuItem>
-                        )}
-					
-					<Link to="/cart">
-						<MenuItem>
-							<Badge badgeContent={quantity} color="primary">
-								<LocalMallOutlined />
-							</Badge>
-						</MenuItem>
-					</Link>
+                            : <Link to="/login" className="link center">
+                                <PersonIcon /> <Title variant="body2">Sign Up/Sign In</Title>
+                            </Link>}
+                        | <Link to="/cart" className="link">
+                            <Badge badgeContent={quantity} color="primary"><CartIcon /></Badge>
+                            
+                        </Link>
+                    </IconCont>
 				</Right>
 			</Wrapper>
+            <Sidebar />
 		</Container>
 	);
 };
+
 
 export default Navbar;

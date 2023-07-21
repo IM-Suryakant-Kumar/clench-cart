@@ -11,7 +11,8 @@ import {
 const initialState = {
 	user: null,
 	isLoading: false,
-    error: null
+    error: null,
+    isSidebarOpen: false
 };
 
 export const registerUser = createAsyncThunk(
@@ -26,7 +27,11 @@ export const updateUser = createAsyncThunk("user/updateUser", updateUserThunk);
 const userSlice = createSlice({
 	name: "user",
 	initialState,
-	reducers: {},
+	reducers: {
+        toggleSidebar: (state) => {
+            state.isSidebarOpen = !state.isSidebarOpen
+        }
+    },
 	extraReducers: (builder) => {
 		builder
 			.addCase(registerUser.pending, (state) => {
@@ -95,5 +100,5 @@ const userSlice = createSlice({
 	}
 });
 
-// export {} = userSlice.actions;
+export const { toggleSidebar } = userSlice.actions;
 export default userSlice.reducer;
