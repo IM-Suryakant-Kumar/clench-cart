@@ -1,52 +1,70 @@
-import { useState } from "react";
 import {
-	Button,
+	SButton as Button,
 	Container,
-	Form,
 	Input,
 	Link,
 	Title,
 	Wrapper
-} from "../styles/login";
-import { useSelector, useDispatch } from "react-redux";
-import { loginUser } from "../features/user/userSlice";
+} from "../styles/login.css";
+import { 
+    Form, 
+    redirect, 
+    useActionData, 
+    useLoaderData, 
+    useNavigation 
+} from "react-router-dom";
+import { loginUser, isLoggedIn } from "../api";
+
+export const loader = async ({ request }) => {
+    if(await isLoggedIn()) {
+        return redirect("/")
+    }
+    return new URL(request.url).searchParams.get("message")
+}
+
+export const action = async ({ request }) => {
+    const formData = await request.formData()
+    const username = formData.get("username")
+    const password = formData.get("password")
+    const pathname = new URL(request.url).searchParams.get("redirectTo") || "/"
+    try {
+        await loginUser({ username, password })
+        return redirect(pathname)
+    } catch (err) {
+        return err.msg
+    }
+}
 
 const Login = () => {
-	const dispatch = useDispatch();
-	const [loginData, setLoginData] = useState({ username: "", password: "" });
-	const { isLoading } = useSelector((state) => state.user);
-
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setLoginData((prevData) => ({ ...prevData, [name]: value }));
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		dispatch(loginUser(loginData));
-	};
+    const message = useLoaderData()
+    const errorMessage = useActionData()
+    const navigation = useNavigation()
 
 	return (
 		<Container>
 			<Wrapper>
-				<Title>SIGN IN</Title>
-				<Form onSubmit={handleSubmit}>
+				<Title variant="h6" component="h2">SIGN IN</Title>
+                {
+                    message && <Title variant="subtitle2" component="h3" className="message">{message}</Title>
+                }
+                {
+                    errorMessage && <Title variant="subtitle2" component="h3" className="message">{errorMessage}</Title>
+                }
+
+				<Form method="post" className="login-form" replace>
 					<Input
 						type="text"
 						name="username"
 						placeholder="username"
-						value={loginData.username}
-						onChange={handleChange}
 					/>
 					<Input
 						type="password"
 						name="password"
 						placeholder="password"
-						value={loginData.password}
-						onChange={handleChange}
 					/>
-					<Button type="submit" disabled={isLoading}>
-						LOGIN
+					<Button type="submit" disabled={navigation.state === "submitting"}>
+                        {navigation.state === "submitting" ? 
+                            "LOGGIN IN..." : "LOGIN"}
 					</Button>
 					<Link>DO NOT REMEMBER THE PASSWORD</Link>
 					<Link>CREATE NEW ACCOUNT</Link>

@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { mobile } from "./responsive";
+import { Box, Button, Typography } from "@mui/material";
 
-export const Container = styled.div`
+export const Container = styled(Box)`
 	width: 100vw;
 	height: 100vh;
 	background: linear-gradient(
@@ -16,21 +17,24 @@ export const Container = styled.div`
 	justify-content: center;
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Box)`
 	width: 25%;
 	padding: 20px;
 	background-color: white;
 	${mobile({ width: "75%" })}
+    & > .login-form {
+        display: flex;
+	    flex-direction: column;
+    }
 `;
 
-export const Title = styled.h1`
-	font-size: 24px;
-	font-weight: 300;
-`;
-
-export const Form = styled.form`
-	display: flex;
-	flex-direction: column;
+export const Title = styled(Typography)`
+	font-weight: 600;
+    text-align: center;
+    &.message {
+        color: red;
+        font-weight: 400;
+    }
 `;
 
 export const Input = styled.input`
@@ -40,14 +44,15 @@ export const Input = styled.input`
 	padding: 10px;
 `;
 
-export const Button = styled.button`
-	width: 40%;
-	border: none;
-	padding: 15px 20px;
+export const SButton = styled(Button)`
+	width: 100%;
+	padding: 0.3125em;
 	background-color: teal;
 	color: white;
-	cursor: pointer;
 	margin-bottom: 10px;
+    &:hover {
+        background-color: teal;
+    }
 	&:disabled {
 		color: green;
 		cursor: not-allowed;
@@ -59,4 +64,5 @@ export const Link = styled.a`
 	font-size: 12px;
 	text-decoration: underline;
 	cursor: pointer;
+    text-align: center;
 `;

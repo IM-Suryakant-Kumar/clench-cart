@@ -5,7 +5,11 @@ export const registerUserThunk = async (user, thunkAPI) => {
 		const res = await axios.post("/auth/register", user);
 		return res.data;
 	} catch (error) {
-		return thunkAPI.rejectWithValue(error.response.msg);
+		return thunkAPI.rejectWithValue({
+            msg: error.response.data.msg,
+            status: error.response.request.status,
+            statusText: error.response.request.statusText
+        });
 	}
 };
 
@@ -14,7 +18,11 @@ export const loginUserThunk = async (user, thunkAPI) => {
 		const res = await axios.post("/auth/login", user);
 		return res.data;
 	} catch (error) {
-		return thunkAPI.rejectWithValue(error.response.data.msg);
+		return thunkAPI.rejectWithValue({
+            msg: error.response.data.msg,
+            status: error.response.request.status,
+            statusText: error.response.request.statusText
+        });
 	}
 };
 
@@ -23,7 +31,11 @@ export const logoutUserThunk = async (user, thunkAPI) => {
 		const res = await axios.get("/auth/logout");
 		return res.data.msg;
 	} catch (error) {
-		return thunkAPI.rejectWithValue(error.response.data.msg);
+		return thunkAPI.rejectWithValue({
+            msg: error.response.data.msg,
+            status: error.response.request.status,
+            statusText: error.response.request.statusText
+        });
 	}
 };
 
@@ -45,6 +57,10 @@ export const updateUserThunk = async (user, thunkAPI) => {
 		const res = await axios.patch("/users/me", user);
 		return res.data;
 	} catch (error) {
-		return thunkAPI.rejectWithValue(error.response.data.msg);
+		return thunkAPI.rejectWithValue({
+            msg: error.response.data.msg,
+            status: error.response.request.status,
+            statusText: error.response.request.statusText
+        });
 	}
 };

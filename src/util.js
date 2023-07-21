@@ -7,10 +7,13 @@ export const requireAuth = async (request) => {
     await store.dispatch(getUser())
     const {user: { user }} = store.getState()
     
-    // console.log(user)
     if(!user) {
         throw redirect(
             `/login?message=You must log in first.&redirectTo=${pathname}`
         )
     }
+
+    // if(pathname === "/login" || pathname === "/signup") {
+    //     throw redirect("/")
+    // }
 }

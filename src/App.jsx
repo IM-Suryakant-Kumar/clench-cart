@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
 import Product from "./pages/Product";
 import Register from "./pages/Register";
-import Login from "./pages/Login";
+import Login, { loader as loginLoader, action as loginAction } from "./pages/Login";
 import Cart, { loader as cartLoader } from "./pages/Cart";
 import Success from "./pages/Success";
 import Layout from "./components/Layout"
@@ -26,6 +26,16 @@ const router = createBrowserRouter(createRoutesFromElements(
             element={<Product />} 
         />
         <Route 
+            path="login" 
+            element={<Login />}
+            loader={loginLoader} 
+            action={loginAction}
+        />
+        <Route 
+            path="register" 
+            element={<Register />}
+        />
+        <Route 
             path="profile"
             element={<Profile />}
             loader={profileLoader}
@@ -34,14 +44,6 @@ const router = createBrowserRouter(createRoutesFromElements(
             path="cart" 
             element={<Cart />}
             loader={cartLoader}
-        />
-        <Route 
-            path="login" 
-            element={<Login />} 
-        />
-        <Route 
-            path="register" 
-            element={<Register />}
         />
         <Route 
             path="success" 
