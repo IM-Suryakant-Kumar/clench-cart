@@ -13,10 +13,10 @@ import {
     useLoaderData, 
     useNavigation 
 } from "react-router-dom";
-import { loginUser, isLoggedIn } from "../api";
+import { loginUser, loggedInUser } from "../api";
 
 export const loader = async ({ request }) => {
-    if(await isLoggedIn()) {
+    if(await loggedInUser()) {
         return redirect("/")
     }
     return new URL(request.url).searchParams.get("message")
