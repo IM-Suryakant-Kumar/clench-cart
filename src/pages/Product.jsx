@@ -1,6 +1,4 @@
 import { toast } from "react-toastify";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -106,8 +104,6 @@ const Product = () => {
 					</AddContainer>
 				</InfoContainer>
 			</Wrapper>
-			<Newsletter />
-			<Footer />
 		</Container>
 	);
 };

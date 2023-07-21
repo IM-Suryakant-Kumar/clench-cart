@@ -14,7 +14,7 @@ import {
 	Logo,
 	Right,
 	MenuItem
-} from "../styles/navbar";
+} from "../styles/navbar.css";
 import Avatar from "./Avatar";
 
 const Navbar = () => {
@@ -32,47 +32,29 @@ const Navbar = () => {
 					</SearchContainer>
 				</Left>
 				<Center>
-					<Logo>
-						<Link
-							style={{
-								textDecoration: "none",
-								color: "#3a86ff",
-								borderBottom: "4px solid",
-								fontSize: "28px"
-							}}
-							to="/"
-						>
-							ClenchCart
-						</Link>
-					</Logo>
+					<Logo variant="h6" component="h1"><Link to="/" className="link logo">ClenchCart</Link></Logo>
 				</Center>
 				<Right>
                     {user 
                         ? <Link to="/profile" className="link">
                                 <Avatar 
-                                    avatar={user.avatar}
-                                    username={user.username}
-                                    width={40}
-                                    height={40}
-                                    font={1.25}
+                                    avatar={user.avatar} 
+                                    username={user.username} 
+                                    width={40} 
+                                    height={40} 
+                                    font={1.25} 
                                 /> 
                             </Link>
                         
                         : (
                             <MenuItem>
-                                <Link 
-                                    to="/login" 
-                                    className="link"
-                                >SIGN IN</Link>
+                                <Link to="/login" className="link">SIGN IN</Link>
                             </MenuItem>
                         )}
 					
 					<Link to="/cart">
 						<MenuItem>
-							<Badge
-								badgeContent={quantity}
-								color="primary"
-							>
+							<Badge badgeContent={quantity} color="primary">
 								<LocalMallOutlined />
 							</Badge>
 						</MenuItem>

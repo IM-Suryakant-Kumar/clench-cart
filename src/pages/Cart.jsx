@@ -1,4 +1,3 @@
-import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import PayButton from "../components/PayButton";
@@ -116,7 +115,6 @@ const Cart = () => {
 					</Summary>
 				</Bottom>
 			</Wrapper>
-			<Footer />
 		</Container>
 	);
 };

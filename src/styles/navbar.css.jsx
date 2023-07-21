@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { mobile } from "./responsive";
+import { Typography } from "@mui/material";
 
 export const Container = styled.div`
 	height: 60px;
@@ -43,9 +44,14 @@ export const Center = styled.div`
 	text-align: center;
 `;
 
-export const Logo = styled.h1`
-	font-weight: bold;
+export const Logo = styled(Typography)`
+    font-size: 1.6rem;
+	font-weight: 600;
 	${mobile({ fontSize: "20px", marginLeft: "5px" })}
+    & > .logo {
+        color: #f39509;
+        border-bottom: 3px solid;
+    }
 `;
 
 export const Right = styled.div`

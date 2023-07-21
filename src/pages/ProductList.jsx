@@ -1,6 +1,4 @@
 import Products from "../components/Products";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import {
@@ -68,8 +66,6 @@ const ProductList = () => {
 				</Filter>
 			</FilterContainer>
 			<Products cat={cat} filters={filters} sort={sort} />
-			<Newsletter />
-			<Footer />
 		</Container>
 	);
 };
