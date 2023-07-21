@@ -2,12 +2,12 @@ import {
 	SButton as Button,
 	Container,
 	Input,
-	Link,
 	Title,
 	Wrapper
 } from "../styles/login.css";
 import { 
     Form, 
+    Link, 
     redirect, 
     useActionData, 
     useLoaderData, 
@@ -66,8 +66,9 @@ const Login = () => {
                         {navigation.state === "submitting" ? 
                             "LOGGIN IN..." : "LOGIN"}
 					</Button>
-					<Link>DO NOT REMEMBER THE PASSWORD</Link>
-					<Link>CREATE NEW ACCOUNT</Link>
+					<Title variant="body2">Don't have an account?
+                        <Link to="/register" className="register"> Create Now</Link>
+                    `</Title>
 				</Form>
 			</Wrapper>
 		</Container>

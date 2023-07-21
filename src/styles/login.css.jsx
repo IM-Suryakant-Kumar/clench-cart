@@ -35,6 +35,10 @@ export const Title = styled(Typography)`
         color: red;
         font-weight: 400;
     }
+    & > .register {
+        font-size: 0.875rem;
+        color: #978a8a;
+    }
 `;
 
 export const Input = styled.input`
@@ -59,10 +63,10 @@ export const SButton = styled(Button)`
 	}
 `;
 
-export const Link = styled.a`
-	margin: 5px 0;
-	font-size: 12px;
-	text-decoration: underline;
-	cursor: pointer;
-    text-align: center;
-`;
+// export const Link = styled.a`
+// 	margin: 5px 0;
+// 	font-size: 12px;
+// 	text-decoration: underline;
+// 	cursor: pointer;
+//     text-align: center;
+// `;
