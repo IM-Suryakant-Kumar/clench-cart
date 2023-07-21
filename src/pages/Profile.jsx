@@ -10,14 +10,12 @@ import {
 import Avatar from "../components/Avatar.jsx"
 import { requireAuth } from "../util"
 import { Await, defer, useLoaderData, useNavigate } from "react-router-dom"
-import { getProfile } from "../api"
 import { Suspense } from "react"
 import { useDispatch } from "react-redux"
 import { logoutUser } from "../features/user/userSlice"
 
 export const loader = async ({request}) => {
-    await requireAuth(request)
-    return defer({user: getProfile()})
+    return defer({user: requireAuth(request)})
 }
 
 const Profile = () => {
@@ -27,7 +25,7 @@ const Profile = () => {
 
     const handleLogout = () => {
         dispatch(logoutUser())
-        navigate("/login", {replace: true})
+        navigate("/", {replace: true})
     }
 
     const renderProfile = (user) => (<>
