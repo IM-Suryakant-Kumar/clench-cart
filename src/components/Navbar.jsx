@@ -58,20 +58,14 @@ const Navbar = () => {
                                 /> 
                             </Link>
                         
-                        : (<><MenuItem>
-                                <Link 
-                                    to="/register" 
-                                    className="link"
-                                >REGISTER
-                                </Link>
-                            </MenuItem>
+                        : (
                             <MenuItem>
                                 <Link 
                                     to="/login" 
                                     className="link"
                                 >SIGN IN</Link>
-                            </MenuItem></>)
-                        }
+                            </MenuItem>
+                        )}
 					
 					<Link to="/cart">
 						<MenuItem>
