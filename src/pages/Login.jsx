@@ -68,7 +68,7 @@ const Login = () => {
 					</Button>
 					<Title variant="body2">Don't have an account?
                         <Link to="/register" className="register"> Create Now</Link>
-                    `</Title>
+                    </Title>
 				</Form>
 			</Wrapper>
 		</Container>

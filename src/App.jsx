@@ -7,7 +7,7 @@ import {
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
 import Product from "./pages/Product";
-import Register from "./pages/Register";
+import Register, { loader as registerLoader, action as registerAction } from "./pages/Register";
 import Login, { loader as loginLoader, action as loginAction } from "./pages/Login";
 import Cart, { loader as cartLoader } from "./pages/Cart";
 import Success from "./pages/Success";
@@ -34,6 +34,8 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route 
             path="register" 
             element={<Register />}
+            loader={registerLoader}
+            action ={registerAction}
         />
         <Route 
             path="profile"

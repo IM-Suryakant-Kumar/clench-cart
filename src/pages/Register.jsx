@@ -1,32 +1,89 @@
+import { Form, Link, redirect, useActionData } from "react-router-dom";
 import {
 	Agreement,
-	Button,
+	SButton as Button,
 	Container,
-	Form,
 	Input,
 	Title,
 	Wrapper
-} from "../styles/register";
+} from "../styles/register.css";
+import { loggedInUser, register } from "../api";
+
+export const loader = async ({ request }) => {
+    if(await loggedInUser()) {
+        return redirect("/")
+    }
+    return null
+}
+
+export const action = async ({ request }) => {
+    const formData = await request.formData()
+    const firstName = formData.get("firstname")
+    const lastName = formData.get("lastname")
+    const username = formData.get("username")
+    const email = formData.get("email")
+    const password = formData.get("password")
+    const confPassword = formData.get("confpassword")
+    // const pathname = new URL(request.url).pathname
+
+    try {
+        await register(
+            { firstName, lastName, username, email, password, confPassword }
+        )
+        return redirect("/")
+    } catch (err) {
+        return err.msg
+    }
+}
 
 const Register = () => {
+    const errorMessage = useActionData()
+
 	return (
 		<Container>
 			<Wrapper>
-				<Title>CREATE AN ACCOUNT</Title>
-				<Form>
-					<Input placeholder="first name" />
-					<Input placeholder="last name" />
-					<Input placeholder="username" />
-					<Input placeholder="email" />
-					<Input placeholder="password" />
-					<Input placeholder="confirm password" />
-					<Agreement>
-						By creating an account, I consent to the processing of
-						my personal data in accordance with the
-						<b>PRIVACY POLICY</b>
+				<Title variant="h6" component="h2">CREATE AN ACCOUNT</Title>
+                {
+                    errorMessage && <Title variant="subtitle1" component="h3" className="message">{errorMessage}</Title>
+                }
+				<Form method="post" className="form" replace>
+					<Input 
+                        type="text"
+                        name="firstname"
+                        placeholder="first name" 
+                    />
+					<Input
+                        type="text"
+                        name="lastname"
+                        placeholder="last name" 
+                    />
+					<Input 
+                        type="text"
+                        name="username"
+                        placeholder="username" 
+                    />
+					<Input 
+                        type="email"
+                        name="email"
+                        placeholder="email" 
+                    />
+					<Input 
+                        type="password"
+                        name="password"
+                        placeholder="password" 
+                    />
+					<Input 
+                        type="confpassword"
+                        name="confpassword"
+                        placeholder="confirm password" 
+                    />
+					<Agreement>By creating an account, I consent to the processing of my personal data in accordance with the <b>PRIVACY POLICY</b>
 					</Agreement>
-					<Button>CREATE</Button>
+					<Button type="submit" variant="contained">CREATE</Button>
 				</Form>
+                <Title variant="body2" component="h3">Already have an account?
+                    <Link to="/login" className="login"> Log In</Link>
+                </Title>
 			</Wrapper>
 		</Container>
 	);
