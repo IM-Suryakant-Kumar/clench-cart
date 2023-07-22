@@ -1,12 +1,28 @@
 import styled from "@emotion/styled";
-import { Badge, Box, List, ListItem, Stack, Typography } from "@mui/material";
-import { Close, LocalMallOutlined, Menu, PersonOutline, Search } from "@mui/icons-material";
+import { 
+    Badge, 
+    Box, 
+    Container, 
+    List, 
+    ListItem, 
+    Stack, 
+    Typography 
+} from "@mui/material";
+import { 
+    Close, 
+    LocalMallOutlined, 
+    Menu, 
+    PersonOutline, 
+    Search 
+} from "@mui/icons-material";
 
-export const Container = styled(Stack)`
+export const MContainer = styled(Stack)`
 	height: 60px;
     justify-content: center;
     position: relative;
 `;
+
+export const SContainer = styled(Container)``
 
 export const Wrapper = styled(Stack)`
     flex-direction: row;
@@ -152,7 +168,8 @@ export const SidebarContainer = styled(Box)`
     transition: all 0.5s ease;
     position: absolute;
     top: 60px;
-    left: ${props => props.open ? "0" : "-100"}vw;
+    left: 0vw;
+    left: ${props => props.open ? 0 : -100}vw;
     z-index: 5;
     background-color: white;
     /* @media (min-width: 768px) {

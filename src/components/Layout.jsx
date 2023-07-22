@@ -11,7 +11,7 @@ import { getUser } from "../features/user/userSlice"
 import Newsletter from "./Newsletter";
 
 const MContainer = styled(Box)``
-const SContainer = styled(Container)``
+const Wrapper = styled(Container)``
 
 const Layout = () => {
     const user = useSelector((state) => state.user.user);
@@ -21,12 +21,12 @@ const Layout = () => {
     return (
         <MContainer>
             <Announcement />
-            <SContainer maxWidth="xl">
-                <Navbar />
+            <Navbar />
+            <Wrapper maxWidth="xl">
                 <Outlet />
                 <Newsletter />
-                <Footer />
-            </SContainer>
+            </Wrapper>
+            <Footer />
             <ToastContainer autoClose={1000} theme="dark" />
         </MContainer>
     )
