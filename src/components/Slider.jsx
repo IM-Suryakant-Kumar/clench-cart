@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { ArrowLeftOutlined, ArrowRightOutlined } from "@mui/icons-material";
 import { sliderItems } from "../data";
 import {
-	Container,
-	Arrow,
-	Wrapper,
-	Slide,
-	ImageContainer,
-	Image,
-	InfoContainer,
-	Title,
-	Desc,
-	Button
-} from "../styles/slider";
+    Container,
+    Arrow,
+    ArrowLeftIcon,
+    ArrowRightIcon,
+    Slide,
+    Wrapper,
+    ImageContainer,
+    InfoContainer,
+    Image,
+    Title,
+    Desc,
+    SButton as Button
+} from "../styles/slider.css";
 
 const Slider = () => {
 	const [slideIdx, setSlideIdx] = useState(0);
@@ -25,28 +26,24 @@ const Slider = () => {
 	};
 
 	return (
-		<Container>
-			<Arrow $direction="left" onClick={() => handleClick("left")}>
-				<ArrowLeftOutlined />
-			</Arrow>
-			<Wrapper $slideIdx={slideIdx}>
-				{sliderItems.map((item) => (
-					<Slide $bg={item.bg} key={item.id}>
-						<ImageContainer>
-							<Image src={item.img} />
-						</ImageContainer>
-						<InfoContainer>
-							<Title>{item.title}</Title>
-							<Desc>{item.desc}</Desc>
-							<Button>SHOP NOW</Button>
-						</InfoContainer>
-					</Slide>
-				))}
-			</Wrapper>
-			<Arrow $direction="right" onClick={() => handleClick("right")}>
-				<ArrowRightOutlined />
-			</Arrow>
-		</Container>
+        <Container>
+            <Arrow dir="left" onClick={() => handleClick("left")}><ArrowLeftIcon /></Arrow>
+                <Wrapper slideidx={slideIdx}>
+                    {sliderItems.map(item => (
+                        <Slide bg={item.bg} key={item.id}>
+                            <ImageContainer><Image src={item.img} /></ImageContainer>
+                            <InfoContainer>
+                                <Title variant="subtitle1" component="h2">
+                                    {item.title}
+                                </Title>
+                                <Desc variant="body2">{item.desc}</Desc>
+                                <Button>SHOP NOW</Button>
+                            </InfoContainer>
+                        </Slide>
+                    ))}
+                </Wrapper>
+            <Arrow dir="right" onClick={() => handleClick("right")}><ArrowRightIcon /></Arrow>
+        </Container>
 	);
 };
 
