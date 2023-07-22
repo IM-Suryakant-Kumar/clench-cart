@@ -6,7 +6,7 @@ export const Container = styled(Box)`
     height: 30vh;
     position: relative;
     background-color: var(--primary-cl);
-    border-radius: 1em;
+    border-radius: 0.625em;
     overflow: hidden;
     @media (min-width: 768px) {
         height: 60vh;

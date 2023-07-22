@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import { Container, Image, Info, Title, Button } from "../styles/categoryItem";
+import { Container, Image, Info, Title, SButton as Button } from "../styles/categoryItem.css";
 
 const CategoryItem = ({ item }) => {
 	return (
 		<Container>
 			<Image src={item.img} />
 			<Info>
-				<Title>{item.title}</Title>
+				<Title variant="h6" component="h1">{item.title}</Title>
 				<Link to={`/products/${item.cat}`}>
 					<Button>SHOP NOW</Button>
 				</Link>
