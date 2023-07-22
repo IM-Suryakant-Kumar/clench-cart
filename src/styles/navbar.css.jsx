@@ -182,8 +182,13 @@ export const SList = styled(List)`
 `
 export const SListItem = styled(ListItem)`
     text-align: center;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    padding: 0.875em 0;
     color: var(--secondary-cl);
-    padding: 1em 0;
     border-bottom: 2px solid var(--primary-cl);
-    font-weight: 600;
+    @media (min-width: 768px) {
+        font-size: 1rem;
+        font-weight: 600;
+    }
 `
