@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { mobile } from "./responsive";
 import { Box, Button, Stack, Typography } from "@mui/material";
 
 export const Container = styled(Box)`
