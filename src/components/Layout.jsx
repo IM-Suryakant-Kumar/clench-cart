@@ -8,7 +8,6 @@ import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux"
 import { getUser } from "../features/user/userSlice"
-import Newsletter from "./Newsletter";
 
 const MContainer = styled(Box)``
 const Wrapper = styled(Container)``
@@ -24,7 +23,6 @@ const Layout = () => {
             <Navbar />
             <Wrapper maxWidth="xl">
                 <Outlet />
-                <Newsletter />
             </Wrapper>
             <Footer />
             <ToastContainer autoClose={1000} theme="dark" />

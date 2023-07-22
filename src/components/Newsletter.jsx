@@ -5,19 +5,17 @@ import {
 	Desc,
 	InputContainer,
 	Input,
-	Button
-} from "../styles/newsletter";
+	SButton as Button
+} from "../styles/newsletter.css";
 
 const Newsletter = () => {
 	return (
 		<Container>
-			<Title>Newsletter</Title>
-			<Desc>Get timely updates for your favorite products.</Desc>
+			<Title component="h1">Newsletter</Title>
+			<Desc component="p">Get timely updates for your favorite products.</Desc>
 			<InputContainer>
 				<Input type="email" placeholder="Your email" />
-				<Button>
-					<Send />
-				</Button>
+				<Button><Send /></Button>
 			</InputContainer>
 		</Container>
 	);
