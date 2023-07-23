@@ -11,8 +11,8 @@ import {
 
 const Product = ({ item }) => {
 	return (
-		<Container>
-			<Circle />
+		<Container cat={item.categories}>
+			<Circle cat={item.categories} />
 			<Image src={item.img} />
 			<Info className="info">
 				<Icon>

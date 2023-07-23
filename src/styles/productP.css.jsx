@@ -1,6 +1,5 @@
 
 import styled from "@emotion/styled";
-import { mobile } from "./responsive";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
 

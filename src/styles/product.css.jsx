@@ -10,7 +10,8 @@ export const Container = styled(Paper)`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: var(--primary-cl);
+	background-color: var(${props => props.cat.includes("fashion") ? "--fashion-cl" : "--primary-cl"});
+    
 	position: relative;
 	&:hover .info {
         opacity: 1;
@@ -38,7 +39,7 @@ export const Circle = styled(Box)`
 	width: 200px;
 	height: 200px;
 	border-radius: 50%;
-	background-color: var(--secondary-cl);
+	background-color: var(${props => props.cat.includes("fashion") ? "--fashion-cl" : "--secondary-cl"});
 	position: absolute;
 `;
 
