@@ -54,6 +54,8 @@ export const SocialContainer = styled(Stack)`
     }
 `;
 
+export const ALink = styled.a``
+
 export const SocialIcon = styled(Stack)`
 	width: 40px;
 	height: 40px;

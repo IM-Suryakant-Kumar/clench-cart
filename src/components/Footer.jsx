@@ -17,7 +17,8 @@ import {
     PublicIcon,
     RoomIcon,
     PhoneIcon,
-    MailIcon
+    MailIcon,
+    ALink
 } from "../styles/footer.css";
 import { Link } from "react-router-dom";
 
@@ -30,10 +31,18 @@ const Footer = () => {
                         <Link to="/" className="link logo">ClenchCart</Link>
                     </Logo>
                     <SocialContainer>
-                        <SocialIcon><PublicIcon /></SocialIcon>
-                        <SocialIcon><GitHubIcon /></SocialIcon>
-                        <SocialIcon><LinkedInIcon /></SocialIcon>
-                        <SocialIcon><TwitterIcon /></SocialIcon>
+                        <SocialIcon>
+                            <ALink href="https://suryakant-kumar.netlify.app/" className="link" target="_blank"><PublicIcon /></ALink>
+                        </SocialIcon>
+                        <SocialIcon>
+                            <ALink href="https://github.com/IM-Suryakant-Kumar" className="link" target="_blank"><GitHubIcon /></ALink>
+                        </SocialIcon>
+                        <SocialIcon>
+                            <ALink href="https://www.linkedin.com/in/suryakant-kumar/" className="link" target="_blank"><LinkedInIcon /></ALink>
+                        </SocialIcon>
+                        <SocialIcon>
+                            <ALink href="https://twitter.com/Suryakant_91" className="link" target="_blank"><TwitterIcon /></ALink>
+                        </SocialIcon>
                     </SocialContainer>
                 </Left>
                 <Center>
