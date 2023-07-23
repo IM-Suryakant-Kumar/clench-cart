@@ -10,6 +10,9 @@ const SButton = styled(Button)`
 	font-weight: 600;
 	padding: 0.625em;
     border-radius: 0;
+    &:hover {
+	    background-color: var(--secondary-cl);
+    }
 `;
 
 const PayButton = ({ products }) => {
