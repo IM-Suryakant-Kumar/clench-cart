@@ -34,6 +34,8 @@ export const ProductsCont = styled(Box)`
 `;
 
 export const Summary = styled(Paper)`
+    width: 400px;
+    margin-left: auto;
 	border-radius: 0.625em;
     padding: 1em 1.25em;
 `;
