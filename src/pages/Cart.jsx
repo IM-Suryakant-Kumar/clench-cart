@@ -1,36 +1,17 @@
-import { Add, Remove } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import PayButton from "../components/PayButton";
 import { requireAuth } from "../util"
 import {
-	Bottom,
 	Container,
-	Details,
-	Hr,
-	Image,
-	Info,
-	PriceDetail,
-	Product,
-	ProductColor,
-	ProductDetail,
-	ProductId,
-	ProductName,
-	ProductPrice,
-	ProductQuantity,
-	ProductQuantityContainer,
-	ProductSize,
 	Summary,
-	SummaryItem,
-	SummaryItemPrice,
-	SummaryItemText,
-	SummaryTitle,
+	Item,
 	Title,
-	Top,
-	TopButton,
-	TopText,
-	TopTexts,
-	Wrapper
-} from "../styles/cart";
+	SButton as Button,
+    ProductsCont,
+    ItemText,
+    ItemPrice
+} from "../styles/cart.css";
+import CartItem from "../components/CartItem";
 // import { defer } from "react-router-dom";
 
 export const loader = async ({ request }) => {
@@ -46,75 +27,33 @@ const Cart = () => {
 	// console.log(products);
 	return (
 		<Container>
-			<Wrapper>
-				<Title>YOUR BAG</Title>
-				<Top>
-					<TopButton>CONTINUE SHOPPING</TopButton>
-					<TopTexts>
-						<TopText>Shopping Bag (2)</TopText>
-						<TopText>Your Wishlist (0)</TopText>
-					</TopTexts>
-					<TopButton type="filled">CHECKOUT NOW</TopButton>
-				</Top>
-				<Bottom>
-					<Info>
-						{products.map((product) => (
-							<Product>
-								<ProductDetail>
-									<Image src={product.img} />
-									<Details>
-										<ProductName>
-											<b>Product:</b> {product.title}
-										</ProductName>
-										<ProductId>
-											<b>ID:</b> {product._id}
-										</ProductId>
-										<ProductColor color={product.color} />
-										<ProductSize>
-											<b>Size:</b> {product.size}
-										</ProductSize>
-									</Details>
-								</ProductDetail>
-								<PriceDetail>
-									<ProductQuantityContainer>
-										<Add />
-										<ProductQuantity>
-											{product.quantity}
-										</ProductQuantity>
-										<Remove />
-									</ProductQuantityContainer>
-									<ProductPrice>
-										₹ {product.price * product.quantity}
-									</ProductPrice>
-								</PriceDetail>
-							</Product>
-						))}
-						<Hr />
-					</Info>
-					<Summary>
-						<SummaryTitle>ORDER SUMMARY</SummaryTitle>
-						<SummaryItem>
-							<SummaryItemText>Subtotal</SummaryItemText>
-							<SummaryItemPrice>₹ {total}</SummaryItemPrice>
-						</SummaryItem>
-						<SummaryItem>
-							<SummaryItemText>
-								Estimated Shipping
-							</SummaryItemText>
-							<SummaryItemPrice>₹ 5.90</SummaryItemPrice>
-						</SummaryItem>
-						<SummaryItem>
-							<SummaryItemText>Shipping Discount</SummaryItemText>
-							<SummaryItemPrice>₹ -5.90</SummaryItemPrice>
-						</SummaryItem>
-						<SummaryItem type="total">
-							<SummaryItemText>Total </SummaryItemText>
-							<SummaryItemPrice>₹ {total}</SummaryItemPrice>
-						</SummaryItem>
-						<PayButton products={products} />
-					</Summary>
-				</Bottom>
-			</Wrapper>
+            <Title variant="subtitle1" component="h1">YOUR BAG</Title>
+            <Button>CONTINUE SHOPPING</Button>
+            <ProductsCont>
+                {products.map(prod => (
+                    <CartItem product={prod} key={prod._id} />
+                ))}
+            </ProductsCont>
+            <Summary elevation={1}>
+                <Title variant="body1" component="h2" className="summary">ORDER SUMMARY</Title>
+                <Item>
+                    <ItemText>Subtotal</ItemText>
+                    <ItemPrice>₹ {total}</ItemPrice>
+                </Item>
+                <Item>
+                    <ItemText>Estimated Shipping</ItemText>
+                    <ItemPrice>₹ 5.90</ItemPrice>
+                </Item>
+                <Item>
+                    <ItemText>Shipping Discount</ItemText>
+                    <ItemPrice>₹ -5.90</ItemPrice>
+                </Item>
+                <Item type="total">
+                    <ItemText>Total </ItemText>
+                    <ItemPrice>₹ {total}</ItemPrice>
+                </Item>
+                <PayButton products={products} />
+            </Summary>
 		</Container>
 	);
 };
