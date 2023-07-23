@@ -39,9 +39,9 @@ const Profile = () => {
             />
         </AvatarCont>
         <Wrapper>
-            <Button onClick={handleLogout}><LogoutIcon /> Log out</Button>
+            
             <Title variant="h6" component="h2" className="title-header">
-                Accont Detail
+                Accont Detail <Button onClick={handleLogout}><LogoutIcon /> Log out</Button>
             </Title>
             <TitleCont>
                 <Title variant="subtitle1" component="h3">

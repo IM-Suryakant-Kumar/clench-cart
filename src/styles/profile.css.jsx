@@ -16,6 +16,7 @@ export const Wrapper = styled(Box)`
     margin: 1em auto;
     text-align: center;
     padding: 1.25em;
+    color: var(--gray-cl);
     position: relative;
 `
 
@@ -25,9 +26,10 @@ export const TitleCont = styled(Stack)`
 `
 
 export const Title = styled(Typography)`
+    text-align: left;
     margin-top: 1.25em;
     &.title-header {
-        border-bottom: 2px solid darkgoldenrod;
+        border-bottom: 2px solid var(--gray-cl);
         padding-bottom: 0.3125em;
     }
 `
@@ -38,15 +40,16 @@ export const LogoutIcon = styled(Logout)`
 `
 
 export const SButton = styled(Button)`
+    width: 100px;
+    height: 30px;
+    font-size: 0.625rem;
     text-transform: capitalize;
     position: absolute;
-    right: 0;
-    top: 0;
-    background-color: #0322d3;
+    top: 4.6em;
+    right: 1.25em;
+    background-color: var(--secondary-cl);
     color: white;
-    font-weight: 600;
-    padding: 0.3125em 0.625em;
     &:hover {
-        background-color: #0322d3;
+        background-color: var(--secondary-cl);
     }
 `

@@ -12,7 +12,9 @@ const Container = styled(Stack)`
         max-width: 700px;
     }
 `
-const Title = styled(Typography)``
+const Title = styled(Typography)`
+    color: var(--secondary-cl);
+`
 const STitle = styled(Typography)`
     color: var(--gray-cl);
 `
