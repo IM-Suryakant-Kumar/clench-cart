@@ -1,27 +1,30 @@
-import {
-	FavoriteBorderOutlined,
-	LocalMallOutlined,
-	SearchOutlined
-} from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { Info, Container, Circle, Image, Icon } from "../styles/product";
+import { 
+    Info, 
+    Container, Circle, 
+    Image, 
+    Icon, 
+    FavoriteBorderIcon,
+    LocalMallIcon,
+    SearchOutlinedIcon
+ } from "../styles/product.css";
 
 const Product = ({ item }) => {
 	return (
 		<Container>
 			<Circle />
 			<Image src={item.img} />
-			<Info>
+			<Info className="info">
 				<Icon>
-					<LocalMallOutlined />
+					<LocalMallIcon />
 				</Icon>
 				<Icon>
-					<Link to={`/product/${item._id}`}>
-						<SearchOutlined />
+					<Link to={`/product/${item._id}`} className="link">
+						<SearchOutlinedIcon />
 					</Link>
 				</Icon>
 				<Icon>
-					<FavoriteBorderOutlined />
+					<FavoriteBorderIcon />
 				</Icon>
 			</Info>
 		</Container>

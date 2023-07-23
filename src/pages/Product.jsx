@@ -1,5 +1,4 @@
 import { toast } from "react-toastify";
-import { Add, Remove } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../axios";
@@ -7,7 +6,8 @@ import { addProduct } from "../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 import {
 	AddContainer,
-	Button,
+	AddIcon,
+	SButton as Button,
 	Container,
 	Desc,
 	Filter,
@@ -22,9 +22,10 @@ import {
 	Price,
 	Quantity,
 	QuantityContainer,
+	RemoveIcon,
 	Title,
 	Wrapper
-} from "../styles/productP";
+} from "../styles/productP.css";
 
 const Product = () => {
 	const { id } = useParams();
@@ -67,12 +68,12 @@ const Product = () => {
 					<Image src={product?.img} />
 				</ImageContainer>
 				<InfoContainer>
-					<Title>{product?.title}</Title>
-					<Desc>{product?.desc}</Desc>
-					<Price>₹ {product?.price}</Price>
+					<Title variant="subtitle1" component="h3">{product?.title}</Title>
+					<Desc variant="body1" component="p">{product?.desc}</Desc>
+					<Price variant="subtitle1" component="p">₹ {product?.price}</Price>
 					<FilterContainer>
 						<Filter>
-							<FilterTitle>Color</FilterTitle>
+							<FilterTitle variant="subtitle1">Color</FilterTitle>
 							{product.color?.map((c) => (
 								<FilterColor
 									color={c}
@@ -87,16 +88,16 @@ const Product = () => {
 								onChange={(e) => setSize(e.target.value)}
 							>
 								{product.size?.map((s) => (
-									<FilterSizeOption>{s}</FilterSizeOption>
+									<FilterSizeOption key={s}>{s}</FilterSizeOption>
 								))}
 							</FilterSize>
 						</Filter>
 					</FilterContainer>
 					<AddContainer>
 						<QuantityContainer>
-							<Remove onClick={() => handleQuantity("dec")} />
-							<Quantity>{quantity}</Quantity>
-							<Add onClick={() => handleQuantity("inc")} />
+							<RemoveIcon onClick={() => handleQuantity("dec")} />
+							<Quantity component="span">{quantity}</Quantity>
+							<AddIcon onClick={() => handleQuantity("inc")} />
 						</QuantityContainer>
 						<Button onClick={handleClickAddToCart}>
 							ADD TO CART

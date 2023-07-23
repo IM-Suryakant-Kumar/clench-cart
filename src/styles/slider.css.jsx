@@ -1,20 +1,21 @@
 import styled from "@emotion/styled";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Button, Paper, Stack, Typography } from "@mui/material";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 
-export const Container = styled(Box)`
+export const Container = styled(Paper)`
     height: 30vh;
     position: relative;
     background-color: var(--primary-cl);
     border-radius: 0.625em;
     overflow: hidden;
+    background-color: var(--secondary-cl);
     @media (min-width: 768px) {
         height: 60vh;
     }
 `
 export const Arrow = styled(Stack)`
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background-color: var(--primary-cl);
     color: var(--secondary-cl);
@@ -22,8 +23,8 @@ export const Arrow = styled(Stack)`
     justify-content: center;
     position: absolute;
     top: calc((30vh - 50px) / 2);
-    left: ${props => props.dir === "left" && "-1.25em"};
-    right: ${props => props.dir === "right" && "-1.25em"};
+    left: ${props => props.dir === "left" && "-0.625em"};
+    right: ${props => props.dir === "right" && "-0.625em"};
     cursor: pointer;
     z-index: 2;
     @media (min-width: 768px) {
@@ -43,7 +44,6 @@ export const Slide = styled(Stack)`
     height: 100%;
     border-radius: 1em;
     flex-direction: row;
-    background-color: #${props => props.bg};
     & > * {
         flex: 1;
     }
@@ -68,10 +68,11 @@ export const Image = styled.img`
 export const InfoContainer = styled(Stack)`
     justify-content: center;
     text-align: justify;
+    color: var(--primary-cl);
     @media (max-width: 420px) {
         position: absolute;   
-        width: 80%;     
-        top: 50px;
+        width: 70%;     
+        top: 0;
         left: 0;
         bottom: 0;
         right: 0;
@@ -85,7 +86,6 @@ export const Title = styled(Typography)`
     }
 `
 export const Desc = styled(Typography)`
-    color: var(--gray-cl);
     margin-top: 0.3125em;
     @media (max-width: 420px) {
         font-size: 0.625rem;
@@ -97,10 +97,10 @@ export const SButton = styled(Button)`
     font-size: 0.875rem;
     font-weight: 600;
     margin-top: 1em;
-    background-color: var(--secondary-cl);
-    color: var(--primary-cl);
+    background-color: var(--primary-cl);
+    color: var(--secondary-cl);
     &:hover {
-        background-color: var(--secondary-cl);
+        background-color: var(--primary-cl);
     }
     @media (max-width: 420px) {
         width: 80px;

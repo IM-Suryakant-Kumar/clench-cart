@@ -26,7 +26,7 @@ const Slider = () => {
 	};
 
 	return (
-        <Container>
+        <Container elevation={2}>
             <Arrow dir="left" onClick={() => handleClick("left")}><ArrowLeftIcon /></Arrow>
                 <Wrapper slideidx={slideIdx}>
                     {sliderItems.map(item => (

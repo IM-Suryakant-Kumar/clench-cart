@@ -27,15 +27,16 @@ export const Info = styled(Stack)`
 
 export const Title = styled(Typography)`
 	color: var(--primary-cl);
-	margin-bottom: 1.25em;
+	margin-bottom: 0.3125em;
+    font-size: 1rem;
     font-weight: 600;
 `;
 
 export const SButton = styled(Button)`
+    width: 120px;
+    height: 35px;
     background-color: var(--secondary-cl);
 	color: var(--primary-cl);
-	padding: 0.625em 1.25em;
-    font-weight: 600;
     &:hover {
         background-color: var(--secondary-cl);
     }

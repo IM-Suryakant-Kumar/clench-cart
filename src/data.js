@@ -1,45 +1,42 @@
 export const sliderItems = [
     {
       id: 1,
-      img: "https://websitedemos.net/custom-printing-02/wp-content/uploads/sites/459/2019/06/image26-free.png",
+      img: "https://res.cloudinary.com/dyh9ryswk/image/upload/v1690090850/ecommerce/chero.png",
       title: "SUMMER SALE",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "f5fafd",
     },
     {
       id: 2,
-      img: "https://i.ibb.co/DG69bQ4/2.png",
-      title: "AUTUMN COLLECTION",
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "fcf1ed",
+      img: "https://res.cloudinary.com/dyh9ryswk/image/upload/v1690089987/ecommerce/fhero.png",
+      title: "FURNITURE COLLECTION",
+      desc: "BEST DEAL ONLINE ON FURNITURES UPTO 80% OFF.",
     },
     {
       id: 3,
-      img: "https://i.ibb.co/cXFnLLV/3.png",
-      title: "LOUNGEWEAR LOVE",
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "fbf0f4",
+      img: "https://res.cloudinary.com/dyh9ryswk/image/upload/v1690091898/ecommerce/phero.png",
+      title: "SMART PHONE COLLECTION",
+      desc: "BEST DEAL ONLINE ON SMARTPHONES UPTO 80% OFF.",
     },
   ];
 
   export const categories = [
     {
       id: 1,
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      img: "https://res.cloudinary.com/dyh9ryswk/image/upload/v1690096278/ecommerce/shirt-style_ggopri.webp",
       title: "SHIRT STYLE!",
-      cat: "woman"
+      cat: "shirt"
     },
     {
       id: 2,
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      img: "https://res.cloudinary.com/dyh9ryswk/image/upload/v1690096730/ecommerce/pexels-photo-2983464_nqg81o.jpg",
       title: "LOUNGEWEAR LOVE",
-      cat: "coat"
+      cat: "long"
     },
     {
       id: 3,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      img: "https://res.cloudinary.com/dyh9ryswk/image/upload/v1690096730/ecommerce/pexels-photo-5480696_wbbnvh.jpg",
       title: "LIGHT JACKETS",
-      cat: "jeans"
+      cat: "coat"
     },
   ];
 
