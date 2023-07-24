@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { mobile } from "./responsive";
 import { Button, Typography } from "@mui/material";
 
 export const Container = styled.div`
@@ -20,7 +19,6 @@ export const Wrapper = styled.div`
 	width: 40%;
 	padding: 20px;
 	background-color: white;
-	${mobile({ width: "75%" })}
     & > .form {
         display: flex;
 	    flex-wrap: wrap;

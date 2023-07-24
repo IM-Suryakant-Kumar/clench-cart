@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { mobile } from "./responsive";
 import { Box, Button, Typography } from "@mui/material";
 
 export const Container = styled(Box)`
@@ -21,7 +20,6 @@ export const Wrapper = styled(Box)`
 	width: 25%;
 	padding: 20px;
 	background-color: white;
-	${mobile({ width: "75%" })}
     & > .login-form {
         display: flex;
 	    flex-direction: column;
