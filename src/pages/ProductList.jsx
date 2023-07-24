@@ -55,18 +55,6 @@ const ProductList = () => {
             })
         }
 
-        const handleClearBtn = () => {
-            setSearchParams((prevParams) => {
-                prevParams.delete("color")
-                prevParams.delete("size")
-                prevParams.delete("cat")
-                prevParams.delete("sort")
-                prevParams.set("page", 1)
-
-                return prevParams
-            })
-        }
-
         return (
             <Container>
                 <FilterContainer>
@@ -120,7 +108,7 @@ const ProductList = () => {
                         </Select>
                     </Filter>
                 </FilterContainer>
-                <Button onClick={handleClearBtn}>Clear All</Button>
+                <Button onClick={() => setSearchParams({"page": 1})}>Clear All</Button>
                 <PaginationCont>
                     <FilterText>Page: </FilterText>
                     <PageCont>
