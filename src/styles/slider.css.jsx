@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Paper, Stack, Typography } from "@mui/material";
+import { Paper, Stack, Typography } from "@mui/material";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 
 export const Container = styled(Paper)`
@@ -78,6 +78,24 @@ export const InfoContainer = styled(Stack)`
         right: 0;
         margin: auto;
     }
+    & > .link {
+        margin-top: 1em;
+        background-color: var(--primary-cl);
+        color: var(--secondary-cl);
+        max-width: 120px;
+        height: 35px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        display: flex;    
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.3125em;
+        @media (max-width: 420px) {
+            width: 90px;
+            height: 30px;
+            font-size: 0.625rem;
+        }
+    }
 `
 export const Title = styled(Typography)`
     font-weight: 600;
@@ -89,23 +107,5 @@ export const Desc = styled(Typography)`
     margin-top: 0.3125em;
     @media (max-width: 420px) {
         font-size: 0.625rem;
-    }
-`
-export const SButton = styled(Button)`
-    height: 35px;
-    width: 100px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-top: 1em;
-    background-color: var(--primary-cl);
-    color: var(--secondary-cl);
-    &:hover {
-        background-color: var(--primary-cl);
-    }
-    @media (max-width: 420px) {
-        width: 80px;
-        height: 30px;
-        font-size: 0.625rem;
-        font-weight: 300;
     }
 `

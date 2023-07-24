@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "../axios";
+import axios from "../features/axios";
 import { addProduct } from "../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 import {

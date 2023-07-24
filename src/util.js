@@ -1,6 +1,6 @@
+import store from "./features/store"
 import { redirect } from "react-router-dom"
 import { getUser } from "./features/user/userSlice"
-import store from "./features/store"
 import { loggedInUser } from "./api"
 
 export const requireAuth = async (request) => {
@@ -15,4 +15,51 @@ export const requireAuth = async (request) => {
     }
 
     return user
+}
+
+// filter
+export const filterByCategory = (products, category) => {
+    return products?.filter(prod => prod.categories.includes(category))
+}
+export const filterByColor = (products, color) => {
+    return products.filter(prod => prod.color.includes(color))
+}
+export const filterBySize = (products, size) => {
+    return products.filter(prod => prod.size.includes(size))
+}
+// sort
+export const sortProducts = (products, sort) => {
+    
+    sort === "asc" 
+        ? products.sort((a, b) => a.price - b.price) 
+        : products.sort((a, b) => b.price - a.price)
+
+    return products
+}
+// filtersData
+export const getFiltersData = (products) => {
+    const colors = []
+    const categories = []
+    const sizes = []
+    
+    products.forEach(prod => {
+        const prodColors = prod.color
+        const prodcategories = prod.categories
+        const prodSizes = prod.size
+        
+        // colors
+        for(let color of prodColors) {
+            !colors.includes(color) && colors.push(color)
+        }
+        // categories
+        for(let category of prodcategories) {
+            !categories.includes(category) && categories.push(category)
+        }
+        // sizes
+        for(let size of prodSizes) {
+            !sizes.includes(size) && sizes.push(size)
+        }
+    })
+
+    return { colors, categories, sizes }
 }

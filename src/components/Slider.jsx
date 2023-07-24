@@ -11,11 +11,12 @@ import {
     InfoContainer,
     Image,
     Title,
-    Desc,
-    SButton as Button
+    Desc
 } from "../styles/slider.css";
+import { Link } from "react-router-dom";
 
 const Slider = () => {
+
 	const [slideIdx, setSlideIdx] = useState(0);
 	const handleClick = (direction) => {
 		if (direction === "left") {
@@ -37,7 +38,9 @@ const Slider = () => {
                                     {item.title}
                                 </Title>
                                 <Desc variant="body2">{item.desc}</Desc>
-                                <Button>SHOP NOW</Button>
+                                <Link to={`/products?cat=${item.cat}`} className="link">
+                                    SHOP NOW
+                                </Link>
                             </InfoContainer>
                         </Slide>
                     ))}

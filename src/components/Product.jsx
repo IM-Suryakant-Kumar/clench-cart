@@ -9,17 +9,17 @@ import {
     SearchOutlinedIcon
  } from "../styles/product.css";
 
-const Product = ({ item }) => {
+const Product = ({ product }) => {
 	return (
-		<Container cat={item.categories}>
-			<Circle cat={item.categories} />
-			<Image src={item.img} />
+		<Container cat={product.categories}>
+			<Circle cat={product.categories} />
+			<Image src={product.img} />
 			<Info className="info">
 				<Icon>
 					<LocalMallIcon />
 				</Icon>
 				<Icon>
-					<Link to={`/product/${item._id}`} className="link">
+					<Link to={`/product/${product._id}`} className="link">
 						<SearchOutlinedIcon />
 					</Link>
 				</Icon>

@@ -29,7 +29,7 @@ export const Title = styled(Typography)`
     text-align: left;
     margin-top: 1.25em;
     &.title-header {
-        border-bottom: 2px solid var(--gray-cl);
+        border-bottom: 2px solid var(--secondary-cl);
         padding-bottom: 0.3125em;
     }
 `

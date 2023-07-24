@@ -1,10 +1,18 @@
 /* eslint-disable no-throw-literal */
 import store from "./features/store"
+import { getAllProducts } from "./features/product/productSlice"
 import { 
     getUser, 
     loginUser as login, 
     registerUser
 } from "./features/user/userSlice"
+import { 
+    getFiltersData,
+    filterByCategory, 
+    filterByColor, 
+    filterBySize,
+    sortProducts
+} from "./util"
 
 export const register = async (data) => {
     if(data.password !== data.confPassword) {
@@ -44,4 +52,29 @@ export const loggedInUser = async () => {
     !store.getState().user.user && await store.dispatch(getUser())
     // console.log(store.getState().user.user)
     return store.getState().user.user
+}
+
+const getProducts = async () => {
+    await store.dispatch(getAllProducts())
+    return store.getState().product.products
+}
+
+// export const 
+
+export const getFinalProductsData = async ( category, color, size, sort ) => {
+    let products = await getProducts()
+    // console.log(category, color, size, sort)
+
+    // Fetching all categories, colors, and size
+    const filtersData = getFiltersData(products)
+    
+    // filter
+    category && ( products = filterByCategory(products, category) )
+    color && ( products = filterByColor(products, color) )
+    size && ( products = filterBySize(products, size) )
+    // sort 
+    sort && ( products = sortProducts(products, sort) )
+
+
+    return [products, filtersData]
 }

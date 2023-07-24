@@ -5,7 +5,7 @@ import {
     Route, 
 } from "react-router-dom";
 import Home from "./pages/Home";
-import ProductList from "./pages/ProductList";
+import ProductList, { loader as productListLoader } from "./pages/ProductList";
 import Product from "./pages/Product";
 import Register, { loader as registerLoader, action as registerAction } from "./pages/Register";
 import Login, { loader as loginLoader, action as loginAction } from "./pages/Login";
@@ -18,8 +18,9 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route 
-            path="products/:category" 
-            element={<ProductList />} 
+            path="products" 
+            element={<ProductList />}
+            loader={productListLoader}
         />
         <Route 
             path="product/:id" 

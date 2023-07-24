@@ -4,18 +4,21 @@ export const sliderItems = [
       img: "https://res.cloudinary.com/dyh9ryswk/image/upload/v1690090850/ecommerce/chero.png",
       title: "SUMMER SALE",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+      cat: "fashion"
     },
     {
       id: 2,
       img: "https://res.cloudinary.com/dyh9ryswk/image/upload/v1690089987/ecommerce/fhero.png",
       title: "FURNITURE COLLECTION",
       desc: "BEST DEAL ONLINE ON FURNITURES UPTO 80% OFF.",
+      cat: "furn"
     },
     {
       id: 3,
       img: "https://res.cloudinary.com/dyh9ryswk/image/upload/v1690091898/ecommerce/phero.png",
       title: "SMART PHONE COLLECTION",
       desc: "BEST DEAL ONLINE ON SMARTPHONES UPTO 80% OFF.",
+      cat: "phone"
     },
   ];
 
