@@ -11,7 +11,8 @@ import {
     filterByCategory, 
     filterByColor, 
     filterBySize,
-    sortProducts
+    sortProducts,
+    getProductsByPage
 } from "./util"
 
 export const register = async (data) => {
@@ -61,7 +62,7 @@ const getProducts = async () => {
 
 // export const 
 
-export const getFinalProductsData = async ( category, color, size, sort ) => {
+export const getFinalProductsData = async ( category, color, size, sort, page ) => {
     let products = await getProducts()
     // console.log(category, color, size, sort)
 
@@ -74,7 +75,10 @@ export const getFinalProductsData = async ( category, color, size, sort ) => {
     size && ( products = filterBySize(products, size) )
     // sort 
     sort && ( products = sortProducts(products, sort) )
+    // products length
+    let length = products.length
+    // Page 
+    products = getProductsByPage(products, page)
 
-
-    return [products, filtersData]
+    return [products, filtersData, length]
 }

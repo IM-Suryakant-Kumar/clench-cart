@@ -1,15 +1,8 @@
 
 import styled from "@emotion/styled";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Button, Pagination, Stack } from "@mui/material";
 
 export const Container = styled(Box)``;
-
-export const Title = styled(Typography)`
-	margin: 1.25em 0;
-    text-transform: capitalize;
-    font-weight: 600;
-    font-size: 1.5rem;
-`;
 
 export const FilterContainer = styled(Stack)``;
 
@@ -46,3 +39,47 @@ export const Option = styled.option`
     color: ${props => props.color === "no" ? "black" : props.color};
 `;
 
+export const SButton = styled(Button)`
+    user-select: none;
+    display: block;
+    margin-left: auto;
+    width: 100px;
+    height: 35px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    border-radius: 0.3125em;
+    background-color: var(--secondary-cl);
+    color: var(--primary-cl);
+    &:hover {
+        background-color: var(--secondary-cl);
+    }
+    &.page-btn {
+        width: 25px;
+        height: 25px;
+        font-size: 0.625rem;
+    }
+`
+
+export const PaginationCont = styled(Stack)`
+    margin: 1.25em 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`
+
+export const SPagination = styled(Pagination)``
+export const PageCont = styled(Stack)`
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`
+export const PageNo = styled(Box)`
+    user-select: none;
+    font-weight: 600;
+    padding: 0.24em 0.875em;
+    color: var(--secondary-cl);
+    border: 1px solid;
+    border-radius: 0.3125em;
+    margin: 0 0.625em;
+`

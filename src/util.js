@@ -29,7 +29,7 @@ export const filterBySize = (products, size) => {
 }
 // sort
 export const sortProducts = (products, sort) => {
-    
+
     sort === "asc" 
         ? products.sort((a, b) => a.price - b.price) 
         : products.sort((a, b) => b.price - a.price)
@@ -62,4 +62,13 @@ export const getFiltersData = (products) => {
     })
 
     return { colors, categories, sizes }
+}
+// page
+export const getProductsByPage = (products, page = 1) => {
+    const pageSize = 6
+    let lastProductIdx = page * pageSize - 1
+    let firstProductIdx = lastProductIdx - pageSize + 1
+    products = products.slice(firstProductIdx, lastProductIdx + 1)
+    
+    return products
 }

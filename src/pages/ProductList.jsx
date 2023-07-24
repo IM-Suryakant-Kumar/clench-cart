@@ -2,12 +2,9 @@ import Products from "../components/Products";
 import { Await, defer, useLoaderData, useSearchParams } from "react-router-dom";
 import { Suspense } from "react";
 import {
-	Container,
-	Filter,
-	FilterContainer,
-	FilterText,
-	Option,
-	Select
+	Container, Filter, FilterContainer, 
+    FilterText, Option, Select, SButton as Button, 
+    PaginationCont, PageCont, PageNo
 } from "../styles/productList.css";
 import { getFinalProductsData } from "../api";
 
@@ -16,28 +13,46 @@ export const loader = ({ params, request }) => {
     const color = new URL(request.url).searchParams.get("color")
     const size = new URL(request.url).searchParams.get("size")
     const sort = new URL(request.url).searchParams.get("sort")
+    const page = new URL(request.url).searchParams.get("page")
 
-    return defer({ productsData: getFinalProductsData(category, color, size, sort)})
+    return defer({ productsData: getFinalProductsData(category, color, size, sort, page)})
 }
 
 const ProductList = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const loaderData = useLoaderData()
 
-    const renderProductsDataElement = ([products, filtersData]) => {
+    const renderProductsDataElement = ([products, filtersData, productsLength]) => {
         const { colors, categories, sizes } = filtersData
-        console.log(products)
+        // console.log(products)
         
         const color = searchParams.get("color") || "color"
         const size = searchParams.get("size") || "size"
         const cat = searchParams.get("cat") || "category"
         const sort = searchParams.get("sort") || "newest"
+        const page = Number(searchParams.get("page")) || 1
+        const pageSize = Number(searchParams.get("page-size")) || 6
+        const pageLength = Math.ceil(productsLength / pageSize)
 
         const handleChange = (e) => {
             const { name, value } = e.target
 
             setSearchParams(prevParams => {
                 prevParams.set(name, value)
+                // everytime when handleChange occur set page to 1 
+                prevParams.set("page", 1)
+                return prevParams
+            })
+        }
+
+        // console.log(Math.floor(3.4), Math.ceil(3.4), Math.ceil(3))
+
+        const handlePage = (btn) => {
+
+            setSearchParams(prevParams => {
+                btn === "prev" && page > 1 && prevParams.set("page", page - 1)
+                btn === "next" && page < pageLength && prevParams.set("page", page + 1)
+                
                 return prevParams
             })
         }
@@ -95,8 +110,23 @@ const ProductList = () => {
                         </Select>
                     </Filter>
                 </FilterContainer>
-                
-
+                <Button onClick={() => setSearchParams()}>Clear All</Button>
+                <PaginationCont>
+                    <FilterText>Page: </FilterText>
+                    <PageCont>
+                        <Button 
+                            onClick={() => handlePage("prev")} 
+                            className="page-btn"
+                            disabled={page <= 1}
+                        >prev</Button>
+                        <PageNo>{page}</PageNo>
+                        <Button 
+                            onClick={() => handlePage("next")} 
+                            className="page-btn"
+                            disabled={page >= pageLength }
+                        >next</Button>
+                    </PageCont>
+                </PaginationCont>
                 <Products products={products} />
             </Container>
         )
