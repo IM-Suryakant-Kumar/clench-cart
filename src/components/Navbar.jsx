@@ -53,9 +53,9 @@ const Sidebar = () => {
     )
 }
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
 	const { quantity } = useSelector((state) => state.cart);
-	const { user, isSidebarOpen } = useSelector((state) => state.user);
+	const { isSidebarOpen } = useSelector((state) => state.user);
     const dispatch = useDispatch()
 
 	return (

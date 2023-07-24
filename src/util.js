@@ -1,12 +1,12 @@
 import store from "./features/store"
 import { redirect } from "react-router-dom"
 import { getUser } from "./features/user/userSlice"
-import { loggedInUser } from "./api"
+import { getLoggedInUser } from "./api"
 
 export const requireAuth = async (request) => {
     const pathname = new URL(request.url).pathname
     await store.dispatch(getUser())
-    const user = await loggedInUser()
+    const user = await getLoggedInUser()
     
     if(!user) {
         throw redirect(

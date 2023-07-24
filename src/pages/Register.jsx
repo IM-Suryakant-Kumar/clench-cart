@@ -7,10 +7,10 @@ import {
 	Title,
 	Wrapper
 } from "../styles/register.css";
-import { loggedInUser, register } from "../api";
+import { getLoggedInUser, register } from "../api";
 
 export const loader = async ({ request }) => {
-    if(await loggedInUser()) {
+    if(await getLoggedInUser()) {
         return redirect("/")
     }
     return null

@@ -49,7 +49,7 @@ export const loginUser = async (data) => {
     return user
 }
 
-export const loggedInUser = async () => {
+export const getLoggedInUser = async () => {
     !store.getState().user.user && await store.dispatch(getUser())
     // console.log(store.getState().user.user)
     return store.getState().user.user
