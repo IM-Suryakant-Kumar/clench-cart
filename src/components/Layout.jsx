@@ -24,10 +24,7 @@ const Layout = () => {
             <Announcement />
             <Suspense fallback={<h3>Loading...</h3>}>
                 <Await resolve={loaderData.user}>
-                    {user => {
-                        console.log(user)
-                        return <Navbar user={user} />
-                    }}
+                    {user => <Navbar user={user} />}
                 </Await>
             </Suspense>
             <Wrapper maxWidth="xl">
