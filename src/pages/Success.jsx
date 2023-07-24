@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Button, Stack, Typography } from '@mui/material'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const Container = styled(Stack)`
     justify-content: center;
@@ -40,7 +40,7 @@ const Success = () => {
             <STitle>
                 Thank you for your order! Your order is being processed and will be completed within 3-6 hours. You will receive an email confirmation when your order is completed.
             </STitle>
-            <SButton>Continue Shopping</SButton>
+            <SButton><Link to="/products?page=1" className="link">Continue Shopping</Link></SButton>
     </Container>
   )
 }
