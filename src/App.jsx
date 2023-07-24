@@ -4,7 +4,7 @@ import {
     createRoutesFromElements, 
     Route, 
 } from "react-router-dom";
-import Home from "./pages/Home";
+import Home, { loader as homeLoader } from "./pages/Home";
 import ProductList, { loader as productListLoader } from "./pages/ProductList";
 import Product from "./pages/Product";
 import Register, { loader as registerLoader, action as registerAction } from "./pages/Register";
@@ -16,7 +16,11 @@ import Profile, { loader as profileLoader } from "./pages/Profile";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route 
+            index 
+            element={<Home />} 
+            loader={homeLoader} 
+        />
         <Route 
             path="products" 
             element={<ProductList />}

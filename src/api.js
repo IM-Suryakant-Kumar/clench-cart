@@ -60,7 +60,11 @@ const getProducts = async () => {
     return store.getState().product.products
 }
 
-// export const 
+export const getLatestProducts = async () => {
+    const products = await getProducts()
+
+    return products.slice(products.length - 8)
+} 
 
 export const getFinalProductsData = async ( category, color, size, sort, page ) => {
     let products = await getProducts()
