@@ -7,7 +7,7 @@ const CategoryItem = ({ item }) => {
 			<Image src={item.img} />
 			<Info>
 				<Title variant="h6" component="h1">{item.title}</Title>
-				<Link to={`/products/${item.cat}`}>
+				<Link to={`/products?cat=${item.cat}&page=1`}>
 					<Button>SHOP NOW</Button>
 				</Link>
 			</Info>
