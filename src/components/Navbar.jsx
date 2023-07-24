@@ -40,7 +40,7 @@ const Sidebar = () => {
                         <Link to="/" className="link">Home</Link>
                     </ListItem>
                     <ListItem>
-                        <Link to="/products/new" className="link">Shop Now</Link>
+                        <Link to="/products?page=1" className="link">Shop Now</Link>
                     </ListItem>
                     <ListItem>
                         <Link to="/profile" className="link">Profile</Link>

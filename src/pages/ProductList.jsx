@@ -45,14 +45,24 @@ const ProductList = () => {
             })
         }
 
-        // console.log(Math.floor(3.4), Math.ceil(3.4), Math.ceil(3))
-
         const handlePage = (btn) => {
 
             setSearchParams(prevParams => {
                 btn === "prev" && page > 1 && prevParams.set("page", page - 1)
                 btn === "next" && page < pageLength && prevParams.set("page", page + 1)
                 
+                return prevParams
+            })
+        }
+
+        const handleClearBtn = () => {
+            setSearchParams((prevParams) => {
+                prevParams.delete("color")
+                prevParams.delete("size")
+                prevParams.delete("cat")
+                prevParams.delete("sort")
+                prevParams.set("page", 1)
+
                 return prevParams
             })
         }
@@ -110,7 +120,7 @@ const ProductList = () => {
                         </Select>
                     </Filter>
                 </FilterContainer>
-                <Button onClick={() => setSearchParams()}>Clear All</Button>
+                <Button onClick={handleClearBtn}>Clear All</Button>
                 <PaginationCont>
                     <FilterText>Page: </FilterText>
                     <PageCont>
