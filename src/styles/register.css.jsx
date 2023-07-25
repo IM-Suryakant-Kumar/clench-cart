@@ -1,24 +1,18 @@
 import styled from "@emotion/styled";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
-export const Container = styled.div`
-	width: 100vw;
-	height: 100vh;
-	background: linear-gradient(
-        rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.5
-    )),
-    url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") 
-    center;
-
+export const Container = styled(Box)`
+	width: 100%;
+	height: 80vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 `;
 
-export const Wrapper = styled.div`
-	width: 40%;
-	padding: 20px;
-	background-color: white;
+export const Wrapper = styled(Box)`
+    max-width: 700px;
+	padding: 1.25em;
+	background-color: var(--primary-cl);
     & > .form {
         display: flex;
 	    flex-wrap: wrap;
@@ -26,11 +20,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled(Typography)`
-	font-weight: 600;
     text-align: center;
     &.message {
         font-size: 0.875rem;
-        font-weight: 400;
         color: red;
     }
     & > .login {
@@ -42,26 +34,31 @@ export const Title = styled(Typography)`
 export const Input = styled.input`
 	flex: 1;
 	min-width: 40%;
-	margin: 20px 10px 0 0;
-	padding: 10px;
+	margin: 1.25em 0.625em 0 0;
+	padding: 0.625em;
 `;
 
 export const Agreement = styled.span`
-	font-size: 12px;
-	margin: 20px 0;
+	font-size: 0.75rem;
+	margin: 1em 0;
+    color: var(--gray-cl);
+    text-align: justify;
 `;
 
 export const SButton = styled(Button)`
 	width: 100%;
-	padding: 0.3125em;
-	background-color: teal;
-	color: white;
-	margin-bottom: 10px;
+    height: 30px;
+	margin-bottom: 0.625em;
+    font-size: 0.875rem;
+    text-transform: capitalize;
+    letter-spacing: 0.1em;
+	background-color: var(--secondary-cl );   
+	color: var(--primary-cl);
     &:hover {
-        background-color: teal;
+        background-color: var(--secondary-cl );
     }
 	&:disabled {
-		color: green;
+		color: var(--gray-cl);
 		cursor: not-allowed;
 	}
 `;

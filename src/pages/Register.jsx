@@ -77,9 +77,9 @@ const Register = () => {
                         name="confpassword"
                         placeholder="confirm password" 
                     />
-					<Agreement>By creating an account, I consent to the processing of my personal data in accordance with the <b>PRIVACY POLICY</b>
+					<Agreement>By creating an account, I consent to the processing of my personal data in accordance with the <b>Privacy Policy</b>
 					</Agreement>
-					<Button type="submit" variant="contained">CREATE</Button>
+					<Button type="submit" variant="contained">Create</Button>
 				</Form>
                 <Title variant="body2" component="h3">Already have an account?
                     <Link to="/login" className="login"> Log In</Link>
