@@ -9,7 +9,41 @@ export const Container = styled(Box)`
 export const AvatarCont = styled(Stack)`
     margin-top: 3em;
     align-items: center;
+    position: relative;
 `
+
+export const UploadCont = styled(Box)`
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    display: flex;
+    align-items: flex-end;
+`
+
+export const Label = styled.label`
+    display: inline-block;
+    width: 100%;
+    background-color: var(--gray-cl);
+    color: var(--fashion-cl);
+    opacity: 0.6;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.625em;
+    text-align: center;
+    
+    & > input[type="file"] {
+        display: none;
+    }
+`
+export const Input = styled.input``
 
 export const Wrapper = styled(Box)`
     max-width: 400px;

@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import { 
     Badge, 
     Box, 
-    Button, 
     Container, 
     List, 
     ListItem, 

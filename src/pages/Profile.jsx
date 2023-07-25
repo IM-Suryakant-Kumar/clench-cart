@@ -5,14 +5,18 @@ import {
     TitleCont,
     Title, 
     LogoutIcon,
-    SButton as Button
+    SButton as Button,
+    UploadCont,
+    Label,
+    Input
 } from "../styles/profile.css"
 import Avatar from "../components/Avatar.jsx"
 import { requireAuth } from "../util"
 import { Await, defer, useLoaderData, useNavigate } from "react-router-dom"
 import { Suspense } from "react"
-import { useDispatch } from "react-redux"
-import { logoutUser } from "../features/user/userSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { logoutUser, updateUser } from "../features/user/userSlice"
+import Loader from "../components/Loader"
 
 export const loader = async ({request}) => {
     return defer({user: requireAuth(request)})
@@ -22,10 +26,15 @@ const Profile = () => {
     const loaderData = useLoaderData()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    // const { isLoading } = useSelector(state => state.user)
 
     const handleLogout = () => {
         dispatch(logoutUser())
         navigate("/", {replace: true})
+    }
+
+    const handleChange = (e) => {
+        dispatch(updateUser({avatar: e.target.files[0]}))
     }
 
     const renderProfile = (user) => (<>
@@ -37,6 +46,12 @@ const Profile = () => {
                 height={100} 
                 font={3.5} 
             />
+            <UploadCont>
+                <Label>
+                    <Input type='file' accept="image/png, image/jpeg" onChange={handleChange} />
+                    Edit
+                </Label>
+            </UploadCont>
         </AvatarCont>
         <Wrapper>
             
@@ -49,6 +64,22 @@ const Profile = () => {
                 </Title>
                 <Title variant="subtitle1" component="h3">
                     {user.username}
+                </Title>
+            </TitleCont>
+            <TitleCont>
+                <Title variant="subtitle1" component="h3">
+                    Name:
+                </Title>
+                <Title variant="subtitle1" component="h3">
+                    {user.name || "N/A"}
+                </Title>
+            </TitleCont>
+            <TitleCont>
+                <Title variant="subtitle1" component="h3">
+                    Gender:
+                </Title>
+                <Title variant="subtitle1" component="h3">
+                    {user.gender || "N/A"}
                 </Title>
             </TitleCont>
             <TitleCont>
@@ -68,7 +99,7 @@ const Profile = () => {
                     Village:
                 </Title>
                 <Title variant="subtitle1" component="h3">
-                    N/A
+                    {user.address?.village || "N/A"}
                 </Title>
             </TitleCont>
             <TitleCont>
@@ -76,7 +107,7 @@ const Profile = () => {
                     City:
                 </Title>
                 <Title variant="subtitle1" component="h3">
-                    N/A
+                    {user.address?.city || "N/A"}
                 </Title>
             </TitleCont>
             <TitleCont>
@@ -84,7 +115,7 @@ const Profile = () => {
                     State:
                 </Title>
                 <Title variant="subtitle1" component="h3">
-                    N/A
+                    {user.address?.state || "N/A"}
                 </Title>
             </TitleCont>
             <TitleCont>
@@ -92,7 +123,7 @@ const Profile = () => {
                     Country:
                 </Title>
                 <Title variant="subtitle1" component="h3">
-                    N/A
+                    {user.address?.country || "N/A"}
                 </Title>
             </TitleCont>
         </Wrapper>
@@ -100,7 +131,7 @@ const Profile = () => {
 
     return (
         <Container>
-            <Suspense fallback={<h3>Loading...</h3>}>
+            <Suspense fallback={<Loader />}>
                 <Await resolve={loaderData.user}>{renderProfile}</Await>
             </Suspense>
         </Container>

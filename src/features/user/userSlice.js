@@ -95,7 +95,7 @@ const userSlice = createSlice({
 			})
 			.addCase(updateUser.rejected, (state, action) => {
 				state.isLoading = false;
-				toast.error(action.payload);
+                state.error = action.payload
 			});
 	}
 });
