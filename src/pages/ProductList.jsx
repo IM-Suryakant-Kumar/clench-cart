@@ -7,6 +7,7 @@ import {
     PaginationCont, PageCont, PageNo
 } from "../styles/productList.css";
 import { getFinalProductsData } from "../api";
+import Loader from "../components/Loader";
 
 export const loader = ({ params, request }) => {
     const category = new URL(request.url).searchParams.get("cat")
@@ -131,7 +132,7 @@ const ProductList = () => {
     }
 
 	return (
-        <Suspense fallback={<h3>Loading...</h3>}>
+        <Suspense fallback={<Loader />}>
             <Await resolve={loaderData.productsData}>
                 {renderProductsDataElement}
             </Await>

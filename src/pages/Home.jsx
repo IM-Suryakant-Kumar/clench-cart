@@ -5,6 +5,7 @@ import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
 import { getLatestProducts } from "../api";
 import { Await, defer, useLoaderData } from "react-router-dom";
+import Loader from "../components/Loader";
 
 export const loader = () => {
      return defer({ products: getLatestProducts() })
@@ -17,7 +18,7 @@ const Home = () => {
 		<div>
             <Slider />
             <Categories />
-            <Suspense fallback={<h3>Loading...</h3>}>
+            <Suspense fallback={<Loader />}>
                 <Await resolve={loaderData.products}>
                     {products => <Products products={products} />}
                 </Await>
