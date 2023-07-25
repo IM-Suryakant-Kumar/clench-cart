@@ -17,6 +17,9 @@ export const Wrapper = styled(Box)`
         max-width: 500px;
         display: flex;
 	    flex-direction: column;
+        @media (min-width: 768px) {
+            width: 400px;
+        }
     }
 `;
 
