@@ -2,32 +2,25 @@ import styled from "@emotion/styled";
 import { Box, Button, Typography } from "@mui/material";
 
 export const Container = styled(Box)`
-	width: 100vw;
-	height: 100vh;
-	background: linear-gradient(
-			rgba(255, 255, 255, 0.5),
-			rgba(255, 255, 255, 0.5)
-		),
-		url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
-			center;
-	background-size: cover;
+	width: 100%;
+	height: 80vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 `;
 
 export const Wrapper = styled(Box)`
-	width: 25%;
-	padding: 20px;
-	background-color: white;
+	padding: 1.5em;
+	background-color: var(--primary-cl);
+    color: var(--gray-cl);
     & > .login-form {
+        max-width: 500px;
         display: flex;
 	    flex-direction: column;
     }
 `;
 
 export const Title = styled(Typography)`
-	font-weight: 600;
     text-align: center;
     &.message {
         color: red;
@@ -40,6 +33,7 @@ export const Title = styled(Typography)`
 `;
 
 export const Input = styled.input`
+    outline: none;
 	flex: 1;
 	min-width: 40%;
 	margin: 10px 0;
@@ -48,23 +42,17 @@ export const Input = styled.input`
 
 export const SButton = styled(Button)`
 	width: 100%;
-	padding: 0.3125em;
-	background-color: teal;
-	color: white;
-	margin-bottom: 10px;
+    height: 32px;
+    font-size: 0.875rem;
+    text-transform: capitalize;
+	margin-bottom: 0.625em;
+    background-color: var(--secondary-cl);
+	color: var(--primary-cl);
     &:hover {
-        background-color: teal;
+        background-color: var(--secondary-cl);
     }
 	&:disabled {
-		color: green;
+		color: var(--gray-cl);
 		cursor: not-allowed;
 	}
 `;
-
-// export const Link = styled.a`
-// 	margin: 5px 0;
-// 	font-size: 12px;
-// 	text-decoration: underline;
-// 	cursor: pointer;
-//     text-align: center;
-// `;

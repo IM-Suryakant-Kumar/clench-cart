@@ -64,7 +64,7 @@ const Login = () => {
 					/>
 					<Button type="submit" disabled={navigation.state === "submitting"}>
                         {navigation.state === "submitting" ? 
-                            "LOGGIN IN..." : "LOGIN"}
+                            "Loggin In..." : "Log In"}
 					</Button>
 					<Title variant="body2">Don't have an account?
                         <Link to="/register" className="register"> Create Now</Link>

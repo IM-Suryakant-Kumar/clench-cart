@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
 	Wrapper,
 	Left,
@@ -23,7 +23,8 @@ import {
     SListItem as ListItem,
     CloseIcon,
     MContainer as Container,
-    SContainer
+    SContainer,
+    NavLinks
 } from "../styles/navbar.css";
 import Avatar from "./Avatar";
 import { toggleSidebar } from "../features/user/userSlice";
@@ -67,6 +68,10 @@ const Navbar = () => {
                         <Logo variant="h6" component="h1">
                             <Link to="/" className="link logo">ClenchCart</Link>
                         </Logo>
+                        <NavLinks>
+                            <NavLink to="/" className="link">Home</NavLink>
+                            <NavLink to="/products?page=1" className="link">Products</NavLink>
+                        </NavLinks>
                     </Left>
 
                     <Right>

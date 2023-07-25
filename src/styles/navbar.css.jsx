@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { 
     Badge, 
     Box, 
+    Button, 
     Container, 
     List, 
     ListItem, 
@@ -44,9 +45,9 @@ export const MenuIcon = styled(Menu)`
     padding: 0.3125em;
     border-radius: 0.3125em;
     font-weight: 300;
-    /* @media (min-width: 768px) {
+    @media (min-width: 768px) {
         display: none;
-    } */
+    }
 `
 export const CloseIcon = styled(Close)`
     margin-right: 0.3125em;
@@ -57,9 +58,9 @@ export const CloseIcon = styled(Close)`
     padding: 0.3125em;
     border-radius: 0.3125em;
     font-weight: 300;
-    /* @media (min-width: 768px) {
+    @media (min-width: 768px) {
         display: none;
-    } */
+    }
 `
 
 export const Logo = styled(Typography)`
@@ -70,6 +71,32 @@ export const Logo = styled(Typography)`
         border-bottom: 3px solid;
     }
 `;
+
+export const NavLinks = styled(Box)`
+    min-width: 200px;
+    margin: 0 auto;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    & > .link {
+        color: var(--secondary-cl);
+        font-size: 0%.875rem;
+        font-weight: 400;
+        &:hover {
+            font-weight: 600;
+        }
+    }
+    & > .active {
+        font-weight: 600;
+    }
+    @media (max-width: 768px) {
+        display: none;
+    }
+`
+
+// export const 
 
 export const Right = styled(Stack)`
     flex: 2;
