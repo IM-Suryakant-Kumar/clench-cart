@@ -63,7 +63,7 @@ export const CloseIcon = styled(Close)`
 `
 
 export const Logo = styled(Typography)`
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 600;
     & > .logo {
         color: var(--secondary-cl);

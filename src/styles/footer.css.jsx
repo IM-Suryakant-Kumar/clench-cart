@@ -32,7 +32,7 @@ export const Left = styled(Stack)``;
 
 export const Logo = styled(Typography)`
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 600;
     & > .logo {
         border-bottom: 3px solid;

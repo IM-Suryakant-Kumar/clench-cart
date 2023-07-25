@@ -15,7 +15,10 @@ import Success from "./pages/Success";
 import Profile, { loader as profileLoader } from "./pages/Profile";
 
 const router = createBrowserRouter(createRoutesFromElements(
-    <Route path="/" element={<Layout /> } loader={layoutLoader}>
+    <Route 
+        path="/" element={<Layout /> } 
+        loader={layoutLoader}
+    >
         <Route 
             index 
             element={<Home />} 
