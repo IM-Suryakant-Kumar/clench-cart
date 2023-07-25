@@ -25,8 +25,4 @@ const Loader = () => (
     </div>
 )
 
-export const RingLoader = () => (
-    <div class="loader"></div>
-)
-
 export default Loader

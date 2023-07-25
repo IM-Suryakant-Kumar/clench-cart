@@ -38,7 +38,7 @@ const Slider = () => {
                                     {item.title}
                                 </Title>
                                 <Desc variant="body2">{item.desc}</Desc>
-                                <Link to={`/products?cat=${item.cat}`} className="link">
+                                <Link to={`/products?cat=${item.cat}&page=1`} className="link">
                                     SHOP NOW
                                 </Link>
                             </InfoContainer>
