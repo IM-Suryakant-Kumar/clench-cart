@@ -12,7 +12,7 @@ import {
 } from "../styles/cart.css";
 import CartItem from "../components/CartItem";
 import { getAllCart } from "../api";
-import { Await, defer, useLoaderData } from "react-router-dom";
+import { Await, Link, defer, useLoaderData } from "react-router-dom";
 import React from "react";
 import Loader from "../components/Loader";
 
@@ -61,7 +61,7 @@ const Cart = () => {
 	return (
 		<Container>
             <Title variant="subtitle1" component="h1">YOUR BAG</Title>
-            <Button>CONTINUE SHOPPING</Button>
+            <Button ><Link to="../products?page=1" className="link">CONTINUE SHOPPING</Link></Button>
             <React.Suspense fallback={<Loader />}>
                 <Await resolve={loaderData.cart}>{renderCart}</Await>
             </React.Suspense>
