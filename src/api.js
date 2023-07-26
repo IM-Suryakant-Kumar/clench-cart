@@ -102,7 +102,7 @@ export const getProduct = async (id) => {
 }
 // get all carts
 export const getAllCart = async () => {
-    await store.dispatch(getCarts())
+    store.getState().cart.products.length === 0 && await store.dispatch(getCarts())
     // console.log(store.getState().cart)
     return store.getState().cart
 }

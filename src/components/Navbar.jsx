@@ -55,7 +55,7 @@ const Sidebar = () => {
 }
 
 const Navbar = () => {
-	const { quantity } = useSelector((state) => state.cart);
+	const { totalQuantity } = useSelector((state) => state.cart);
 	const { user, isSidebarOpen } = useSelector((state) => state.user);
     const dispatch = useDispatch()
 
@@ -97,7 +97,7 @@ const Navbar = () => {
                                     <PersonIcon /> <Title variant="body2">Sign Up/Sign In</Title>
                                 </Link>}
                             | <Link to="/cart" className="link">
-                                <Badge badgeContent={quantity} color="primary"><CartIcon /></Badge>
+                                <Badge badgeContent={totalQuantity} color="primary"><CartIcon /></Badge>
                                 
                             </Link>
                         </IconCont>
