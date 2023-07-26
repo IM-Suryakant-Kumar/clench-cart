@@ -37,11 +37,6 @@ const router = createBrowserRouter(createRoutesFromElements(
             loader={productLoader}
         />
         <Route 
-            path="profile"
-            element={<Profile />}
-            loader={profileLoader}
-        />
-        <Route 
             path="cart" 
             element={<Cart />}
             loader={cartLoader}
@@ -62,6 +57,11 @@ const router = createBrowserRouter(createRoutesFromElements(
             element={<Register />}
             loader={registerLoader}
             action ={registerAction}
+        />
+        <Route 
+            path="profile"
+            element={<Profile />}
+            loader={profileLoader}
         />
         <Route 
             path="*" 

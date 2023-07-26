@@ -36,7 +36,7 @@ const Profile = () => {
 
     const renderProfile = (user) => {
 
-        const handleChange = async (e) => {
+        const handleProfileImage = async (e) => {
             const file = e.target.files[0]
             setImagePreview(URL.createObjectURL(file))
             try {
@@ -66,7 +66,7 @@ const Profile = () => {
                 />
                 <UploadCont>
                     <Label>
-                        <Input type='file' accept="image/png, image/jpeg" onChange={handleChange} />
+                        <Input type='file' accept="image/png, image/jpeg" onChange={handleProfileImage} />
                         Edit
                     </Label>
                 </UploadCont>

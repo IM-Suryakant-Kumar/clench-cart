@@ -5,7 +5,8 @@ import { getLoggedInUser } from "./api"
 
 export const requireAuth = async (request) => {
     const pathname = new URL(request.url).pathname
-    await store.dispatch(getUser())
+    // Performance optimization
+    !store.getState().user.user && await store.dispatch(getUser())
     const user = await getLoggedInUser()
     
     if(!user) {
