@@ -19,8 +19,8 @@ export const Title = styled(Typography)`
 
 export const SButton = styled(Button)`
     width: 100%;
-    padding: 0.625em;
-    border-radius: 0;
+    padding: 0.4em;
+    border-radius: 0.3125em;
 	background-color: var(--secondary-cl);
 	color: var(--primary-cl);
 	font-weight: 600;
@@ -34,7 +34,7 @@ export const ProductsCont = styled(Box)`
 `;
 
 export const Summary = styled(Paper)`
-    width: 400px;
+    max-width: 400px;
     margin-left: auto;
 	border-radius: 0.625em;
     padding: 1em 1.25em;
