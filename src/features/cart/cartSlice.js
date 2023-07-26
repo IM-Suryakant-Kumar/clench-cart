@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const initialState = {
 	products: [],
-	quantity: 0,
+	totalQuantity: 0,
 	totalPrice: 0,
     isLoading: false,
     error: null
@@ -41,10 +41,10 @@ const cartSlice = createSlice({
             })
             .addCase(getCarts.fulfilled, (state, action) => {
                 state.isLoading = false
-                const { products, quantity, totalPrice } = action.payload
+                const { products, totalQuantity, totalPrice } = action.payload
                 
                 state.products = products
-                state.quantity = quantity
+                state.totalQuantity = totalQuantity
                 state.totalPrice = totalPrice
             })
             .addCase(getCarts, (state, action) => {

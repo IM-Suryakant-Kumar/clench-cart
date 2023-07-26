@@ -13,7 +13,7 @@ export const addToCartThunk = async (cart, thunkAPI) => {
 
 export const getCartsThunk = async (cart, thunkAPI) => {
     try {
-        const res = axios.get("/carts")
+        const res = await axios.get("/carts")
         return res.data
     } catch (err) {
         console.log(err)

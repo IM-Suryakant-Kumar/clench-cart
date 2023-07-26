@@ -49,7 +49,6 @@ const Product = () => {
         };
     
         const handleAddToCart = () => {
-
             dispatch(addToCart({
                 productId: product._id, 
                 quantity, 

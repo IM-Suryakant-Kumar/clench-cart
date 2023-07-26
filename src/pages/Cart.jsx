@@ -12,23 +12,25 @@ import {
     ItemPrice
 } from "../styles/cart.css";
 import CartItem from "../components/CartItem";
-// import { defer } from "react-router-dom";
+import { getAllCart } from "../api";
+import { Await, defer, useLoaderData } from "react-router-dom";
+import React from "react";
+import Loader from "../components/Loader";
 
 export const loader = async ({ request }) => {
     await requireAuth(request)
-
-    // return defer({ carts: getCart() })
-    return null 
+    return defer({ cart: getAllCart() })
 }
 
 const Cart = () => {
 	const { products, total } = useSelector((state) => state.cart);
+    const loaderData = useLoaderData()
 
-	// console.log(products);
-	return (
-		<Container>
-            <Title variant="subtitle1" component="h1">YOUR BAG</Title>
-            <Button>CONTINUE SHOPPING</Button>
+    const renderCart = (cart) => {
+        // console.log(cart)
+
+        return (
+            <>
             <ProductsCont>
                 {products.map(prod => (
                     <CartItem product={prod} key={prod._id} />
@@ -54,6 +56,17 @@ const Cart = () => {
                 </Item>
                 <PayButton products={products} />
             </Summary>
+            </>
+        )
+    }
+
+	return (
+		<Container>
+            <Title variant="subtitle1" component="h1">YOUR BAG</Title>
+            <Button>CONTINUE SHOPPING</Button>
+            <React.Suspense fallback={<Loader />}>
+                <Await resolve={loaderData.cart}>{renderCart}</Await>
+            </React.Suspense>
 		</Container>
 	);
 };

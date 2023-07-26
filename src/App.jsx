@@ -45,7 +45,7 @@ const router = createBrowserRouter(createRoutesFromElements(
             path="cart" 
             element={<Cart />}
             loader={cartLoader}
-            errorElement={<Error />}
+            // errorElement={<Error />}
         />
         <Route 
             path="success" 
