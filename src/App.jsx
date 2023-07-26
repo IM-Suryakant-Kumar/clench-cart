@@ -13,6 +13,7 @@ import Login, { loader as loginLoader, action as loginAction } from "./pages/Log
 import Cart, { loader as cartLoader } from "./pages/Cart";
 import Success from "./pages/Success";
 import Profile, { loader as profileLoader } from "./pages/Profile";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route 
@@ -61,7 +62,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         />
         <Route 
             path="*" 
-            element={<h1>Route does not exist</h1>} 
+            element={<NotFound />} 
         />
     </Route>
 ))
