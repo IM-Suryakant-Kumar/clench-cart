@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { createOrdersThunk, getOrdersThunk } from "./orderThunk"
+import { createOrderThunk, getOrdersThunk } from "./orderThunk"
+import { toast } from "react-toastify"
 
 const initialState = {
     products: [],
@@ -7,7 +8,7 @@ const initialState = {
     error: null
 }
 
-export const createOrders = createAsyncThunk("order/createOrders", createOrdersThunk)
+export const createOrder = createAsyncThunk("order/createOrder", createOrderThunk)
 export const getOrders = createAsyncThunk("order/getOrders", getOrdersThunk)
 
 const orderSlice = createSlice({
@@ -15,14 +16,14 @@ const orderSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder
-            .addCase(createOrders.pending, (state) => {
+            .addCase(createOrder.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(createOrders.fulfilled, (state, action) => {
+            .addCase(createOrder.fulfilled, (state) => {
                 state.isLoading = false
-                state.products  = action.payload
+                toast.success("Order successful")
             })
-            .addCase(createOrders.pending, (state, action) => {
+            .addCase(createOrder.rejected, (state, action) => {
                 state.isLoading = false
                 state.error = action.payload
             })
@@ -33,7 +34,7 @@ const orderSlice = createSlice({
                 state.isLoading = false
                 state.products  = action.payload
             })
-            .addCase(getOrders.pending, (state, action) => {
+            .addCase(getOrders.rejected, (state, action) => {
                 state.isLoading = false
                 state.error = action.payload
             })
