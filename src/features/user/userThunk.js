@@ -1,4 +1,4 @@
-import axios, { claudinary } from "../axios";
+import axios from "../axios";
 
 export const registerUserThunk = async (user, thunkAPI) => {
 	try {
@@ -54,17 +54,6 @@ export const getUserThunk = async (user, thunkAPI) => {
 
 export const updateUserThunk = async (user, thunkAPI) => {
     try {
-        const preset_key = process.env.REACT_APP_UPLOAD_PRESET
-        const file = user.avatar
-        if(file && (file.type === "image/png" || file.type === "image/jpg" || file.type === "image/jpeg")) {
-            const formData = new FormData()
-            formData.append("file", file)
-            formData.append("upload_preset", preset_key)
-            
-            const cres = await claudinary.post("/image/upload", formData)
-            user.avatar = cres.data.secure_url
-        }
-
 		const res = await axios.patch("/users/me", user);
 		return res.data;
 	} catch (error) {
