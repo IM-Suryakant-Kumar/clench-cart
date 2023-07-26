@@ -8,8 +8,8 @@ const SButton = styled(Button)`
 	background-color: var(--secondary-cl);
 	color: var(--primary-cl);
 	font-weight: 600;
-	padding: 0.625em;
-    border-radius: 0;
+    padding: 0.4em;
+    border-radius: 0.3125em;
     &:hover {
 	    background-color: var(--secondary-cl);
     }
