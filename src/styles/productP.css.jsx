@@ -76,6 +76,7 @@ export const FilterColor = styled(Box)`
 
 export const FilterSize = styled.select`
 	padding: 0.3125em 0.6em;
+    cursor: pointer;
 `;
 
 export const FilterSizeOption = styled.option``;
@@ -94,8 +95,12 @@ export const QuantityContainer = styled(Stack)`
 	font-weight: 700;
 `;
 
-export const RemoveIcon = styled(Remove)``
-export const AddIcon = styled(Add)``
+export const RemoveIcon = styled(Remove)`
+    cursor: pointer;
+`
+export const AddIcon = styled(Add)`
+    cursor: pointer;
+`
 
 export const Quantity = styled(Stack)`
 	width: 40px;

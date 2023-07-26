@@ -1,8 +1,6 @@
-import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "../features/axios";
-import { addProduct } from "../features/cart/cartSlice";
+import { Await, defer, useLoaderData } from "react-router-dom";
+import { Suspense, useState } from "react";
+import {  addToCart } from "../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 import {
 	AddContainer,
@@ -26,51 +24,49 @@ import {
 	Title,
 	Wrapper
 } from "../styles/productP.css";
+import { getProduct } from "../api";
+import Loader from "../components/Loader";
+
+export const loader = ({ params }) => {
+    return defer({product: getProduct(params.id)})
+}
 
 const Product = () => {
-	const { id } = useParams();
-	const [product, setProduct] = useState({});
+    const loaderData = useLoaderData()
+
 	const [quantity, setQuantity] = useState(1);
 	const [color, setColor] = useState("");
 	const [size, setSize] = useState("");
 	const dispatch = useDispatch();
 
-	const handleQuantity = (type) => {
-		if (type === "dec") {
-			quantity > 1 && setQuantity(quantity - 1);
-		} else {
-			setQuantity(quantity + 1);
-		}
-	};
+    const renderProduct = (product) => {
+        const handleQuantity = (type) => {
+            if (type === "dec") {
+                quantity > 1 && setQuantity(quantity - 1);
+            } else {
+                setQuantity(quantity + 1);
+            }
+        };
+    
+        const handleAddToCart = () => {
 
-	const handleClickAddToCart = () => {
-        dispatch(addProduct({ ...product, quantity, color, size }));
-		toast.success("Item added to cart");
-	};
+            dispatch(addToCart({
+                productId: product._id, 
+                quantity, 
+                color: color || product.color[0], 
+                size: size || product.size[0]
+            }));
+        };
 
-	useEffect(() => {
-		const getProduct = async () => {
-			try {
-				const res = await axios.get(`/products/${id}`);
-				setProduct(res.data);
-			} catch (err) {
-				console.log(err);
-			}
-		};
-
-		getProduct();
-	}, [id]);
-
-	return (
-		<Container>
-			<Wrapper>
+        return (
+            <Wrapper>
 				<ImageContainer>
-					<Image src={product?.img} />
+					<Image src={product.img} />
 				</ImageContainer>
 				<InfoContainer>
-					<Title variant="subtitle1" component="h3">{product?.title}</Title>
-					<Desc variant="body1" component="p">{product?.desc}</Desc>
-					<Price variant="subtitle1" component="p">₹ {product?.price}</Price>
+					<Title variant="subtitle1" component="h3">{product.title}</Title>
+					<Desc variant="body1" component="p">{product.desc}</Desc>
+					<Price variant="subtitle1" component="p">₹ {product.price}</Price>
 					<FilterContainer>
 						<Filter>
 							<FilterTitle variant="subtitle1">Color</FilterTitle>
@@ -99,12 +95,20 @@ const Product = () => {
 							<Quantity component="span">{quantity}</Quantity>
 							<AddIcon onClick={() => handleQuantity("inc")} />
 						</QuantityContainer>
-						<Button onClick={handleClickAddToCart}>
+						<Button onClick={handleAddToCart}>
 							ADD TO CART
 						</Button>
 					</AddContainer>
 				</InfoContainer>
 			</Wrapper>
+        )
+    }
+
+	return (
+		<Container>
+            <Suspense fallback={<Loader />}>
+                <Await resolve={loaderData.product}>{renderProduct}</Await>
+            </Suspense>
 		</Container>
 	);
 };

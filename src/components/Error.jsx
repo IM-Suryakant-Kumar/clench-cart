@@ -11,6 +11,7 @@ const Container = styled(Stack)`
 
 const Error = () => {
     const error = useRouteError()
+    console.log(error)
 
     return (
         <Container>

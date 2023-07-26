@@ -1,14 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { addToCartThunk } from "./cartThunk"
+import { addToCartThunk, getCartsThunk } from "./cartThunk"
+import { toast } from "react-toastify";
 
 const initialState = {
 	products: [],
 	quantity: 0,
-	total: 0,
-    isLoading: false
+	totalPrice: 0,
+    isLoading: false,
+    error: null
 };
 
 export const addToCart = createAsyncThunk("cart/addToCart", addToCartThunk)
+export const getCarts = createAsyncThunk("cart/getCarts", getCartsThunk)
 
 const cartSlice = createSlice({
 	name: "cart",
@@ -27,6 +30,26 @@ const cartSlice = createSlice({
             })
             .addCase(addToCart.fulfilled, (state, action) => {
                 state.isLoading = false
+                toast.success("Item added to cart");
+            })
+            .addCase(addToCart.rejected, (state, action) => {
+                state.isLoading = false
+                state.error = action.payload
+            })
+            .addCase(getCarts.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getCarts.fulfilled, (state, action) => {
+                state.isLoading = false
+                const { products, quantity, totalPrice } = action.payload
+                
+                state.products = products
+                state.quantity = quantity
+                state.totalPrice = totalPrice
+            })
+            .addCase(getCarts, (state, action) => {
+                state.isLoading = false
+                state.error = action.payload
             })
     }
 });

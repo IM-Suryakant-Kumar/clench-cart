@@ -7,7 +7,7 @@ import {
 import Layout, { loader as layoutLoader } from "./components/Layout"
 import Home, { loader as homeLoader } from "./pages/Home";
 import ProductList, { loader as productListLoader } from "./pages/ProductList";
-import Product from "./pages/Product";
+import Product, {loader as productLoader} from "./pages/Product";
 import Register, { loader as registerLoader, action as registerAction } from "./pages/Register";
 import Login, { loader as loginLoader, action as loginAction } from "./pages/Login";
 import Cart, { loader as cartLoader } from "./pages/Cart";
@@ -34,6 +34,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route 
             path="product/:id" 
             element={<Product />}
+            loader={productLoader}
         />
         <Route 
             path="profile"

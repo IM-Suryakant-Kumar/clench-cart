@@ -1,14 +1,22 @@
 import axios from "../axios"
 
 export const addToCartThunk = async (cart, thunkAPI) => {
+    console.log(cart)
     try {
         const res = await axios.post("/carts/", cart)
         return res.data
     } catch (err) {
-        return thunkAPI.rejectWithValue({
-            msg: err.response.data.msg, 
-            status: err.response.request.status,
-            statusText: err.response.request.statusText
-        })
+        console.log(err)
+        return thunkAPI.rejectWithValue(err.response.data.msg)
+    }
+}
+
+export const getCartsThunk = async (cart, thunkAPI) => {
+    try {
+        const res = axios.get("/carts")
+        return res.data
+    } catch (err) {
+        console.log(err)
+        return thunkAPI.rejectWithValue(err.response.data.msg)
     }
 }

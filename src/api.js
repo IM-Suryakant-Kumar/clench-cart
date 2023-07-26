@@ -14,7 +14,9 @@ import {
     sortProducts,
     getProductsByPage
 } from "./util"
+import axios from "./features/axios"
 
+// register
 export const register = async (data) => {
     if(data.password !== data.confPassword) {
         throw {
@@ -37,6 +39,7 @@ export const register = async (data) => {
     return null
 } 
 
+// login 
 export const loginUser = async (data) => {
     await store.dispatch(login(data))
     const { user: { user, error } } = store.getState()
@@ -49,23 +52,27 @@ export const loginUser = async (data) => {
     return user
 }
 
+// log out
 export const getLoggedInUser = async () => {
     !store.getState().user.user && await store.dispatch(getUser())
     // console.log(store.getState().user.user)
     return store.getState().user.user
 }
 
+// get all products
 const getProducts = async () => {
     await store.dispatch(getAllProducts())
     return store.getState().product.products
 }
 
+// latest products
 export const getLatestProducts = async () => {
     const products = await getProducts()
 
     return products.slice(products.length - 8)
 } 
 
+// All products with filtering and sorting
 export const getFinalProductsData = async ( category, color, size, sort, page ) => {
     let products = await getProducts()
     // console.log(category, color, size, sort)
@@ -85,4 +92,10 @@ export const getFinalProductsData = async ( category, color, size, sort, page ) 
     products = getProductsByPage(products, page)
 
     return [products, filtersData, length]
+}
+
+// get single product by id
+export const getProduct = async (id) => {
+    const res = await axios.get(`products/${id}`)
+    return res.data   
 }
