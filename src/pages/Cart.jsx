@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import PayButton from "../components/PayButton";
 import { requireAuth } from "../util"
 import {
@@ -23,11 +22,10 @@ export const loader = async ({ request }) => {
 }
 
 const Cart = () => {
-	const { products, total } = useSelector((state) => state.cart);
     const loaderData = useLoaderData()
 
-    const renderCart = (cart) => {
-        // console.log(cart)
+    const renderCart = ({products, totalQuantity, totalPrice}) => {
+        console.log({products, totalQuantity, totalPrice})
 
         return (
             <>
@@ -40,7 +38,7 @@ const Cart = () => {
                 <Title variant="body1" component="h2" className="summary">ORDER SUMMARY</Title>
                 <Item>
                     <ItemText>Subtotal</ItemText>
-                    <ItemPrice>₹ {total}</ItemPrice>
+                    <ItemPrice>₹ {totalPrice}</ItemPrice>
                 </Item>
                 <Item>
                     <ItemText>Estimated Shipping</ItemText>
@@ -52,7 +50,7 @@ const Cart = () => {
                 </Item>
                 <Item type="total">
                     <ItemText>Total </ItemText>
-                    <ItemPrice>₹ {total}</ItemPrice>
+                    <ItemPrice>₹ {totalPrice}</ItemPrice>
                 </Item>
                 <PayButton products={products} />
             </Summary>

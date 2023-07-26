@@ -16,7 +16,7 @@ import {
 } from "../styles/cartItem.css"
 
 const CartItem = ({ product }) => {
-    console.log(product)
+    // console.log(product)
     return (
         <Container>
             <Image src={product.img} />

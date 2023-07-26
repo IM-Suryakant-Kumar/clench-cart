@@ -4,6 +4,8 @@ import { Box, Stack, Typography } from "@mui/material";
 
 export const Container = styled(Stack)`
     flex: 1;
+    padding: 1.25em 0;
+    border-bottom: 1px solid var(--gray-cl);
     @media (min-width: 768px) {
         flex-direction: row;
     }

@@ -26,8 +26,10 @@ import {
 } from "../styles/productP.css";
 import { getProduct } from "../api";
 import Loader from "../components/Loader";
+import { requireAuth } from "../util";
 
-export const loader = ({ params }) => {
+export const loader = async ({ params, request }) => {
+    await requireAuth(request)
     return defer({product: getProduct(params.id)})
 }
 
