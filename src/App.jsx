@@ -24,24 +24,21 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route 
             index 
             element={<Home />} 
-            loader={homeLoader} 
+            loader={homeLoader}
         />
         <Route 
             path="products" 
             element={<ProductList />}
             loader={productListLoader}
-            errorElement={<Error />}
         />
         <Route 
             path="product/:id" 
             element={<Product />}
-            errorElement={<Error />} 
         />
         <Route 
             path="profile"
             element={<Profile />}
             loader={profileLoader}
-            errorElement={<Error />}
         />
         <Route 
             path="cart" 
