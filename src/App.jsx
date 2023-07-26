@@ -14,6 +14,7 @@ import Cart, { loader as cartLoader } from "./pages/Cart";
 import Success from "./pages/Success";
 import Profile, { loader as profileLoader } from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import Error from "./components/Error";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route 
@@ -29,10 +30,28 @@ const router = createBrowserRouter(createRoutesFromElements(
             path="products" 
             element={<ProductList />}
             loader={productListLoader}
+            errorElement={<Error />}
         />
         <Route 
             path="product/:id" 
-            element={<Product />} 
+            element={<Product />}
+            errorElement={<Error />} 
+        />
+        <Route 
+            path="profile"
+            element={<Profile />}
+            loader={profileLoader}
+            errorElement={<Error />}
+        />
+        <Route 
+            path="cart" 
+            element={<Cart />}
+            loader={cartLoader}
+            errorElement={<Error />}
+        />
+        <Route 
+            path="success" 
+            element={<Success />} 
         />
         <Route 
             path="login" 
@@ -45,20 +64,6 @@ const router = createBrowserRouter(createRoutesFromElements(
             element={<Register />}
             loader={registerLoader}
             action ={registerAction}
-        />
-        <Route 
-            path="profile"
-            element={<Profile />}
-            loader={profileLoader}
-        />
-        <Route 
-            path="cart" 
-            element={<Cart />}
-            loader={cartLoader}
-        />
-        <Route 
-            path="success" 
-            element={<Success />} 
         />
         <Route 
             path="*" 
