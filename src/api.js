@@ -62,7 +62,8 @@ export const getLoggedInUser = async () => {
 
 // get all products
 const getProducts = async () => {
-    await store.dispatch(getAllProducts())
+    const products = store.getState().product.products
+    products.length === 0 && await store.dispatch(getAllProducts())
     return store.getState().product.products
 }
 

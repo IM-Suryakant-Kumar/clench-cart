@@ -14,7 +14,7 @@ import Cart, { loader as cartLoader } from "./pages/Cart";
 import Success from "./pages/Success";
 import Profile, { loader as profileLoader } from "./pages/Profile";
 import NotFound from "./pages/NotFound";
-import Error from "./components/Error";
+// import Error from "./components/Error";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route 
