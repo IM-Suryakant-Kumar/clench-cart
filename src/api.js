@@ -101,9 +101,16 @@ export const getProduct = async (id) => {
     const product = products.find(prod => prod._id === id)
     return product
 }
+
 // get all carts
 export const getAllCart = async () => {
     store.getState().cart.products.length === 0 && await store.dispatch(getCarts())
     // console.log(store.getState().cart)
     return store.getState().cart
+}
+
+// Create Order
+export const createOrder = async () => {
+
+    return null
 }

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { Button, Stack, Typography } from '@mui/material'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, defer, useLocation } from 'react-router-dom'
+import { createOrder } from '../api'
 
 const Container = styled(Stack)`
     justify-content: center;
@@ -29,11 +30,13 @@ const SButton = styled(Button)`
     }
 `
 
+export const loader = async () => {
+    
+    return defer({ order: createOrder() })
+}
 
 const Success = () => {
-    const location = useLocation()
 
-    console.log(location)
   return (
     <Container>
             <Title variant="h5" component="h1">Your Order Is Completed!</Title>
