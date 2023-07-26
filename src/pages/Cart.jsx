@@ -25,7 +25,7 @@ const Cart = () => {
     const loaderData = useLoaderData()
 
     const renderCart = ({products, totalQuantity, totalPrice}) => {
-        console.log({products, totalQuantity, totalPrice})
+        // console.log({products, totalQuantity, totalPrice})
 
         return (
             <>

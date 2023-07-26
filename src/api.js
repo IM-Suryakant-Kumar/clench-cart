@@ -14,7 +14,6 @@ import {
     sortProducts,
     getProductsByPage
 } from "./util"
-import axios from "./features/axios"
 import { getCarts } from "./features/cart/cartSlice"
 
 // register
@@ -98,8 +97,9 @@ export const getFinalProductsData = async ( category, color, size, sort, page ) 
 
 // get single product by id
 export const getProduct = async (id) => {
-    const res = await axios.get(`products/${id}`)
-    return res.data   
+    const products = store.getState().product.products
+    const product = products.find(prod => prod._id === id)
+    return product
 }
 // get all carts
 export const getAllCart = async () => {
