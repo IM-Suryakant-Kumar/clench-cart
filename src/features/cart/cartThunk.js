@@ -1,9 +1,12 @@
 import axios from "../axios"
+import store from "../store"
+import { getCarts } from "./cartSlice"
 
 export const addToCartThunk = async (cart, thunkAPI) => {
-    console.log(cart)
+    // console.log(cart)
     try {
-        const res = await axios.post("/carts/", cart)
+        const res = await axios.post("/carts", cart)
+        await store.dispatch(getCarts())
         return res.data
     } catch (err) {
         console.log(err)

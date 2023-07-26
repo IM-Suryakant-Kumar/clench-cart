@@ -19,9 +19,9 @@ const orderSlice = createSlice({
             .addCase(createOrder.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(createOrder.fulfilled, (state) => {
+            .addCase(createOrder.fulfilled, (state, action) => {
                 state.isLoading = false
-                toast.success("Order successful")
+                toast.success(action.payload)
             })
             .addCase(createOrder.rejected, (state, action) => {
                 state.isLoading = false

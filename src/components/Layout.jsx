@@ -5,7 +5,7 @@ import Footer from "./Footer"
 import { Box, Container } from "@mui/material"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
-import { getAllCart, getLoggedInUser } from "../api";
+import { getLoggedInUser } from "../api";
 import styled from "@emotion/styled"
 
 const MContainer = styled(Box)``
@@ -13,7 +13,6 @@ const Wrapper = styled(Container)``
 
 export const loader = async () => {
     
-    await getAllCart()
     return await getLoggedInUser()
 }
 

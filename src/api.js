@@ -14,7 +14,8 @@ import {
     sortProducts,
     getProductsByPage
 } from "./util"
-import { getCarts } from "./features/cart/cartSlice"
+import { emptyCart, getCarts } from "./features/cart/cartSlice"
+import { createOrder as executeCreateOrder } from "./features/order/orderSlice"
 
 // register
 export const register = async (data) => {
@@ -97,7 +98,8 @@ export const getFinalProductsData = async ( category, color, size, sort, page ) 
 
 // get single product by id
 export const getProduct = async (id) => {
-    const products = store.getState().product.products
+    const products = await getProducts()
+    
     const product = products.find(prod => prod._id === id)
     return product
 }
@@ -110,7 +112,11 @@ export const getAllCart = async () => {
 }
 
 // Create Order
-export const createOrder = async () => {
+export const createOrder = async (request) => {
+    const pathname = new URL(request.url).pathname
+    console.log(pathname)
+    await store.dispatch(executeCreateOrder())
+    store.dispatch(emptyCart())
 
     return null
 }

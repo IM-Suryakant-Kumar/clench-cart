@@ -11,7 +11,7 @@ import Product, {loader as productLoader} from "./pages/Product";
 import Register, { loader as registerLoader, action as registerAction } from "./pages/Register";
 import Login, { loader as loginLoader, action as loginAction } from "./pages/Login";
 import Cart, { loader as cartLoader } from "./pages/Cart";
-import Success from "./pages/Success";
+import Success, { loader as successLoader } from "./pages/Success";
 import Profile, { loader as profileLoader } from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 // import Error from "./components/Error";
@@ -45,6 +45,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route 
             path="success" 
             element={<Success />} 
+            loader={successLoader}
         />
         <Route 
             path="login" 

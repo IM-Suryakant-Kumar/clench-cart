@@ -1,6 +1,6 @@
 import { Await, defer, useLoaderData } from "react-router-dom";
 import { Suspense, useState } from "react";
-import {  addToCart } from "../features/cart/cartSlice";
+import {  addToCart, getCarts } from "../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 import {
 	AddContainer,

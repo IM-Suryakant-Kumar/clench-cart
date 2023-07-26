@@ -21,7 +21,10 @@ const cartSlice = createSlice({
 			state.quantity += 1;
 			state.products.push(action.payload);
 			state.total += action.payload.price * action.payload.quantity;
-		}
+		},
+        emptyCart: (state, action) => {
+            state.products = []
+        }
 	},
     extraReducers: (builder) => {
         builder
@@ -30,6 +33,8 @@ const cartSlice = createSlice({
             })
             .addCase(addToCart.fulfilled, (state, action) => {
                 state.isLoading = false
+                console.log(action.payload)
+                // state.products = action.payload
                 toast.success("Item added to cart");
             })
             .addCase(addToCart.rejected, (state, action) => {
@@ -54,5 +59,5 @@ const cartSlice = createSlice({
     }
 });
 
-export const { addProduct } = cartSlice.actions;
+export const { addProduct, emptyCart } = cartSlice.actions;
 export default cartSlice.reducer;

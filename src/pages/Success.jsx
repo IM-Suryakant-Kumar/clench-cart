@@ -1,6 +1,7 @@
+import React from 'react'
 import styled from '@emotion/styled'
 import { Button, Stack, Typography } from '@mui/material'
-import { Link, defer, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { createOrder } from '../api'
 
 const Container = styled(Stack)`
@@ -30,20 +31,19 @@ const SButton = styled(Button)`
     }
 `
 
-export const loader = async () => {
-    
-    return defer({ order: createOrder() })
+export const loader = async ({ request }) => {
+    return await createOrder(request)
 }
 
 const Success = () => {
 
   return (
     <Container>
-            <Title variant="h5" component="h1">Your Order Is Completed!</Title>
-            <STitle>
-                Thank you for your order! Your order is being processed and will be completed within 3-6 hours. You will receive an email confirmation when your order is completed.
-            </STitle>
-            <SButton><Link to="/products?page=1" className="link">Continue Shopping</Link></SButton>
+        <Title variant="h5" component="h1">Your Order Is Completed!</Title>
+        <STitle>
+            Thank you for your order! Your order is being processed and will be completed within 3-6 hours. You will receive an email confirmation when your order is completed.
+        </STitle>
+        <SButton><Link to="/products?page=1" className="link">Continue Shopping</Link></SButton>
     </Container>
   )
 }
