@@ -1,9 +1,19 @@
 import { Await, defer, useLoaderData } from "react-router-dom"
-import { Container } from "../styles/orders.css"
 import { requireAuth } from "../util"
 import { getAllOrders } from "../api"
 import { Suspense } from "react"
 import Loader from "../components/Loader"
+import { 
+    Container, 
+    Wrapper,
+    Image,
+    Top,
+    Title,
+    Bottom,
+    Color,
+    Quantity,
+    Price
+} from "../styles/orders.css"
 
 export const loader = async ({ request }) => {
     await requireAuth(request)
@@ -18,7 +28,19 @@ const Orders = () => {
 
         return (
             <Container>
-                orders
+                {products.map(({_id, img, title, price, color, quantity}) => (
+                    <Wrapper key={_id}>
+                        <Top>
+                            <Image src={img} alt="img" />
+                            <Title variant="subtitle1" component="h2">{title}</Title>
+                        </Top>
+                        <Bottom>
+                            <Color color={color}></Color>
+                            <Quantity>Quantity: {quantity}</Quantity>
+                            <Price>Price: ₹ {price}</Price>
+                        </Bottom>
+                    </Wrapper>
+                ))}
             </Container>
         )
     }
