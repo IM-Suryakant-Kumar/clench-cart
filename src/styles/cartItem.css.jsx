@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Add, Remove } from "@mui/icons-material";
+import { Add, Delete, Remove } from "@mui/icons-material";
 import { Box, Stack, Typography } from "@mui/material";
 
 export const Container = styled(Stack)`
@@ -80,3 +80,10 @@ export const NumOfItems = styled(Stack)`
     font-weight: 600;
 ` 
 export const AddIcon = styled(Add)`` 
+
+export const DeleteIcon = styled(Delete)`
+    display: block;
+    /* margin-left: auto; */
+    color: var(--gray-cl);
+    cursor: pointer;
+` 

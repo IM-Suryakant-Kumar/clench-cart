@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 
-export const Container = styled(Box)`
-    
-`
+export const Container = styled(Box)``

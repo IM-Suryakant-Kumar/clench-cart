@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux"
 import { 
     Container, 
     Desc, 
@@ -8,14 +9,17 @@ import {
     Spec,
     Size,
     Price,
-    AddCont,
-    AddIcon,
-    RemoveIcon,
-    NumOfItems,
-    C
+    // AddCont,
+    // AddIcon,
+    // RemoveIcon,
+    // NumOfItems,
+    C,
+    DeleteIcon
 } from "../styles/cartItem.css"
+import { removeCart } from "../features/cart/cartSlice"
 
 const CartItem = ({ product }) => {
+    const dispatch = useDispatch()
     // console.log(product)
     return (
         <Container>
@@ -28,11 +32,12 @@ const CartItem = ({ product }) => {
                     <Size>Size: {product.size}</Size>
                 </Spec>
                 <Price>Price: ₹ {product.price}</Price>
-                <AddCont>
+                <DeleteIcon onClick={() => dispatch(removeCart(product._id))} />
+                {/* <AddCont>
                     <RemoveIcon />
                     <NumOfItems>{product.quantity}</NumOfItems>
                     <AddIcon />
-                </AddCont>
+                </AddCont> */}
             </InfoCont>
         </Container>
     )
