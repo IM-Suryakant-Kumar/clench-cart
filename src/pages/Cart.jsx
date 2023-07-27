@@ -5,7 +5,7 @@ import {
 	Summary,
 	Item,
 	Title,
-	// SButton as Button,
+	SButton as Button,
     ProductsCont,
     ItemText,
     ItemPrice,
@@ -13,61 +13,46 @@ import {
 } from "../styles/cart.css";
 import CartItem from "../components/CartItem";
 import { getAllCart } from "../api";
-import { Await, defer, useLoaderData } from "react-router-dom";
 import React from "react";
-import Loader from "../components/Loader";
+import { useSelector } from "react-redux";
 
 export const loader = async ({ request }) => {
     await requireAuth(request)
-    return defer({ cart: getAllCart() })
+    return await getAllCart()
 }
 
 const Cart = () => {
-    const loaderData = useLoaderData()
-
-    const renderCart = ({products, totalQuantity, totalPrice}) => {
-        // console.log({products, totalQuantity, totalPrice})
-
-        return (
-            <>
-                <ProductsCont>
-                    {products.map(prod => (
-                        <CartItem product={prod} key={prod._id} />
-                    ))}
-                </ProductsCont>
-                {/* noItem msg */}
-                <NoItemMsg length={products.length}>No items in cart</NoItemMsg>
-                <Summary length={products.length} elevation={1}>
-                    <Title variant="body1" component="h2" className="summary">ORDER SUMMARY</Title>
-                    <Item>
-                        <ItemText>Subtotal</ItemText>
-                        <ItemPrice>₹ {totalPrice}</ItemPrice>
-                    </Item>
-                    <Item>
-                        <ItemText>Estimated Shipping</ItemText>
-                        <ItemPrice>₹ 5.90</ItemPrice>
-                    </Item>
-                    <Item>
-                        <ItemText>Shipping Discount</ItemText>
-                        <ItemPrice>₹ -5.90</ItemPrice>
-                    </Item>
-                    <Item type="total">
-                        <ItemText>Total </ItemText>
-                        <ItemPrice>₹ {totalPrice}</ItemPrice>
-                    </Item>
-                    <PayButton products={products} />
-                </Summary>
-            </>
-        )
-    }
+    const { products, totalPrice } = useSelector(state => state.cart)
 
 	return (
 		<Container>
-            {/* <Title variant="subtitle1" component="h1">YOUR BAG</Title> */}
-            {/* <Button ><Link to="../products?page=1" className="link">CONTINUE SHOPPING</Link></Button> */}
-            <React.Suspense fallback={<Loader />}>
-                <Await resolve={loaderData.cart}>{renderCart}</Await>
-            </React.Suspense>
+            <ProductsCont>
+                {products.map(prod => (
+                    <CartItem product={prod} key={prod._id} />
+                ))}
+            </ProductsCont>
+            {/* No items msg */}
+            <NoItemMsg length={products.length}>No items in cart</NoItemMsg>
+            <Summary length={products.length} elevation={1}>
+                <Title variant="body1" component="h2" className="summary">ORDER SUMMARY</Title>
+                <Item>
+                    <ItemText>Subtotal</ItemText>
+                    <ItemPrice>₹ {totalPrice}</ItemPrice>
+                </Item>
+                <Item>
+                    <ItemText>Estimated Shipping</ItemText>
+                    <ItemPrice>₹ 5.90</ItemPrice>
+                </Item>
+                <Item>
+                    <ItemText>Shipping Discount</ItemText>
+                    <ItemPrice>₹ -5.90</ItemPrice>
+                </Item>
+                <Item type="total">
+                    <ItemText>Total </ItemText>
+                    <ItemPrice>₹ {totalPrice}</ItemPrice>
+                </Item>
+                <PayButton products={products} />
+            </Summary>
 		</Container>
 	);
 };
