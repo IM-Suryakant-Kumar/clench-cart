@@ -3,12 +3,13 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 export const Container = styled(Box)`
+    min-height: 300px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
     gap: 0.625em;
-    margin: 2em 0;
+    margin: 1.25em 0;
 `
 
 export const Wrapper = styled(Box)`

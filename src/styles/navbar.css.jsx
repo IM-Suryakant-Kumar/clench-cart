@@ -72,7 +72,7 @@ export const Logo = styled(Typography)`
 `;
 
 export const NavLinks = styled(Box)`
-    min-width: 200px;
+    min-width: 250px;
     margin: 0 auto;
     height: 60px;
     display: flex;
