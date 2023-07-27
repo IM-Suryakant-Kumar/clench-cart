@@ -15,10 +15,6 @@ export const Title = styled(Typography)`
         font-size: 1.1rem;
         color: var(--gray-cl);
     }
-    &.no-item-msg {
-        font-size: 1.2rem;
-        color: var(--gray-cl);
-    }
 `;
 
 export const SButton = styled(Button)`
@@ -41,9 +37,10 @@ export const ProductsCont = styled(Box)`
 `;
 
 export const NoItemMsg = styled(Stack)`
-    height: 70vh;
-    justify-content: center;
+    color: var(--gray-cl);
+    height: 80vh;
     align-items: center;
+    justify-content: center;
     display: ${props => props.length > 0 && "none"};
 `
 

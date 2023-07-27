@@ -12,7 +12,8 @@ import {
     Bottom,
     Color,
     Quantity,
-    Price
+    Price,
+    NoItemMsg
 } from "../styles/orders.css"
 
 export const loader = async ({ request }) => {
@@ -27,21 +28,24 @@ const Orders = () => {
         // console.log(products)
 
         return (
-            <Container>
-                {products.map(({_id, img, title, price, color, quantity}) => (
-                    <Wrapper key={_id}>
-                        <Top>
-                            <Image src={img} alt="img" />
-                            <Title variant="subtitle1" component="h2">{title}</Title>
-                        </Top>
-                        <Bottom>
-                            <Color color={color}></Color>
-                            <Quantity>Quantity: {quantity}</Quantity>
-                            <Price>Price: ₹ {price}</Price>
-                        </Bottom>
-                    </Wrapper>
-                ))}
-            </Container>
+            <>
+                <NoItemMsg length={products.length}>No items in order</NoItemMsg>
+                <Container>
+                    {products.map(({_id, img, title, price, color, quantity}) => (
+                        <Wrapper key={_id}>
+                            <Top>
+                                <Image src={img} alt="img" />
+                                <Title variant="subtitle1" component="h2">{title}</Title>
+                            </Top>
+                            <Bottom>
+                                <Color color={color}></Color>
+                                <Quantity>Quantity: {quantity}</Quantity>
+                                <Price>Price: ₹ {price}</Price>
+                            </Bottom>
+                        </Wrapper>
+                    ))}
+                </Container>
+            </>
         )
     }
 

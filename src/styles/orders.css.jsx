@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 export const Container = styled(Box)`
@@ -52,3 +52,11 @@ export const Color = styled(Box)`
 `
 export const Quantity = styled(Box)``
 export const Price = styled(Box)``
+
+export const NoItemMsg = styled(Stack)`
+    color: var(--gray-cl);
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+    display: ${props => props.length > 0 && "none"};
+`

@@ -5,7 +5,7 @@ import {
 	Summary,
 	Item,
 	Title,
-	SButton as Button,
+	// SButton as Button,
     ProductsCont,
     ItemText,
     ItemPrice,
@@ -13,7 +13,7 @@ import {
 } from "../styles/cart.css";
 import CartItem from "../components/CartItem";
 import { getAllCart } from "../api";
-import { Await, Link, defer, useLoaderData } from "react-router-dom";
+import { Await, defer, useLoaderData } from "react-router-dom";
 import React from "react";
 import Loader from "../components/Loader";
 
@@ -35,13 +35,8 @@ const Cart = () => {
                         <CartItem product={prod} key={prod._id} />
                     ))}
                 </ProductsCont>
-                <NoItemMsg length={products.length}>
-                    <Title 
-                        variant="subtitle1" 
-                        component="p"
-                        className="no-item-msg"
-                    >No Items in Cart</Title>
-                </NoItemMsg>
+                {/* noItem msg */}
+                <NoItemMsg length={products.length}>No items in order</NoItemMsg>
                 <Summary length={products.length} elevation={1}>
                     <Title variant="body1" component="h2" className="summary">ORDER SUMMARY</Title>
                     <Item>
