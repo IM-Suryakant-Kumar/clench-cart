@@ -46,8 +46,12 @@ const Sidebar = () => {
                     <ListItem>
                         <Link to="/profile" className="link">Profile</Link>
                     </ListItem>
-                    <ListItem>Orders</ListItem>
-                    <ListItem>Wishlist</ListItem>
+                    <ListItem>
+                        <Link to="/orders" className="link">Orders</Link>
+                    </ListItem>
+                    <ListItem>
+                        <Link to="/Wishlist" className="link">Wishlist</Link>
+                    </ListItem>
                 </List>
             </SContainer>
         </SidebarContainer>
