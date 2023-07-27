@@ -37,7 +37,7 @@ const router = createBrowserRouter(createRoutesFromElements(
             path="product/:id" 
             element={<Product />}
             loader={productLoader}
-        />
+        /> 
         <Route 
             path="cart" 
             element={<Cart />}
