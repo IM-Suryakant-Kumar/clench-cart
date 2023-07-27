@@ -53,7 +53,7 @@ const cartSlice = createSlice({
                 state.totalQuantity = totalQuantity
                 state.totalPrice = totalPrice
             })
-            .addCase(getCarts, (state, action) => {
+            .addCase(getCarts.rejected, (state, action) => {
                 state.isLoading = false
                 state.error = action.payload
             })
@@ -64,7 +64,7 @@ const cartSlice = createSlice({
                 state.isLoading = false
                 toast.success(action.payload)
             })
-            .addCase(removeCart, (state, action) => {
+            .addCase(removeCart.rejected, (state, action) => {
                 state.isLoading = false
                 state.error = action.payload
             })
