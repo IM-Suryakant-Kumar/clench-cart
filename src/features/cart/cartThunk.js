@@ -7,7 +7,7 @@ export const addToCartThunk = async (cart, thunkAPI) => {
     try {
         const res = await axios.post("/carts", cart)
         await store.dispatch(getCarts())
-        return res.data
+        return res.data.msg
     } catch (err) {
         console.log(err)
         return thunkAPI.rejectWithValue(err.response.data.msg)
