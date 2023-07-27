@@ -18,25 +18,25 @@ const wishlistSlice = createSlice({
             .addCase(createWishlist.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(createWishlist.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.products = action.payload
-            })
-            .addCase(createWishlist.rejected, (state, action) => {
-                state.isLoading = false
-                state.error = action.payload
-            })
-            .addCase(getWishlists.pending, (state) => {
-                state.isLoading = true
-            })
-            .addCase(getWishlists.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.products = action.payload
-            })
-            .addCase(getWishlists.rejected, (state, action) => {
-                state.isLoading = false
-                state.error = action.payload
-            })
+            // .addCase(createWishlist.fulfilled, (state, action) => {
+            //     state.isLoading = false
+            //     state.products = action.payload
+            // })
+            // .addCase(createWishlist.rejected, (state, action) => {
+            //     state.isLoading = false
+            //     state.error = action.payload
+            // })
+            // .addCase(getWishlists.pending, (state) => {
+            //     state.isLoading = true
+            // })
+            // .addCase(getWishlists.fulfilled, (state, action) => {
+            //     state.isLoading = false
+            //     state.products = action.payload
+            // })
+            // .addCase(getWishlists.rejected, (state, action) => {
+            //     state.isLoading = false
+            //     state.error = action.payload
+            // })
     }
 })
 

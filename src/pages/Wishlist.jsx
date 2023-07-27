@@ -1,13 +1,13 @@
 import { Await, defer, useLoaderData } from "react-router-dom"
 import { Container } from "../styles/wishlist.css"
 import { requireAuth } from "../util"
-import { getAllOrders } from "../api"
+import { getAllwishlist } from "../api"
 import { Suspense } from "react"
 import Loader from "../components/Loader"
 
 export const loader = async ({ request }) => {
     await requireAuth(request)
-    return defer({ products: getAllOrders() })
+    return defer({ products: getAllwishlist() })
 }
 
 const Wishlist = () => {
@@ -18,7 +18,7 @@ const Wishlist = () => {
 
         return (
             <Container>
-                
+                wishlists
             </Container>
         )
     }

@@ -16,6 +16,7 @@ import {
 } from "./util"
 import { emptyCart, getCarts } from "./features/cart/cartSlice"
 import { createOrder as executeCreateOrder, getOrders } from "./features/order/orderSlice"
+import { createWishlist as executeCreateWishlist, getWishlists } from "./features/wishlist/wishlistSlice"
 
 // register
 export const register = async (data) => {
@@ -116,14 +117,23 @@ export const createOrder = async (request) => {
     const pathname = new URL(request.url).pathname
     console.log(pathname)
     await store.dispatch(executeCreateOrder())
-    store.dispatch(emptyCart())
 
-    return null
+    return store.dispatch(emptyCart())
 }
 // Get all orders
-export const getAllOrders = async () => {
-    const products = store.getState().order.products
-    products.length === 0 && await store.dispatch(getOrders())
-
+export const getAllOrders = async () => { 
+    store.getState().order.products.length === 0 && await store.dispatch(getOrders())
+    
     return store.getState().order.products
+} 
+
+// Create wishlist
+export const createWishlist = async (id) => {
+    return await store.dispatch(executeCreateWishlist(id))
+}
+// Get all wishlists
+export const getAllwishlist = async () => {
+    store.getState().wishlist.products.length === 0 && await store.dispatch(getWishlists())
+
+    return store.getState().wishlist.products
 } 

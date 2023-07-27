@@ -18,7 +18,7 @@ const Orders = () => {
 
         return (
             <Container>
-                
+                orders
             </Container>
         )
     }

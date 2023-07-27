@@ -15,7 +15,7 @@ import Success, { loader as successLoader } from "./pages/Success";
 import Profile, { loader as profileLoader } from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Orders, { loader as ordersLoader } from "./pages/Orders";
-import Wishlist from "./pages/Wishlist";
+import Wishlist, { loader as WishlistLoader } from "./pages/Wishlist";
 // import Error from "./components/Error";
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -57,7 +57,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route 
             path="wishlist" 
             element={<Wishlist />} 
-            loader={ordersLoader}
+            loader={WishlistLoader}
         />
         <Route 
             path="login" 
