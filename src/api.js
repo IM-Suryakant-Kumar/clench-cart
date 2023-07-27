@@ -15,7 +15,7 @@ import {
     getProductsByPage
 } from "./util"
 import { emptyCart, getCarts } from "./features/cart/cartSlice"
-import { createOrder as executeCreateOrder } from "./features/order/orderSlice"
+import { createOrder as executeCreateOrder, getOrders } from "./features/order/orderSlice"
 
 // register
 export const register = async (data) => {
@@ -120,3 +120,10 @@ export const createOrder = async (request) => {
 
     return null
 }
+// Get all orders
+export const getAllOrders = async () => {
+    const products = store.getState().order.products
+    products.length === 0 && await store.dispatch(getOrders())
+
+    return store.getState().order.products
+} 

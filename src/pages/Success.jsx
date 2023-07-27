@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { Button, Stack, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { createOrder } from '../api'
+import { requireAuth } from '../util'
 
 const Container = styled(Stack)`
     justify-content: center;
@@ -32,6 +33,7 @@ const SButton = styled(Button)`
 `
 
 export const loader = async ({ request }) => {
+    await requireAuth(request)
     return await createOrder(request)
 }
 

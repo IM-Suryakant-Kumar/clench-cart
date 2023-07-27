@@ -14,6 +14,7 @@ import Cart, { loader as cartLoader } from "./pages/Cart";
 import Success, { loader as successLoader } from "./pages/Success";
 import Profile, { loader as profileLoader } from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import Orders, { loader as ordersLoader } from "./pages/Orders";
 // import Error from "./components/Error";
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -46,6 +47,11 @@ const router = createBrowserRouter(createRoutesFromElements(
             path="success" 
             element={<Success />} 
             loader={successLoader}
+        />
+        <Route 
+            path="orders" 
+            element={<Orders />} 
+            loader={ordersLoader}
         />
         <Route 
             path="login" 
