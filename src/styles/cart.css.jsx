@@ -15,6 +15,10 @@ export const Title = styled(Typography)`
         font-size: 1.1rem;
         color: var(--gray-cl);
     }
+    &.no-item-msg {
+        font-size: 1.2rem;
+        color: var(--gray-cl);
+    }
 `;
 
 export const SButton = styled(Button)`
@@ -27,17 +31,28 @@ export const SButton = styled(Button)`
     &:hover {
         background-color: var(--secondary-cl);
     }
+    & > * {
+        width: 100%;
+    }
 `;
 
 export const ProductsCont = styled(Box)`
     margin: 0.625em 0;
 `;
 
+export const NoItemMsg = styled(Stack)`
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+    display: ${props => props.length > 0 && "none"};
+`
+
 export const Summary = styled(Paper)`
     max-width: 400px;
     margin-left: auto;
 	border-radius: 0.625em;
     padding: 1em 1.25em;
+    display: ${props => props.length === 0 && "none"};
 `;
 
 export const Item = styled(Stack)`

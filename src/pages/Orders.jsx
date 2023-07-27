@@ -24,7 +24,7 @@ const Orders = () => {
     const loaderData = useLoaderData()
 
     const renderProducts = (products) => {
-        console.log(products)
+        // console.log(products)
 
         return (
             <Container>

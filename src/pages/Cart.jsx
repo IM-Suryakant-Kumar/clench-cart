@@ -8,7 +8,8 @@ import {
 	SButton as Button,
     ProductsCont,
     ItemText,
-    ItemPrice
+    ItemPrice,
+    NoItemMsg
 } from "../styles/cart.css";
 import CartItem from "../components/CartItem";
 import { getAllCart } from "../api";
@@ -29,39 +30,46 @@ const Cart = () => {
 
         return (
             <>
-            <ProductsCont>
-                {products.map(prod => (
-                    <CartItem product={prod} key={prod._id} />
-                ))}
-            </ProductsCont>
-            <Summary elevation={1}>
-                <Title variant="body1" component="h2" className="summary">ORDER SUMMARY</Title>
-                <Item>
-                    <ItemText>Subtotal</ItemText>
-                    <ItemPrice>₹ {totalPrice}</ItemPrice>
-                </Item>
-                <Item>
-                    <ItemText>Estimated Shipping</ItemText>
-                    <ItemPrice>₹ 5.90</ItemPrice>
-                </Item>
-                <Item>
-                    <ItemText>Shipping Discount</ItemText>
-                    <ItemPrice>₹ -5.90</ItemPrice>
-                </Item>
-                <Item type="total">
-                    <ItemText>Total </ItemText>
-                    <ItemPrice>₹ {totalPrice}</ItemPrice>
-                </Item>
-                <PayButton products={products} />
-            </Summary>
+                <ProductsCont>
+                    {products.map(prod => (
+                        <CartItem product={prod} key={prod._id} />
+                    ))}
+                </ProductsCont>
+                <NoItemMsg length={products.length}>
+                    <Title 
+                        variant="subtitle1" 
+                        component="p"
+                        className="no-item-msg"
+                    >No Items in Cart</Title>
+                </NoItemMsg>
+                <Summary length={products.length} elevation={1}>
+                    <Title variant="body1" component="h2" className="summary">ORDER SUMMARY</Title>
+                    <Item>
+                        <ItemText>Subtotal</ItemText>
+                        <ItemPrice>₹ {totalPrice}</ItemPrice>
+                    </Item>
+                    <Item>
+                        <ItemText>Estimated Shipping</ItemText>
+                        <ItemPrice>₹ 5.90</ItemPrice>
+                    </Item>
+                    <Item>
+                        <ItemText>Shipping Discount</ItemText>
+                        <ItemPrice>₹ -5.90</ItemPrice>
+                    </Item>
+                    <Item type="total">
+                        <ItemText>Total </ItemText>
+                        <ItemPrice>₹ {totalPrice}</ItemPrice>
+                    </Item>
+                    <PayButton products={products} />
+                </Summary>
             </>
         )
     }
 
 	return (
 		<Container>
-            <Title variant="subtitle1" component="h1">YOUR BAG</Title>
-            <Button ><Link to="../products?page=1" className="link">CONTINUE SHOPPING</Link></Button>
+            {/* <Title variant="subtitle1" component="h1">YOUR BAG</Title> */}
+            {/* <Button ><Link to="../products?page=1" className="link">CONTINUE SHOPPING</Link></Button> */}
             <React.Suspense fallback={<Loader />}>
                 <Await resolve={loaderData.cart}>{renderCart}</Await>
             </React.Suspense>
