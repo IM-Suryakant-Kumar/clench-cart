@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { addToCartThunk, getCartsThunk } from "./cartThunk"
+import { addToCartThunk, getCartsThunk, removeCartThunk } from "./cartThunk"
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
 
 export const addToCart = createAsyncThunk("cart/addToCart", addToCartThunk)
 export const getCarts = createAsyncThunk("cart/getCarts", getCartsThunk)
+export const removeCart = createAsyncThunk("cart/removeCart", removeCartThunk)
 
 const cartSlice = createSlice({
 	name: "cart",
@@ -53,6 +54,17 @@ const cartSlice = createSlice({
                 state.totalPrice = totalPrice
             })
             .addCase(getCarts, (state, action) => {
+                state.isLoading = false
+                state.error = action.payload
+            })
+            .addCase(removeCart.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(removeCart.fulfilled, (state, action) => {
+                state.isLoading = false
+                toast.success(action.payload)
+            })
+            .addCase(removeCart, (state, action) => {
                 state.isLoading = false
                 state.error = action.payload
             })

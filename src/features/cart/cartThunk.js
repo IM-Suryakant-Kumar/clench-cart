@@ -23,3 +23,13 @@ export const getCartsThunk = async (cart, thunkAPI) => {
         return thunkAPI.rejectWithValue(err.response.data.msg)
     }
 }
+
+export const removeCartThunk = async (cart, thunkAPI) => {
+    try {
+        const res = await axios.delete(`/carts/${cart}`)
+        return res.data.msg
+    } catch (err) {
+        console.log(err)
+        return thunkAPI.rejectWithValue(err.response.data.msg)
+    }
+}
