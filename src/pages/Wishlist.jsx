@@ -1,9 +1,10 @@
 import { Await, defer, useLoaderData } from "react-router-dom"
-import { Container } from "../styles/wishlist.css"
+import { Container, NoItemMsg } from "../styles/wishlist.css"
 import { requireAuth } from "../util"
 import { getAllwishlist } from "../api"
 import { Suspense } from "react"
 import Loader from "../components/Loader"
+import { useDispatch, useSelector } from "react-redux"
 
 export const loader = async ({ request }) => {
     await requireAuth(request)
@@ -12,13 +13,16 @@ export const loader = async ({ request }) => {
 
 const Wishlist = () => {
     const loaderData = useLoaderData()
+    const dispatch = useDispatch()
+    const { products }  = useSelector(state => state.wishlist)
 
-    const renderProducts = (products) => {
-        console.log(products)
+    console.log(products)
 
+    const renderProducts = () => {
         return (
             <Container>
-                wishlists
+                <NoItemMsg length={products.length}>No items in wishlist</NoItemMsg>
+
             </Container>
         )
     }

@@ -65,6 +65,10 @@ export const Icon = styled(Stack)`
 	}
 `;
 
-export const FavoriteBorderIcon = styled(FavoriteBorderOutlined)``
-export const LocalMallIcon = styled(LocalMallOutlined)``
+export const LocalMallIcon = styled(LocalMallOutlined)`
+    color: ${props => props.isincart === "true" && "red"};
+`
 export const SearchOutlinedIcon = styled(SearchOutlined)``
+export const FavoriteBorderIcon = styled(FavoriteBorderOutlined)`
+    color: ${props => props.isinwislhist === "true" && "red"};
+`
