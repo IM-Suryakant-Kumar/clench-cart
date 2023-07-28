@@ -9,7 +9,8 @@ import {
     Typography 
 } from "@mui/material";
 import { 
-    Close, 
+    Close,
+    FavoriteBorderOutlined, 
     LocalMallOutlined, 
     Menu, 
     PersonOutline, 
@@ -160,7 +161,7 @@ export const IconCont = styled(Stack)`
     color: var(--secondary-cl);
     font-weight: 700;
     @media (min-width: 768px) {
-        gap: 1.5em;
+        gap: 1.25em;
     }
     & > * {
         height: 24px;
@@ -170,6 +171,11 @@ export const IconCont = styled(Stack)`
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    @media (max-width: 768px) {
+        & > .hidden {
+            display: none;
+        }
     }
 `
 
@@ -185,6 +191,7 @@ export const Title = styled(Typography)`
 // Icon
 export const SearchIcon = styled(Search)``
 export const PersonIcon = styled(PersonOutline)``
+export const HeartIcon = styled(FavoriteBorderOutlined)``
 export const CartIcon = styled(LocalMallOutlined)``
 export const SBadge = styled(Badge)``
 

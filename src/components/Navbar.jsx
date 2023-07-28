@@ -24,7 +24,8 @@ import {
     CloseIcon,
     MContainer as Container,
     SContainer,
-    NavLinks
+    NavLinks,
+    HeartIcon
 } from "../styles/navbar.css";
 import Avatar from "./Avatar";
 import { toggleSidebar } from "../features/user/userSlice";
@@ -61,6 +62,7 @@ const Sidebar = () => {
 const Navbar = () => {
 	const { totalQuantity } = useSelector((state) => state.cart);
 	const { user, isSidebarOpen } = useSelector((state) => state.user);
+	const products = useSelector((state) => state.wishlist.products);
     const dispatch = useDispatch()
 
 	return (
@@ -101,10 +103,12 @@ const Navbar = () => {
                                 : <Link to="/login" className="link center">
                                     <PersonIcon /> <Title variant="body2">Sign Up/Sign In</Title>
                                 </Link>}
-                            | <Link to="/cart" className="link">
-                                <Badge badgeContent={totalQuantity} color="primary"><CartIcon /></Badge>
-                                
-                            </Link>
+                                | <Link to="/wishlist" className="link hidden">
+                                    <Badge badgeContent={products.length} color="primary"><HeartIcon /></Badge>
+                                </Link>
+                                <Link to="/cart" className="link">
+                                    <Badge badgeContent={totalQuantity} color="primary"><CartIcon /></Badge>
+                                </Link>
                         </IconCont>
                     </Right>
                 </Wrapper>
