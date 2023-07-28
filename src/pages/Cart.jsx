@@ -5,7 +5,6 @@ import {
 	Summary,
 	Item,
 	Title,
-	SButton as Button,
     ProductsCont,
     ItemText,
     ItemPrice,
@@ -13,19 +12,22 @@ import {
 } from "../styles/cart.css";
 import CartItem from "../components/CartItem";
 import { getAllCart } from "../api";
-import React from "react";
+import React, { Suspense } from "react";
 import { useSelector } from "react-redux";
+import { Await, defer, useLoaderData } from "react-router-dom";
+import Loader from "../components/Loader";
 
 export const loader = async ({ request }) => {
     await requireAuth(request)
-    return await getAllCart()
+    return  defer({products: getAllCart()})
 }
 
 const Cart = () => {
     const { products, totalPrice } = useSelector(state => state.cart)
+    const loaderData = useLoaderData()
 
-	return (
-		<Container>
+    const renderCartProducts = () => (
+        <Container>
             <ProductsCont>
                 {products.map(prod => (
                     <CartItem product={prod} key={prod._id} />
@@ -54,6 +56,12 @@ const Cart = () => {
                 <PayButton products={products} />
             </Summary>
 		</Container>
+    )
+
+	return (
+        <Suspense fallback={<Loader />}>
+            <Await resolve={loaderData.products}>{renderCartProducts}</Await>
+        </Suspense>
 	);
 };
 
