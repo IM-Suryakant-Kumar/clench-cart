@@ -34,8 +34,6 @@ const cartSlice = createSlice({
             })
             .addCase(addToCart.fulfilled, (state, action) => {
                 state.isLoading = false
-                // console.log(action.payload)
-                // state.products = action.payload
                 toast.success(action.payload);
             })
             .addCase(addToCart.rejected, (state, action) => {
