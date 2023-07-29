@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
 	Wrapper,
 	Left,
@@ -29,6 +29,7 @@ import {
 } from "../styles/navbar.css";
 import Avatar from "./Avatar";
 import { toggleSidebar } from "../features/user/userSlice";
+import { debounce } from "../util";
 
 const Sidebar = () => {
     const { isSidebarOpen } = useSelector(state => state.user)
@@ -63,7 +64,20 @@ const Navbar = () => {
 	const { totalQuantity } = useSelector((state) => state.cart);
 	const { user, isSidebarOpen } = useSelector((state) => state.user);
 	const products = useSelector((state) => state.wishlist.products);
+
+
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    
+    const search = async (e) => {
+        navigate(`/products?page=1&search=${e.target.value}`)
+    }
+
+    const optimizeSearchFn =  (e) => {
+        debounce(search(e), 500)
+    } 
+
+    
 
 	return (
 		<Container>
@@ -85,7 +99,11 @@ const Navbar = () => {
                         <Langauge>EN</Langauge>
                         <SearchContainer>
                             <Input 
-                                placeholder="Search" 
+                                placeholder="Search"
+                                onChange={(e) => {
+                                    
+                                    optimizeSearchFn(e)
+                                }}
                             />
                             <SearchIconCont><SearchIcon /></SearchIconCont>
                         </SearchContainer>

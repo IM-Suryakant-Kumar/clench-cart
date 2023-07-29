@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import {
 	Container, Filter, FilterContainer, 
     FilterText, Option, Select, SButton as Button, 
-    PaginationCont, PageCont, PageNo
+    PaginationCont, PageCont, PageNo, NoItemMsg
 } from "../styles/productList.css";
 import { getFinalProductsData } from "../api";
 import Loader from "../components/Loader";
@@ -15,8 +15,9 @@ export const loader = ({ params, request }) => {
     const size = new URL(request.url).searchParams.get("size")
     const sort = new URL(request.url).searchParams.get("sort")
     const page = new URL(request.url).searchParams.get("page")
+    const search = new URL(request.url).searchParams.get("search")
 
-    return defer({ productsData: getFinalProductsData(category, color, size, sort, page)})
+    return defer({ productsData: getFinalProductsData(category, color, size, sort, page, search)})
 }
 
 const ProductList = () => {
@@ -27,6 +28,7 @@ const ProductList = () => {
         const { colors, categories, sizes } = filtersData
         // console.log(products)
         
+        // defaul value
         const color = searchParams.get("color") || "color"
         const size = searchParams.get("size") || "size"
         const cat = searchParams.get("cat") || "category"
@@ -126,6 +128,8 @@ const ProductList = () => {
                         >next</Button>
                     </PageCont>
                 </PaginationCont>
+                {/* No item msg */}
+                <NoItemMsg length={products.length}>No items found</NoItemMsg>
                 <Products products={products} />
             </Container>
         )

@@ -12,7 +12,8 @@ import {
     filterByColor, 
     filterBySize,
     sortProducts,
-    getProductsByPage
+    getProductsByPage,
+    searchedProducts
 } from "./util"
 import { emptyCart, getCarts } from "./features/cart/cartSlice"
 import { createOrder as executeCreateOrder, getOrders } from "./features/order/orderSlice"
@@ -76,13 +77,14 @@ export const getLatestProducts = async () => {
 } 
 
 // All products with filtering and sorting
-export const getFinalProductsData = async ( category, color, size, sort, page ) => {
+export const getFinalProductsData = async ( category, color, size, sort, page, search ) => {
     let products = await getProducts()
     // console.log(category, color, size, sort)
 
     // Fetching all categories, colors, and size
     const filtersData = getFiltersData(products)
-    
+    // search
+    search && ( products = searchedProducts(products, search) )
     // filter
     category && ( products = filterByCategory(products, category) )
     color && ( products = filterByColor(products, color) )

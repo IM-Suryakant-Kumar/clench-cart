@@ -78,3 +78,23 @@ export const getProductsByPage = (products, page = 1) => {
     
     return products
 }
+
+// searching
+export const searchedProducts = (products, search) => {
+    products = products.filter(
+        prod => prod.title.toLowerCase().includes(search.toLowerCase())
+    )
+
+    return products
+}
+
+// debounce fn
+export const debounce = (fn, delay) => {
+    let timerId
+    return () => {
+        clearTimeout(timerId)
+        timerId = setTimeout(() => {
+            fn()
+        }, delay)
+    }
+}

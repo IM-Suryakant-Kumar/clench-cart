@@ -4,6 +4,14 @@ import { Box, Button, Pagination, Stack } from "@mui/material";
 
 export const Container = styled(Box)``;
 
+export const NoItemMsg = styled(Stack)`
+    color: var(--gray-cl);
+    height: 40vh;
+    align-items: center;
+    justify-content: center;
+    display: ${props => props.length > 0 && "none"};
+`
+
 export const FilterContainer = styled(Stack)``;
 
 export const Filter = styled(Stack)`
