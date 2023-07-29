@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import axios from "../features/axios";
+import axios from "axios";
 import { Button } from "@mui/material";
 
 
@@ -18,7 +18,7 @@ const SButton = styled(Button)`
 const PayButton = ({ products }) => {
 	const handleCheckout = async () => {
 		try {
-			const res = await axios.post("/checkout/payment", {
+			const res = await axios.post("/api/v1/checkout/payment", {
 				products
 			});
 

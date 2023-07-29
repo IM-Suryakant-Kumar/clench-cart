@@ -1,10 +1,10 @@
-import axios from "../axios"
+import axios from "axios"
 import store from "../store"
 import { getWishlists } from "./wishlistSlice"
 
 export const createWishlistThunk = async(wishlist, thunkAPI) => {
     try {
-        const res = await axios.post("/wishlists", wishlist)
+        const res = await axios.post("/api/v1/wishlists", wishlist)
         await store.dispatch(getWishlists())
         return res.data.msg
     } catch (err) {
@@ -15,7 +15,7 @@ export const createWishlistThunk = async(wishlist, thunkAPI) => {
 
 export const getWishlistsThunk = async(wishlist, thunkAPI) => {
     try {
-        const res = await axios.get("/wishlists")
+        const res = await axios.get("/api/v1/wishlists")
         return res.data
     } catch (err) {
         console.log(err)
@@ -25,7 +25,7 @@ export const getWishlistsThunk = async(wishlist, thunkAPI) => {
 
 export const removeWishlistThunk = async(wishlist, thunkAPI) => {
     try {
-        const res = await axios.delete(`/wishlists/${wishlist}`)
+        const res = await axios.delete(`/api/v1/wishlists/${wishlist}`)
         await store.dispatch(getWishlists())
         return res.data.msg
     } catch (err) {

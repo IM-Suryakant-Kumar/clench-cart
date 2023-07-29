@@ -17,7 +17,7 @@ import { Suspense, useState } from "react"
 import { useDispatch } from "react-redux"
 import { logoutUser, updateUser } from "../features/user/userSlice"
 import Loader from "../components/Loader"
-import { claudinary } from "../features/axios"
+import axios from "axios"
 
 export const loader = async ({request}) => {
     return defer({user: requireAuth(request)})
@@ -45,7 +45,7 @@ const Profile = () => {
                     formData.append("file", file)
                     formData.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET)
                     
-                    const res = await claudinary.post("/image/upload", formData)
+                    const res = await axios.post(`${process.env.REACT_APP_CLAUDINARY_BASE_URL}/image/upload`, formData)
                     
                     dispatch(updateUser({ avatar: res.data.secure_url }))
                 }
