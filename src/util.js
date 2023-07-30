@@ -10,11 +10,6 @@ export const requireAuth = async (request) => {
     const user = await getLoggedInUser()
     
     if(!user) {
-        if(pathname === "/success") {
-            throw redirect(
-                `/login?message=You must log in first.&redirectTo=/`
-            )
-        }
         throw redirect(
             `/login?message=You must log in first.&redirectTo=${pathname}`
         )

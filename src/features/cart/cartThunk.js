@@ -26,7 +26,7 @@ export const getCartsThunk = async (cart, thunkAPI) => {
 
 export const removeCartThunk = async (cart, thunkAPI) => {
     try {
-        const res = await axios.delete(`/carts/${cart}`)
+        const res = await axios.delete(`/api/v1/carts/${cart}`)
         await store.dispatch(getCarts())
         return res.data.msg
     } catch (err) {
