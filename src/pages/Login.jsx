@@ -11,11 +11,19 @@ import {
     redirect, 
     useActionData, 
     useLoaderData, 
-    useNavigation 
+    useNavigation, 
 } from "react-router-dom";
-import { loginUser, getLoggedInUser } from "../api";
+import { getLoggedInUser } from "../api";
+import store from "../features/store";
+import { loginUser } from "../features/user/userSlice";
 
 export const loader = async ({ request }) => {
+    const guestLogin = new URL(request.url).searchParams.get("guest")
+    
+    guestLogin === "true" && (
+        await store.dispatch(loginUser({username: "clenchcart", password: "secret"}))
+    )
+
     if(await getLoggedInUser()) {
         return redirect("/")
     }
@@ -23,9 +31,9 @@ export const loader = async ({ request }) => {
 }
 
 export const action = async ({ request }) => {
-    const formData = await request.formData()
-    const username = formData.get("username")
-    const password = formData.get("password")
+    const formData = await request?.formData()
+    const username = formData?.get("username")
+    const password = formData?.get("password")
     const pathname = new URL(request.url).searchParams.get("redirectTo") || "/"
     try {
         await loginUser({ username, password })
@@ -66,10 +74,13 @@ const Login = () => {
                         {navigation.state === "submitting" ? 
                             "Loggin In..." : "Log In"}
 					</Button>
-					<Title variant="body2">Don't have an account?
-                        <Link to="/register" className="register"> Create Now</Link>
-                    </Title>
 				</Form>
+                <Button className="guest-btn">
+                    <Link to="?guest=true" className="link">Guest Login</Link>
+                </Button>
+                <Title variant="body2">Don't have an account?
+                    <Link to="/register" className="register"> Create Now</Link>
+                </Title>
 			</Wrapper>
 		</Container>
 	);

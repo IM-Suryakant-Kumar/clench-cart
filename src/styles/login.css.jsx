@@ -58,4 +58,7 @@ export const SButton = styled(Button)`
 		color: var(--gray-cl);
 		cursor: not-allowed;
 	}
+    &.guest-btn {
+        background-color: #0084ff;
+    }
 `;
