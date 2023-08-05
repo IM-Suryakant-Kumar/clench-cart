@@ -93,6 +93,7 @@ export const getFinalProductsData = async ( category, color, size, sort, page, s
     let length = products.length
     // Page 
     products = getProductsByPage(products, page)
+    
     // sort 
     sort && ( products = sortProducts(products, sort) )
 
