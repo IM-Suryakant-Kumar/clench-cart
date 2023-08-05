@@ -22,3 +22,8 @@ An e-commerce web App made with mern stack
 - JWT for authentication
 - Bcrypt for password hashing
 - Cloudinary for storing images
+
+## Live Demo
+
+https://github.com/IM-Suryakant-Kumar/clench-cart/assets/66691162/37bb6a0b-790c-45c9-bc7d-5e93a7518675
+
