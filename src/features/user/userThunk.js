@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 import { AddTokenToLocalStorage, getTokenFromLocalStorage, removeTokenFromLocalStorage } from "../../util";
 
 export const registerUserThunk = async (user, thunkAPI) => {

@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "../axios";
 import store from "../store"
 import { emptyCart } from "../cart/cartSlice"
 import { getTokenFromLocalStorage } from "../../util"

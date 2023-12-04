@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 import store from "../store";
 import { getWishlists } from "./wishlistSlice";
 import { getTokenFromLocalStorage } from "../../util";
