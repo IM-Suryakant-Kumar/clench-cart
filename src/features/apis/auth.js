@@ -71,7 +71,9 @@ const auth = api.injectEndpoints({
 				} else {
 					toast.error(error.data?.message);
 				}
-				return result ? ["auth"] : [{ type: "auth", id: "ERROR" }];
+				return result
+					? [{ type: "auth", id: "LIST" }]
+					: [{ type: "auth", id: "ERROR" }];
 			},
 		}),
 		updateProfile: build.mutation({

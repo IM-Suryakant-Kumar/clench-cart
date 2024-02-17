@@ -10,4 +10,4 @@ const product = api.injectEndpoints({
 	}),
 });
 
-export const {} = product;
+export const { useGetProductsQuery } = product;
