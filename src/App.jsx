@@ -13,6 +13,7 @@ import {
 	Product,
 	ProductList,
 	Register,
+  Wishlist,
 } from "./pages";
 // import Layout, { loader as layoutLoader } from "./components/Layout";
 // import Home, { loader as homeLoader } from "./pages/Home";
@@ -83,6 +84,7 @@ const App = () => {
 				<Route path="product/:id" element={<Product />} />
 				<Route element={<HostLayout />}>
 					<Route path="cart" element={<Cart />} />
+          <Route path="wishlist" element={<Wishlist />} />
 				</Route>
 				<Route element={<AuthLayout />}>
 					<Route path="login" element={<Login />} />
