@@ -17,7 +17,11 @@ const Layout = () => {
 				<Outlet />
 			</Wrapper>
 			<Footer />
-			<ToastContainer autoClose={1000} pauseOnFocusLoss={false} theme="dark" />
+			<ToastContainer
+				autoClose={1000}
+				pauseOnFocusLoss={false}
+				theme="colored"
+			/>
 		</MContainer>
 	);
 };

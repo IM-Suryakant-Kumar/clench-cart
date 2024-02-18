@@ -5,7 +5,7 @@ import {
 	Route,
 } from "react-router-dom";
 import { AuthLayout, HostLayout, Layout } from "./components";
-import { Home } from "./pages";
+import { Home, Login, NotFound, ProductList } from "./pages";
 // import Layout, { loader as layoutLoader } from "./components/Layout";
 // import Home, { loader as homeLoader } from "./pages/Home";
 // import ProductList, { loader as productListLoader } from "./pages/ProductList";
@@ -63,7 +63,6 @@ const App = () => {
 	// 				action={registerAction}
 	// 			/>
 	// 			<Route path="profile" element={<Profile />} loader={profileLoader} />
-	// 			<Route path="*" element={<NotFound />} />
 	// 		</Route>
 	// 	)
 	// );
@@ -72,8 +71,12 @@ const App = () => {
 		createRoutesFromElements(
 			<Route path="/" element={<Layout />}>
 				<Route index element={<Home />} />
+				{/* <Route path="products" element={<ProductList />} /> */}
 				<Route element={<HostLayout />}></Route>
-				<Route element={<AuthLayout />}></Route>
+				<Route element={<AuthLayout />}>
+					<Route path="login" element={<Login />} />
+				</Route>
+				<Route path="*" element={<NotFound />} />
 			</Route>
 		)
 	);
