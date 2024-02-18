@@ -5,14 +5,14 @@ import {
 	loginUserThunk,
 	logoutUserThunk,
 	getUserThunk,
-	updateUserThunk
+	updateUserThunk,
 } from "./userThunk";
 
 const initialState = {
 	user: null,
 	isLoading: false,
-    error: null,
-    isSidebarOpen: false
+	error: null,
+	isSidebarOpen: false,
 };
 
 export const registerUser = createAsyncThunk(
@@ -28,13 +28,13 @@ const userSlice = createSlice({
 	name: "user",
 	initialState,
 	reducers: {
-        toggleSidebar: (state) => {
-            state.isSidebarOpen = !state.isSidebarOpen
-        }
-    },
-	extraReducers: (builder) => {
+		toggleSidebar: state => {
+			state.isSidebarOpen = !state.isSidebarOpen;
+		},
+	},
+	extraReducers: builder => {
 		builder
-			.addCase(registerUser.pending, (state) => {
+			.addCase(registerUser.pending, state => {
 				state.isLoading = true;
 			})
 			.addCase(registerUser.fulfilled, (state, action) => {
@@ -45,9 +45,9 @@ const userSlice = createSlice({
 			})
 			.addCase(registerUser.rejected, (state, action) => {
 				state.isLoading = false;
-                state.error = action.payload
+				state.error = action.payload;
 			})
-			.addCase(loginUser.pending, (state) => {
+			.addCase(loginUser.pending, state => {
 				state.isLoading = true;
 			})
 			.addCase(loginUser.fulfilled, (state, action) => {
@@ -58,10 +58,10 @@ const userSlice = createSlice({
 			})
 			.addCase(loginUser.rejected, (state, action) => {
 				state.isLoading = false;
-                state.error = null
-                state.error = action.payload
+				state.error = null;
+				state.error = action.payload;
 			})
-			.addCase(logoutUser.pending, (state) => {
+			.addCase(logoutUser.pending, state => {
 				state.isLoading = true;
 			})
 			.addCase(logoutUser.fulfilled, (state, action) => {
@@ -73,7 +73,7 @@ const userSlice = createSlice({
 				state.isLoading = false;
 				toast.error(action.payload);
 			})
-			.addCase(getUser.pending, (state) => {
+			.addCase(getUser.pending, state => {
 				state.isLoading = true;
 			})
 			.addCase(getUser.fulfilled, (state, action) => {
@@ -83,9 +83,9 @@ const userSlice = createSlice({
 			})
 			.addCase(getUser.rejected, (state, action) => {
 				state.isLoading = false;
-                state.error = action.payload
+				state.error = action.payload;
 			})
-			.addCase(updateUser.pending, (state) => {
+			.addCase(updateUser.pending, state => {
 				state.isLoading = true;
 			})
 			.addCase(updateUser.fulfilled, (state, action) => {
@@ -96,9 +96,9 @@ const userSlice = createSlice({
 			})
 			.addCase(updateUser.rejected, (state, action) => {
 				state.isLoading = false;
-                state.error = action.payload
+				state.error = action.payload;
 			});
-	}
+	},
 });
 
 export const { toggleSidebar } = userSlice.actions;

@@ -30,10 +30,14 @@ import {
 import Avatar from "./Avatar";
 import { toggleSidebar } from "../features/user/userSlice";
 import { debounce } from "../util";
-import { useGetProfileQuery } from "../features/apis";
+import {
+	useGetCartsQuery,
+	useGetProfileQuery,
+	useGetWishlistsQuery,
+} from "../features/apis";
 
 const Sidebar = () => {
-	const { isSidebarOpen } = useSelector(state => state.user);
+	const { isSidebarOpen } = useSelector(state => state.sidebar);
 	const dispatch = useDispatch();
 
 	return (
@@ -75,10 +79,15 @@ const Sidebar = () => {
 };
 
 const Navbar = () => {
-	const { data } = useGetProfileQuery();
-	const { totalQuantity } = useSelector(state => state.cart);
-	const { isSidebarOpen } = useSelector(state => state.user);
-	const products = useSelector(state => state.wishlist.products);
+	const { data, isLoading } = useGetProfileQuery();
+	const { data: cartData } = useGetCartsQuery();
+	const { data: wishlistData } = useGetWishlistsQuery();
+	const { isSidebarOpen } = useSelector(state => state.sidebar);
+
+	let user, totalQuantity, products;
+	data && (user = data.user);
+	cartData && (totalQuantity = cartData.totalQuantity);
+	wishlistData && (products = wishlistData.products);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -91,7 +100,9 @@ const Navbar = () => {
 		debounce(search(e), 500);
 	};
 
-	return (
+	return isLoading ? (
+		<h3>Loading...</h3>
+	) : (
 		<Container>
 			<SContainer maxWidth="xl">
 				<Wrapper>
@@ -133,11 +144,11 @@ const Navbar = () => {
 							</SearchIconCont>
 						</SearchContainer>
 						<IconCont>
-							{data?.user ? (
+							{user ? (
 								<Link to="/profile" className="link">
 									<Avatar
-										avatar={data.user.avatar}
-										username={data.user.username}
+										avatar={user.avatar}
+										username={user.username}
 										width={24}
 										height={24}
 										font={0.875}
@@ -150,7 +161,7 @@ const Navbar = () => {
 							)}
 							|{" "}
 							<Link to="/wishlist" className="link hidden">
-								<Badge badgeContent={products.length} color="primary">
+								<Badge badgeContent={products?.length} color="primary">
 									<HeartIcon />
 								</Badge>
 							</Link>

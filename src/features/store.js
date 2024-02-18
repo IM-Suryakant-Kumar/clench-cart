@@ -5,6 +5,7 @@ import productReducer from "./product/productSlice";
 import orderReducer from "./order/orderSlice";
 import wishlistReducer from "./wishlist/wishlistSlice";
 import api from "./api";
+import { sidebarReducer } from "./reducers";
 
 const store = configureStore({
 	reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
 		product: productReducer,
 		order: orderReducer,
 		wishlist: wishlistReducer,
+		sidebar: sidebarReducer,
 		[api.reducerPath]: api.reducer,
 	},
 	middleware: getDefaultMiddleware =>
