@@ -71,7 +71,7 @@ const App = () => {
 		createRoutesFromElements(
 			<Route path="/" element={<Layout />}>
 				<Route index element={<Home />} />
-				{/* <Route path="products" element={<ProductList />} /> */}
+				<Route path="products" element={<ProductList />} />
 				<Route element={<HostLayout />}></Route>
 				<Route element={<AuthLayout />}>
 					<Route path="login" element={<Login />} />
