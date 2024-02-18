@@ -14,7 +14,7 @@ const auth = api.injectEndpoints({
 				method: "GET",
 				headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
 			}),
-			invalidatesTags: result =>
+			providesTags: result =>
 				result ? [{ type: "auth", id: "LIST" }] : ["auth"],
 		}),
 		register: build.mutation({
