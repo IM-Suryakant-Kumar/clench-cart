@@ -13,6 +13,7 @@ import {
 	Orders,
 	Product,
 	ProductList,
+	Profile,
 	Register,
   Success,
   Wishlist,
@@ -89,6 +90,7 @@ const App = () => {
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="orders" element={<Orders />} />
           <Route path="success" element={<Success />} />
+          <Route path="profile" element={<Profile />} />
 				</Route>
 				<Route element={<AuthLayout />}>
 					<Route path="login" element={<Login />} />

@@ -40,8 +40,8 @@ export const loader = async ({ request }) => {
 };
 
 const Success = () => {
-	const [createOrder, { isLoading }] = useCreateOrderMutation();
-	createOrder();
+	const [{ isLoading }] = useCreateOrderMutation();
+	// createOrder();
 
 	return isLoading ? (
 		<Loader />

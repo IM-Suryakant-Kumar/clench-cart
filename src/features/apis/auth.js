@@ -60,7 +60,7 @@ const auth = api.injectEndpoints({
 		}),
 		logout: build.mutation({
 			query: () => ({
-				url: "/auth/login",
+				url: "/auth/logout",
 				method: "GET",
 				headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
 			}),
