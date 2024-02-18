@@ -5,8 +5,7 @@ import {
 	Route,
 } from "react-router-dom";
 import { AuthLayout, HostLayout, Layout } from "./components";
-import {} from "./pages";
-import { Home } from "@mui/icons-material";
+import { Home } from "./pages";
 // import Layout, { loader as layoutLoader } from "./components/Layout";
 // import Home, { loader as homeLoader } from "./pages/Home";
 // import ProductList, { loader as productListLoader } from "./pages/ProductList";
