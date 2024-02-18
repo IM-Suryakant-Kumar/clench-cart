@@ -5,7 +5,7 @@ import {
 	Route,
 } from "react-router-dom";
 import { AuthLayout, HostLayout, Layout } from "./components";
-import { Home, Login, NotFound, ProductList } from "./pages";
+import { Home, Login, NotFound, ProductList, Register } from "./pages";
 // import Layout, { loader as layoutLoader } from "./components/Layout";
 // import Home, { loader as homeLoader } from "./pages/Home";
 // import ProductList, { loader as productListLoader } from "./pages/ProductList";
@@ -75,6 +75,7 @@ const App = () => {
 				<Route element={<HostLayout />}></Route>
 				<Route element={<AuthLayout />}>
 					<Route path="login" element={<Login />} />
+					<Route path="register" element={<Register />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
 			</Route>
