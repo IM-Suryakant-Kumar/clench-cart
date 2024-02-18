@@ -31,7 +31,7 @@ const Product = () => {
 	const { data, isLoading } = useGetProductsQuery();
 	const { id } = useParams();
 	let product;
-	data?.products && (product = data.products.find(p => p._id === id));
+	data && (product = data.products.find(p => p._id === id));
 
 	const [quantity, setQuantity] = useState(1);
 	const [color, setColor] = useState("");

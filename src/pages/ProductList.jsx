@@ -28,9 +28,9 @@ const ProductList = () => {
 	const page = Number(searchParams.get("page"));
 	const search = searchParams.get("search");
 
-	let [products, filtersData, productsLength] = [];
-	data?.products &&
-		([products, filtersData, productsLength] = filteredData(
+	let products, filtersData, productsLength;
+	if (data) {
+		const finalFilteredData = filteredData(
 			data.products,
 			cat,
 			color,
@@ -38,7 +38,12 @@ const ProductList = () => {
 			sort,
 			page,
 			search
-		));
+		);
+
+		products = finalFilteredData[0];
+		filtersData = finalFilteredData[1];
+		productsLength = finalFilteredData[2];
+	}
 
 	const pageSize = Number(searchParams.get("page-size")) || 6;
 	const pageLength = Math.ceil(productsLength / pageSize);

@@ -10,6 +10,7 @@ import {
 	Home,
 	Login,
 	NotFound,
+	Orders,
 	Product,
 	ProductList,
 	Register,
@@ -85,6 +86,7 @@ const App = () => {
 				<Route element={<HostLayout />}>
 					<Route path="cart" element={<Cart />} />
           <Route path="wishlist" element={<Wishlist />} />
+          <Route path="orders" element={<Orders />} />
 				</Route>
 				<Route element={<AuthLayout />}>
 					<Route path="login" element={<Login />} />
