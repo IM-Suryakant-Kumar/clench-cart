@@ -14,6 +14,7 @@ import {
 	Product,
 	ProductList,
 	Register,
+  Success,
   Wishlist,
 } from "./pages";
 // import Layout, { loader as layoutLoader } from "./components/Layout";
@@ -87,6 +88,7 @@ const App = () => {
 					<Route path="cart" element={<Cart />} />
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="orders" element={<Orders />} />
+          <Route path="success" element={<Success />} />
 				</Route>
 				<Route element={<AuthLayout />}>
 					<Route path="login" element={<Login />} />
