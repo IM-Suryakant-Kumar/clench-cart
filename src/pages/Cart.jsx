@@ -24,7 +24,7 @@ const Cart = () => {
 	) : (
 		<Container>
 			<ProductsCont>
-				{products.map(prod => (
+				{products?.map(prod => (
 					<CartItem product={prod} key={prod._id} />
 				))}
 			</ProductsCont>

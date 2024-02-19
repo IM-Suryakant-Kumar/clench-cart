@@ -28,8 +28,8 @@ import {
 	HeartIcon,
 } from "../styles/navbar.css";
 import Avatar from "./Avatar";
-import { toggleSidebar } from "../features/user/userSlice";
-import { debounce } from "../util";
+import { toggleSidebar } from "../features/reducers";
+import { debounce } from "../utils";
 import {
 	useGetCartsQuery,
 	useGetProfileQuery,
@@ -79,7 +79,7 @@ const Sidebar = () => {
 };
 
 const Navbar = () => {
-	const { data, isLoading } = useGetProfileQuery();
+	const { data } = useGetProfileQuery();
 	const { data: cartData } = useGetCartsQuery();
 	const { data: wishlistData } = useGetWishlistsQuery();
 	const { isSidebarOpen } = useSelector(state => state.sidebar);
@@ -100,9 +100,7 @@ const Navbar = () => {
 		debounce(search(e), 500);
 	};
 
-	return isLoading ? (
-		<h3>Loading...</h3>
-	) : (
+	return (
 		<Container>
 			<SContainer maxWidth="xl">
 				<Wrapper>
@@ -147,8 +145,8 @@ const Navbar = () => {
 							{user ? (
 								<Link to="/profile" className="link">
 									<Avatar
-										avatar={user.avatar}
-										username={user.username}
+										avatar={user?.avatar}
+										username={user?.name}
 										width={24}
 										height={24}
 										font={0.875}
@@ -166,7 +164,9 @@ const Navbar = () => {
 								</Badge>
 							</Link>
 							<Link to="/cart" className="link">
-								<Badge badgeContent={totalQuantity} color="primary">
+								<Badge
+									badgeContent={totalQuantity && totalQuantity}
+									color="primary">
 									<CartIcon />
 								</Badge>
 							</Link>
