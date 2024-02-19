@@ -10,25 +10,29 @@ export const Container = styled(Box)`
 `;
 
 export const Wrapper = styled(Box)`
-    max-width: 700px;
+	max-width: 700px;
 	padding: 1.25em;
 	background-color: var(--primary-cl);
-    & > .form {
-        display: flex;
-	    flex-wrap: wrap;
-    }
+	& > .form {
+		display: flex;
+		flex-wrap: wrap;
+	}
 `;
 
 export const Title = styled(Typography)`
-    text-align: center;
-    &.message {
-        font-size: 0.875rem;
-        color: red;
-    }
-    & > .login {
-        color: #ada1a1;
-        font-size: 0.875rem;
-    }
+	text-align: center;
+	&:first-child {
+		font-family: "Cinzel", serif;
+		font-weight: bold;
+	}
+	&.message {
+		font-size: 0.875rem;
+		color: red;
+	}
+	& > .login {
+		color: #ada1a1;
+		font-size: 0.875rem;
+	}
 `;
 
 export const Input = styled.input`
@@ -41,22 +45,22 @@ export const Input = styled.input`
 export const Agreement = styled.span`
 	font-size: 0.75rem;
 	margin: 1em 0;
-    color: var(--gray-cl);
-    text-align: justify;
+	color: var(--gray-cl);
+	text-align: justify;
 `;
 
 export const SButton = styled(Button)`
 	width: 100%;
-    height: 30px;
+	height: 30px;
 	margin-bottom: 0.625em;
-    font-size: 0.875rem;
-    text-transform: capitalize;
-    letter-spacing: 0.1em;
-	background-color: var(--secondary-cl );   
+	font-size: 0.875rem;
+	text-transform: capitalize;
+	letter-spacing: 0.1em;
+	background-color: var(--secondary-cl);
 	color: var(--primary-cl);
-    &:hover {
-        background-color: var(--secondary-cl );
-    }
+	&:hover {
+		background-color: var(--secondary-cl);
+	}
 	&:disabled {
 		color: var(--gray-cl);
 		cursor: not-allowed;
