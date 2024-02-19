@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import { Button, Stack, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
-import { createOrder } from "../api";
-import { requireAuth } from "../util";
+import { Link, useSearchParams } from "react-router-dom";
 import { useCreateOrderMutation } from "../features/apis";
 import { Loader } from "../components";
 
@@ -34,14 +32,27 @@ const SButton = styled(Button)`
 	}
 `;
 
-export const loader = async ({ request }) => {
-	await requireAuth(request);
-	return await createOrder(request);
-};
-
 const Success = () => {
-	const [{ isLoading }] = useCreateOrderMutation();
-	// createOrder();
+	const [createOrder, { isLoading }] = useCreateOrderMutation();
+	const [searchParams, setSearchParams] = useSearchParams();
+	const effectRan = useRef(true);
+
+	useEffect(() => {
+		if (effectRan.current) {
+			const payment = Boolean(searchParams.get("payment"));
+			if (payment) {
+				createOrder();
+				setSearchParams(prevParams => {
+					prevParams.delete("payment");
+					return prevParams;
+				});
+			}
+		}
+
+		return () => {
+			effectRan.current = false;
+		};
+	}, [createOrder, searchParams, setSearchParams]);
 
 	return isLoading ? (
 		<Loader />

@@ -1,4 +1,3 @@
-import PayButton from "../components/PayButton";
 import {
 	Container,
 	Summary,
@@ -9,8 +8,7 @@ import {
 	ItemPrice,
 	NoItemMsg,
 } from "../styles/cart.css";
-import CartItem from "../components/CartItem";
-import Loader from "../components/Loader";
+import { Loader, CartItem, PayButton } from "../components";
 import { useGetCartsQuery } from "../features/apis";
 
 const Cart = () => {

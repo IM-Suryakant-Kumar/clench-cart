@@ -24,7 +24,7 @@ import {
 	Title,
 	Wrapper,
 } from "../styles/productP.css";
-import Loader from "../components/Loader";
+import { Loader } from "../components";
 import { useGetProductsQuery } from "../features/apis";
 
 const Product = () => {

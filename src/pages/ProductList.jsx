@@ -13,7 +13,7 @@ import {
 	PageNo,
 	NoItemMsg,
 } from "../styles/productList.css";
-import Loader from "../components/Loader";
+import { Loader } from "../components";
 import { useGetProductsQuery } from "../features/apis";
 import { filteredData } from "../utils";
 

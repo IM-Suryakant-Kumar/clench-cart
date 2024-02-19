@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import axios from "../features/axios";
 import { Button } from "@mui/material";
-import { getTokenFromLocalStorage } from "../util";
+import { getTokenFromLocalStorage } from "../utils";
 
 const SButton = styled(Button)`
 	width: 100%;
@@ -18,18 +17,22 @@ const SButton = styled(Button)`
 const PayButton = ({ products }) => {
 	const handleCheckout = async () => {
 		try {
-			const res = await axios.post(
-				"/api/v1/checkout/payment",
+			const res = await fetch(
+				`${process.env.REACT_APP_BASEURL}/checkout/payment`,
 				{
-					products,
-				},
-				{
-					headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
-				},
+					method: "POST",
+					body: JSON.stringify({ products }),
+					credentials: "include",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+					},
+				}
 			);
+			const data = await res.json();
 
-			if (res.data.url) {
-				window.location.href = res.data.url;
+			if (data.url) {
+				window.location.href = data.url;
 			}
 		} catch (err) {
 			console.log(err);
