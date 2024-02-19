@@ -32,7 +32,7 @@ const Wishlist = () => {
 		<Loader />
 	) : (
 		<Container>
-			<NoItemMsg length={products.length}>No items in wishlist</NoItemMsg>
+			<NoItemMsg length={products?.length}>No items in wishlist</NoItemMsg>
 			<Wrapper>
 				{products.map(prod => (
 					<ProductCont key={prod._id}>
