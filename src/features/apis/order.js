@@ -10,7 +10,7 @@ const order = api.injectEndpoints({
 				method: "GET",
 				headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
 			}),
-			invalidatesTags: result =>
+			providesTags: result =>
 				result ? [{ type: "order", id: "LIST" }] : ["ordre"],
 		}),
 		createOrder: build.mutation({

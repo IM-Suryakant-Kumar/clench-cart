@@ -10,7 +10,7 @@ const wishlist = api.injectEndpoints({
 				method: "GET",
 				headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
 			}),
-			invalidatesTags: result =>
+			providesTags: result =>
 				result ? [{ type: "wishlist", id: "LIST" }] : ["wishlist"],
 		}),
 		addToWishlist: build.mutation({

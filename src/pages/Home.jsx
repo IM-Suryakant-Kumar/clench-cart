@@ -1,29 +1,22 @@
-import React, { Suspense } from "react";
 import Slider from "../components/Slider";
 import Categories from "../components/Categories";
 import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
-import { getLatestProducts } from "../api";
-import { Await, defer, useLoaderData } from "react-router-dom";
-import Loader from "../components/Loader";
-
-export const loader = () => {
-     return defer({ products: getLatestProducts() })
-}
+import { useGetProductsQuery } from "../features/apis";
+import { Loader } from "../components";
 
 const Home = () => {
-    const loaderData = useLoaderData()
+	const { data, isLoading } = useGetProductsQuery();
 
 	return (
 		<div>
-            <Slider />
-            <Categories />
-            <Suspense fallback={<Loader />}>
-                <Await resolve={loaderData.products}>
-                    {products => <Products products={products} />}
-                </Await>
-            </Suspense>
-            <Newsletter />
+			<Slider />
+			<Categories />
+			{isLoading && <Loader />}
+			{data?.products && (
+				<Products products={data.products.slice(data.products.length - 8)} />
+			)}
+			<Newsletter />
 		</div>
 	);
 };

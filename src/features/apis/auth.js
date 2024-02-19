@@ -14,7 +14,7 @@ const auth = api.injectEndpoints({
 				method: "GET",
 				headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
 			}),
-			invalidatesTags: result =>
+			providesTags: result =>
 				result ? [{ type: "auth", id: "LIST" }] : ["auth"],
 		}),
 		register: build.mutation({
@@ -28,7 +28,9 @@ const auth = api.injectEndpoints({
 					AddTokenToLocalStorage(result.token);
 					toast.success(result.message);
 				}
-				return result ? ["auth"] : [{ type: "auth", id: "ERROR" }];
+				return result
+					? ["auth", "cart", "wishlist"]
+					: [{ type: "auth", id: "ERROR" }];
 			},
 		}),
 		login: build.mutation({
@@ -42,7 +44,9 @@ const auth = api.injectEndpoints({
 					AddTokenToLocalStorage(result.token);
 					toast.success(result.message);
 				}
-				return result ? ["auth"] : [{ type: "auth", id: "ERROR" }];
+				return result
+					? ["auth", "cart", "wishlist"]
+					: [{ type: "auth", id: "ERROR" }];
 			},
 		}),
 		guestLogin: build.mutation({
@@ -55,12 +59,14 @@ const auth = api.injectEndpoints({
 					AddTokenToLocalStorage(result.token);
 					toast.success(result.message);
 				}
-				return result ? ["auth"] : [{ type: "auth", id: "ERROR" }];
+				return result
+					? ["auth", "cart", "wishlist"]
+					: [{ type: "auth", id: "ERROR" }];
 			},
 		}),
 		logout: build.mutation({
 			query: () => ({
-				url: "/auth/login",
+				url: "/auth/logout",
 				method: "GET",
 				headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
 			}),
@@ -72,7 +78,11 @@ const auth = api.injectEndpoints({
 					toast.error(error.data?.message);
 				}
 				return result
-					? [{ type: "auth", id: "LIST" }]
+					? [
+							{ type: "auth", id: "LIST" },
+							{ type: "cart", id: "LIST" },
+							{ type: "wishlist", id: "LIST" },
+					  ]
 					: [{ type: "auth", id: "ERROR" }];
 			},
 		}),
