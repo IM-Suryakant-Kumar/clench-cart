@@ -77,9 +77,10 @@ const Sidebar = () => {
 };
 
 const Navbar = () => {
-	const { data } = useGetProfileQuery();
-	const { data: wishlistData } = useGetWishlistsQuery();
-	const { data: cartData } = useGetCartsQuery();
+	const { data, isError: isProfileError } = useGetProfileQuery();
+	const { data: wishlistData, isError: isWishlistError } =
+		useGetWishlistsQuery();
+	const { data: cartData, isError: isCartError } = useGetCartsQuery();
 	const { isSidebarOpen } = useSelector(state => state.sidebar);
 
 	const dispatch = useDispatch();
@@ -135,7 +136,7 @@ const Navbar = () => {
 							</SearchIconCont>
 						</SearchContainer>
 						<IconCont>
-							{data ? (
+							{!isProfileError && data ? (
 								<Link to="/profile" className="link">
 									<Avatar
 										avatar={data.user.avatar}
@@ -153,13 +154,17 @@ const Navbar = () => {
 							|{" "}
 							<Link to="/wishlist" className="link hidden">
 								<Badge
-									badgeContent={wishlistData?.products.length}
+									badgeContent={
+										!isWishlistError ? wishlistData?.products.length : 0
+									}
 									color="primary">
 									<HeartIcon />
 								</Badge>
 							</Link>
 							<Link to="/cart" className="link">
-								<Badge badgeContent={cartData?.totalQuantity} color="primary">
+								<Badge
+									badgeContent={!isCartError ? cartData?.totalQuantity : 0}
+									color="primary">
 									<CartIcon />
 								</Badge>
 							</Link>
