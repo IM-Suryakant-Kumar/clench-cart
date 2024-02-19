@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { addToCart } from "../features/cart/cartSlice";
-import { useDispatch } from "react-redux";
 import {
 	AddContainer,
 	AddIcon,
@@ -25,10 +23,11 @@ import {
 	Wrapper,
 } from "../styles/productP.css";
 import { Loader } from "../components";
-import { useGetProductsQuery } from "../features/apis";
+import { useAddToCartMutation, useGetProductsQuery } from "../features/apis";
 
 const Product = () => {
 	const { data, isLoading } = useGetProductsQuery();
+	const [addToCart, { isLoading: isAddToCartLoading }] = useAddToCartMutation();
 	const { id } = useParams();
 	let product;
 	data && (product = data.products.find(p => p._id === id));
@@ -36,7 +35,6 @@ const Product = () => {
 	const [quantity, setQuantity] = useState(1);
 	const [color, setColor] = useState("");
 	const [size, setSize] = useState("");
-	const dispatch = useDispatch();
 
 	const handleQuantity = type => {
 		if (type === "dec") {
@@ -47,14 +45,12 @@ const Product = () => {
 	};
 
 	const handleAddToCart = () => {
-		dispatch(
-			addToCart({
-				productId: product._id,
-				quantity,
-				color: color || product.color[0],
-				size: size || product.size[0],
-			})
-		);
+		addToCart({
+			productId: product._id,
+			quantity,
+			color: color || product.color[0],
+			size: size || product.size[0],
+		});
 	};
 
 	return isLoading ? (
@@ -97,7 +93,9 @@ const Product = () => {
 							<Quantity component="span">{quantity}</Quantity>
 							<AddIcon onClick={() => handleQuantity("inc")} />
 						</QuantityContainer>
-						<Button onClick={handleAddToCart}>ADD TO CART</Button>
+						<Button disabled={isAddToCartLoading} onClick={handleAddToCart}>
+							ADD TO CART
+						</Button>
 					</AddContainer>
 				</InfoContainer>
 			</Wrapper>
