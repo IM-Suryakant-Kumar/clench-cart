@@ -29,8 +29,8 @@ const Cart = () => {
 				))}
 			</ProductsCont>
 			{/* No items msg */}
-			<NoItemMsg length={products.length}>No items in cart</NoItemMsg>
-			<Summary length={products.length} elevation={1}>
+			<NoItemMsg length={products?.length}>No items in cart</NoItemMsg>
+			<Summary length={products?.length} elevation={1}>
 				<Title variant="body1" component="h2" className="summary">
 					ORDER SUMMARY
 				</Title>

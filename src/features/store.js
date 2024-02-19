@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import api from "./api";
 import { sidebarReducer } from "./reducers";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 const store = configureStore({
 	reducer: {
@@ -11,4 +12,5 @@ const store = configureStore({
 		getDefaultMiddleware().concat(api.middleware),
 });
 
+setupListeners(store.dispatch);
 export default store;

@@ -52,7 +52,7 @@ const Login = () => {
 				</form>
 				<Button
 					className="guest-btn"
-					onClick={() => guestLogin()}
+					onClick={guestLogin}
 					disabled={isGuestLoading}>
 					{isGuestLoading ? "Guest Logging in..." : "Guest Login"}
 				</Button>
