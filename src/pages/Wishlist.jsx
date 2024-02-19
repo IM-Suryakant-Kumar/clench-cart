@@ -12,7 +12,7 @@ import {
 	Top,
 	Wrapper,
 } from "../styles/wishlist.css";
-import Loader from "../components/Loader";
+import { Loader } from "../components";
 import {
 	useAddToCartMutation,
 	useGetWishlistsQuery,

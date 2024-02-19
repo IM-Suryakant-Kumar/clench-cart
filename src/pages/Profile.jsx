@@ -10,9 +10,8 @@ import {
 	Label,
 	Input,
 } from "../styles/profile.css";
-import Avatar from "../components/Avatar.jsx";
 import { useState } from "react";
-import Loader from "../components/Loader";
+import { Loader, Avatar } from "../components";
 import axios from "axios";
 import {
 	useGetProfileQuery,
@@ -64,7 +63,7 @@ const Profile = () => {
 			<AvatarCont>
 				<Avatar
 					avatar={imagePreview || user.avatar}
-					username={user.username}
+					username={user.name}
 					width={100}
 					height={100}
 					font={3.5}
