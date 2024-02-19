@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
@@ -80,14 +78,9 @@ const Sidebar = () => {
 
 const Navbar = () => {
 	const { data } = useGetProfileQuery();
-	const { data: cartData } = useGetCartsQuery();
 	const { data: wishlistData } = useGetWishlistsQuery();
+	const { data: cartData } = useGetCartsQuery();
 	const { isSidebarOpen } = useSelector(state => state.sidebar);
-
-	let user, totalQuantity, products;
-	data && (user = data.user);
-	cartData && (totalQuantity = cartData.totalQuantity);
-	wishlistData && (products = wishlistData.products);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -142,11 +135,11 @@ const Navbar = () => {
 							</SearchIconCont>
 						</SearchContainer>
 						<IconCont>
-							{user ? (
+							{data ? (
 								<Link to="/profile" className="link">
 									<Avatar
-										avatar={user?.avatar}
-										username={user?.name}
+										avatar={data.user.avatar}
+										username={data.user.name}
 										width={24}
 										height={24}
 										font={0.875}
@@ -159,14 +152,14 @@ const Navbar = () => {
 							)}
 							|{" "}
 							<Link to="/wishlist" className="link hidden">
-								<Badge badgeContent={products?.length} color="primary">
+								<Badge
+									badgeContent={wishlistData?.products.length}
+									color="primary">
 									<HeartIcon />
 								</Badge>
 							</Link>
 							<Link to="/cart" className="link">
-								<Badge
-									badgeContent={totalQuantity && totalQuantity}
-									color="primary">
+								<Badge badgeContent={cartData?.totalQuantity} color="primary">
 									<CartIcon />
 								</Badge>
 							</Link>
