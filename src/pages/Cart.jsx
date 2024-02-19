@@ -13,30 +13,25 @@ import { useGetCartsQuery } from "../features/apis";
 
 const Cart = () => {
 	const { data, isLoading } = useGetCartsQuery();
-	let products, totalPrice;
-	if (data) {
-		products = data.products;
-		totalPrice = data.totalPrice;
-	}
 
 	return isLoading ? (
 		<Loader />
 	) : (
 		<Container>
 			<ProductsCont>
-				{products?.map(prod => (
+				{data?.products.map(prod => (
 					<CartItem product={prod} key={prod._id} />
 				))}
 			</ProductsCont>
 			{/* No items msg */}
-			<NoItemMsg length={products?.length}>No items in cart</NoItemMsg>
-			<Summary length={products?.length} elevation={1}>
+			<NoItemMsg length={data?.products.length}>No items in cart</NoItemMsg>
+			<Summary length={data?.products.length} elevation={1}>
 				<Title variant="body1" component="h2" className="summary">
 					ORDER SUMMARY
 				</Title>
 				<Item>
 					<ItemText>Subtotal</ItemText>
-					<ItemPrice>₹ {totalPrice}</ItemPrice>
+					<ItemPrice>₹ {data?.totalPrice}</ItemPrice>
 				</Item>
 				<Item>
 					<ItemText>Estimated Shipping</ItemText>
@@ -48,9 +43,9 @@ const Cart = () => {
 				</Item>
 				<Item type="total">
 					<ItemText>Total </ItemText>
-					<ItemPrice>₹ {totalPrice}</ItemPrice>
+					<ItemPrice>₹ {data?.totalPrice}</ItemPrice>
 				</Item>
-				<PayButton products={products} />
+				<PayButton products={data?.products} />
 			</Summary>
 		</Container>
 	);

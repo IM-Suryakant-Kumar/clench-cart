@@ -25,16 +25,13 @@ const Wishlist = () => {
 	const [removeFromWishlist, { isLoading: isRemoveFromWishlistLoading }] =
 		useRemoveFromWishlistMutation();
 
-	let products;
-	data && (products = data.products);
-
 	return isLoading ? (
 		<Loader />
 	) : (
 		<Container>
-			<NoItemMsg length={products?.length}>No items in wishlist</NoItemMsg>
+			<NoItemMsg length={data?.products.length}>No items in wishlist</NoItemMsg>
 			<Wrapper>
-				{products.map(prod => (
+				{data?.products.map(prod => (
 					<ProductCont key={prod._id}>
 						<Top>
 							<Image src={prod.img} />

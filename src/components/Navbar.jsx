@@ -29,8 +29,8 @@ import Avatar from "./Avatar";
 import { toggleSidebar } from "../features/reducers";
 import { debounce } from "../utils";
 import {
-	useGetCartsQuery,
 	useGetProfileQuery,
+	useGetCartsQuery,
 	useGetWishlistsQuery,
 } from "../features/apis";
 
