@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
 	Info,
 	Container,
@@ -22,17 +22,23 @@ const Product = ({ product }) => {
 	const { data: cartData, isLoading: isCartDataLoading } = useGetCartsQuery();
 	const { data: wishlistData, isLoading: iswishlistDataLoading } =
 		useGetWishlistsQuery();
-	const [addToCart] = useAddToCartMutation();
+	const [addToCart, { isSuccess: isAddTocartSuccess }] = useAddToCartMutation();
 	const [removeFromCart] = useRemoveFromCartMutation();
-	const [addToWishlist] = useAddToWishlistMutation();
+	const [addToWishlist, { isSuccess: isAddToWishlistSuccess }] =
+		useAddToWishlistMutation();
 	const [removeFromWishlist] = useRemoveFromWishlistMutation();
+	const navigate = useNavigate();
+	let pathname = useLocation().pathname;
+  pathname === "/products" && (pathname = "/products?page=1")
 
 	let cartProducts, wishlistProducts;
 	cartData && (cartProducts = cartData.products);
 	wishlistData && (wishlistProducts = wishlistData.products);
 
 	// extracting product
-	const cartProduct = cartProducts?.find(prod => prod.productId === product._id);
+	const cartProduct = cartProducts?.find(
+		prod => prod.productId === product._id
+	);
 	const wishlistProduct = wishlistProducts?.find(
 		prod => prod.productId === product._id
 	);
@@ -43,11 +49,19 @@ const Product = ({ product }) => {
 	const handleAddToCart = () => {
 		isInCart && removeFromCart({ _id: cartProduct._id });
 		!isInCart && addToCart({ productId: product._id });
+		!isAddTocartSuccess &&
+			navigate("/login", {
+				state: { message: "You have to login first", redirectTo: pathname },
+			});
 	};
 
 	const handleAddToWishlist = () => {
 		isInWishList && removeFromWishlist({ _id: wishlistProduct._id });
 		!isInWishList && addToWishlist({ productId: product._id });
+		!isAddToWishlistSuccess &&
+			navigate("/login", {
+				state: { message: "You have to login first", redirectTo: pathname },
+			});
 	};
 
 	return (

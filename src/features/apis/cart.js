@@ -21,11 +21,7 @@ const cart = api.injectEndpoints({
 				body,
 			}),
 			invalidatesTags: (result, error) => {
-				if (result) {
-					toast.success(result.message);
-				} else {
-					toast.error(error.data?.message);
-				}
+				result && toast.success(result.message);
 				return result ? ["cart"] : [{ type: "cart", id: "ERROR" }];
 			},
 		}),
@@ -54,11 +50,7 @@ const cart = api.injectEndpoints({
 				headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
 			}),
 			invalidatesTags: (result, error) => {
-				if (result) {
-					toast.success(result.message);
-				} else {
-					toast.error(error.data?.message);
-				}
+				result && toast.success(result.message);
 				return result
 					? [{ type: "cart", id: "LIST" }]
 					: [{ type: "cart", id: "ERROR" }];

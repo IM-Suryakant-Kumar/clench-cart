@@ -21,7 +21,7 @@ export const Wrapper = styled(Box)`
 
 export const Title = styled(Typography)`
 	text-align: center;
-	&:first-child {
+	&.main {
 		font-family: "Cinzel", serif;
 		font-weight: bold;
 	}
