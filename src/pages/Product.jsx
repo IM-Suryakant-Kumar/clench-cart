@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import {
 	AddContainer,
@@ -22,15 +22,22 @@ import {
 	Title,
 	Wrapper,
 } from "../styles/productP.css";
+import {
+	useAddToCartMutation,
+	useGetCartsQuery,
+	useGetProductsQuery,
+} from "../features/apis";
 import { Loader } from "../components";
-import { useAddToCartMutation, useGetProductsQuery } from "../features/apis";
 
 const Product = () => {
+	const { data: cartData } = useGetCartsQuery();
 	const { data, isLoading } = useGetProductsQuery();
 	const [addToCart, { isLoading: isAddToCartLoading }] = useAddToCartMutation();
 	const { id } = useParams();
-	let product;
-	data && (product = data.products.find(p => p._id === id));
+	const navigate = useNavigate();
+
+	const product = data?.products.find(p => p._id === id);
+	const isInCart = cartData?.products.find(p => p.productId === id);
 
 	const [quantity, setQuantity] = useState(1);
 	const [color, setColor] = useState("");
@@ -46,10 +53,10 @@ const Product = () => {
 
 	const handleAddToCart = () => {
 		addToCart({
-			productId: product._id,
+			productId: product?._id,
 			quantity,
-			color: color || product.color[0],
-			size: size || product.size[0],
+			color: color || product?.color[0],
+			size: size || product?.size[0],
 		});
 	};
 
@@ -59,29 +66,29 @@ const Product = () => {
 		<Container>
 			<Wrapper>
 				<ImageContainer>
-					<Image src={product.img} />
+					<Image src={product?.img} />
 				</ImageContainer>
 				<InfoContainer>
 					<Title variant="subtitle1" component="h3">
-						{product.title}
+						{product?.title}
 					</Title>
 					<Desc variant="body1" component="p">
-						{product.desc}
+						{product?.desc}
 					</Desc>
 					<Price variant="subtitle1" component="p">
-						₹ {product.price}
+						₹ {product?.price}
 					</Price>
 					<FilterContainer>
 						<Filter>
 							<FilterTitle variant="subtitle1">Color</FilterTitle>
-							{product.color?.map(c => (
+							{product?.color?.map(c => (
 								<FilterColor color={c} key={c} onClick={() => setColor(c)} />
 							))}
 						</Filter>
 						<Filter>
 							<FilterTitle>Size</FilterTitle>
 							<FilterSize onChange={e => setSize(e.target.value)}>
-								{product.size?.map(s => (
+								{product?.size?.map(s => (
 									<FilterSizeOption key={s}>{s}</FilterSizeOption>
 								))}
 							</FilterSize>
@@ -93,8 +100,14 @@ const Product = () => {
 							<Quantity component="span">{quantity}</Quantity>
 							<AddIcon onClick={() => handleQuantity("inc")} />
 						</QuantityContainer>
-						<Button disabled={isAddToCartLoading} onClick={handleAddToCart}>
-							ADD TO CART
+						<Button
+							disabled={isAddToCartLoading}
+							onClick={() => {
+								isInCart
+									? navigate("/cart")
+									: handleAddToCart();
+							}}>
+							{isInCart ? "Go to Cart" : "ADD TO CART"}
 						</Button>
 					</AddContainer>
 				</InfoContainer>

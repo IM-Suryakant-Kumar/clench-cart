@@ -13,7 +13,7 @@ const Container = styled(Stack)`
 const Products = ({ products }) => {
 	return (
 		<Container>
-			{products.map(product => (
+			{products?.map(product => (
 				<Product product={product} key={product._id} />
 			))}
 		</Container>

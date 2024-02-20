@@ -19,13 +19,9 @@ export const Container = styled(Paper)`
 	);
 
 	position: relative;
-	&:hover .info {
-		opacity: 1;
-	}
 `;
 
 export const Info = styled(Stack)`
-	opacity: 0;
 	width: 100%;
 	height: 100%;
 	border-radius: 0.3125em;

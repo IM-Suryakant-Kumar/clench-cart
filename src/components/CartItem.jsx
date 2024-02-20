@@ -31,7 +31,10 @@ const CartItem = ({ product }) => {
 					</Color>
 					<Size>Size: {product.size}</Size>
 				</Spec>
-				<Price>Price: ₹ {product.price}</Price>
+				<Spec>
+					<Price>Price: ₹ {product.price * product.quantity}</Price>
+					<Price>Quantity: {product.quantity}</Price>
+				</Spec>
 				<DeleteIcon
 					aria-disabled={isRemoveFromCartLoading}
 					onClick={() => removeFromCart({ _id: product._id })}
