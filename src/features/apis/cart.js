@@ -21,7 +21,11 @@ const cart = api.injectEndpoints({
 				body,
 			}),
 			invalidatesTags: (result, error) => {
-				result && toast.success(result.message);
+				if (result) {
+					toast.success(result.message);
+				} else {
+					toast.error("Must Login first");
+				}
 				return result ? ["cart"] : [{ type: "cart", id: "ERROR" }];
 			},
 		}),
@@ -50,7 +54,11 @@ const cart = api.injectEndpoints({
 				headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
 			}),
 			invalidatesTags: (result, error) => {
-				result && toast.success(result.message);
+				if (result) {
+					toast.success(result.message);
+				} else {
+					toast.error("Must Login first");
+				}
 				return result
 					? [{ type: "cart", id: "LIST" }]
 					: [{ type: "cart", id: "ERROR" }];

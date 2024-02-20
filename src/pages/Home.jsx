@@ -13,8 +13,8 @@ const Home = () => {
 			<Slider />
 			<Categories />
 			{isLoading && <Loader />}
-			{data?.products && (
-				<Products products={data.products.slice(data.products.length - 8)} />
+			{data && (
+				<Products products={data?.products.slice(data.products.length - 8)} />
 			)}
 			<Newsletter />
 		</div>
