@@ -21,11 +21,7 @@ const wishlist = api.injectEndpoints({
 				body,
 			}),
 			invalidatesTags: (result, error) => {
-				if (result) {
-					toast.success(result.message);
-				} else {
-					toast.error(error.data?.message);
-				}
+				result && toast.success(result.message);
 				return result ? ["wishlist"] : [{ type: "wishlist", id: "ERROR" }];
 			},
 		}),
@@ -36,11 +32,7 @@ const wishlist = api.injectEndpoints({
 				headers: { Authorization: `Bearer ${getTokenFromLocalStorage()}` },
 			}),
 			invalidatesTags: (result, error) => {
-				if (result) {
-					toast.success(result.message);
-				} else {
-					toast.error(error.data?.message);
-				}
+				result && toast.success(result.message);
 				return result
 					? [{ type: "wishlist", id: "LIST" }]
 					: [{ type: "wishlist", id: "ERROR" }];

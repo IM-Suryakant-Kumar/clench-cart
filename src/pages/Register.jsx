@@ -27,7 +27,7 @@ const Register = () => {
 	return (
 		<Container>
 			<Wrapper>
-				<Title variant="h6" component="h2">
+				<Title variant="h6" component="h2" className="main">
 					CREATE AN ACCOUNT
 				</Title>
 				{errorMessage && (
